@@ -12,8 +12,6 @@ def curo(request):
     thispage = 'curo'
     context = {
         'thispage': thispage,
-        'arrows': 'noarrows',
-        'nexthidden': 'false',
     }
 
     return render(request, 'curo/intro.html', context)
