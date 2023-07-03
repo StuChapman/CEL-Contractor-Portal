@@ -1,0 +1,21 @@
+{% extends "basemodule001.html" %}
+{% load static %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <!--Text Section-->
+        <section id="textsection">
+            <h1>Introduction to the 8 Wastes</h1>
+            <p class="paralarge">In this module, you will be introduced to the concepts of: 
+                <span class="orange-highlight">Value</span> and 
+                <span class="orange-highlight">Waste</span>, the 8 classifications of 
+                Waste, their meanings and examples to bring them to life.</p>
+            <p class="paramedium">Following the content, there is a test, made up of 10 questions to check your learning. The pass 
+                mark is 70% (7 out of 10).</p>
+            <p class="paramedium">Good Luck!</p>
+                Click to Begin
+                </a>
+            </button>
+        </section>
+    {% endif %}
+{% endblock %}

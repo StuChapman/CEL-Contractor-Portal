@@ -14,4 +14,4 @@ def curo(request):
         'thispage': thispage,
     }
 
-    return render(request, 'curo/intro.html', context)
+    return render(request, 'curo/portal.html', context)
