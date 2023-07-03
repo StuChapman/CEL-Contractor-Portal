@@ -24,7 +24,7 @@
         <!--Font Awesome stylesheet-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
         <!-- Core theme CSS (includes Bootstrap) -->
-        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/stylescuro.css' %}" rel="stylesheet" />
     {% endblock %}
 
     {% block extra_css %}
@@ -44,9 +44,9 @@
         <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
         <!-- Module specific scripts -->
         <script src="{% static 'js/DragDropTouch.js' %}"></script>
-        <script src="{% static 'js/module001/module001-global-variables.js' %}"></script>
-        <script src="{% static 'js/module001/module001-learning-section.js' %}"></script>
-        <script src="{% static 'js/module001/module001-question-section.js' %}"></script>
+        <script src="{% static 'js/module002/module002-global-variables.js' %}"></script>
+        <script src="{% static 'js/module002/module002-learning-section.js' %}"></script>
+        <script src="{% static 'js/module002/module002-question-section.js' %}"></script>
     {% endblock %}
 
     {% block extra_js %}
@@ -58,7 +58,7 @@
 
 <body class="ml-0">
 
-    {% include 'includes/templates/navbar.html' %}
+    {% include 'includes/templates/navbarcuro.html' %}
     {% include 'includes/templates/topper.html' %}
 
     {% if messages %}
@@ -70,11 +70,9 @@
     {% block content %}
     {% endblock %}
 
-    {% include 'includes/templates/footerarrows.html' %}
-
 </body>
 
-    {% include 'includes/modals/homemodal.html' %}
+    {% include 'includes/modals/homecuromodal.html' %}
     {% include 'includes/modals/helpmodal.html' %}
 
     {% block postloadjs %}
