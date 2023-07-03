@@ -1,0 +1,905 @@
+
+/*------------------- General Styling */
+
+body, html {
+    padding: 0;
+    margin: 0;
+}
+
+/* credit to https://css-tricks.com/books/fundamental-css-tactics/scale-typography-screen-size/ 
+    and https://www.madebymike.com.au/writing/fluid-type-calc-examples/ 
+        for font-size: calc(10px + (48 - 10) * ((100vw - 300px) / (1800 - 300)));*/
+
+.align-vertically { /* credit to https://webdevblog.com/css-vertical-align/ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.align-right { /* credit to https://webdevblog.com/css-vertical-align/ */
+    text-align: right;
+    margin-right: 5rem;
+}
+
+a  {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.btn-orange {
+    background-color: #CC613A;
+    border-color: rgb(187, 96, 63);
+    color: #ffffff;
+}
+
+.btn-blue {
+    background-color: #657486;
+    border-color: #5c6674;
+    color: #ffffff;
+}
+
+label {
+    margin: 0;
+}
+
+.orange-highlight {
+     color: #CC613A;
+ }
+
+.extramargin {
+    margin-top: 7.5vh;
+}
+
+.white {
+    color: #ffffff;
+}
+
+.greencheck {
+    color: green;
+}
+
+.redcross {
+    color: red;
+}
+
+/*------------------- Bootstrap Overrules */
+
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+#textsection .col-6, .col-sm-3 {
+    padding: 0;
+}
+
+#textsection .col-4 {
+    padding: 0;
+}
+
+/*------------------- Hover Styling */
+
+a:hover, #helpbtn:hover, .btn-orange:hover, .btn-blue:hover {
+    color: rgb(255, 255, 255, .5);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#footer button:hover, .toast-close:hover {
+    cursor: pointer;
+}
+
+.orange-highlight:hover {
+    color: #657486;
+}
+
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+#brandimage:hover, #leftcarouselarrow:hover, #rightcarouselarrow:hover, .letterpick:hover, .wordpick:hover,
+.fa-chevron-right, .fa-chevron-left, .fa-chevron-down, .fa-chevron-up, .wasteimagecontainer {
+    cursor: pointer;
+}
+
+.arrowtext:hover {
+    cursor: pointer;
+    font-weight: bold; 
+}
+
+#topper a:hover {
+    color: #CC613A;
+    }
+
+/*------------------- Navbar Styling */
+
+nav {
+    padding: 1vh;
+    background-color: #657486;
+    font-family: 'Cairo', sans-serif;
+    font-size: 3vh;
+    height: 10vh;
+}
+
+#brandimage {
+    height: 8vh;
+}
+
+#helpbtn {
+    background-color: transparent;
+    border: none;
+    height: 8vh;
+    color: #ffffff;
+    font-size: calc(14px + (22 - 14) * ((100vw - 300px) / 1620));
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.unhidden {
+    visibility: visible;
+}
+
+/* ------------------- Toast Styling */
+
+#testanswer {
+    width: 10px;
+}
+
+#toastsection {
+    color: #657486;
+    font-family: 'Cairo', sans-serif;
+    text-align: center;
+    height: calc(3vh + (20 - 2.5) * ((100vw - 300px) / 1620));
+}
+
+#toastsection .paralarge {
+    font-size: calc(1.5vh + (20 - 2.5) * ((100vw - 300px) / 1620));
+}
+
+.toast {
+    flex-basis: 350px;
+    max-width: 100vw;
+    font-size: 0.875rem;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    border-radius: 0.25rem;
+  }
+
+  .toast:not(:last-child) {
+    margin-bottom: 0.75rem;
+  }
+
+  .toast.showing {
+    opacity: 1;
+  }
+
+  .toast.show {
+    display: block;
+    opacity: 1;
+  }
+  
+  .toast.hide {
+    display: none;
+  }
+
+  #textsection .toast-close-container .toast-close {
+    color: #657486;
+    background-color: #ffffff;
+  }
+
+/* ------------------- Text Section Styling */
+
+#textsection .login {
+    width: 25rem;
+}
+
+#textsection .login label {
+    display: block
+}
+
+#textsection, #certsection{
+    background-color: #ffffff;
+    font-family: 'Cairo', sans-serif;
+    text-align: center;
+    min-height: 82.5vh;
+}
+
+#certsection {
+    width: 900px;
+    height: 1272px;
+    border: double 3px black;
+    border-radius: 10px;
+}
+
+#certsection #topper, #certsection .certhead {
+    width: 892px;
+}
+
+.certhead {
+    height: 10vh;
+    background-color: #657486;
+}
+
+#signature, #signatureBrand {
+    width: 250px;
+}
+
+.signature {
+    font-size: 18px;
+    text-align: left;
+}
+
+#topper, #topper a {
+    background-color: #EFEFEF;
+    font-size: calc(2vh + (5 - 2) * ((100vw - 300px) / 1620));
+    color: #101828;button;
+    height: 4vh;
+    text-align: center;
+    font-family: 'Cairo', sans-serif;
+}
+
+#totalScore {
+    color: #CC613A;
+    font-weight: bold;
+}
+
+#textsection h1 {
+    padding: 5vh;
+    margin: 0;
+    font-size: calc(5vh + (30 - 5) * ((100vw - 300px) / 1620));
+}
+
+#textsection h1, #certsection h1 {
+    color: #CC613A;
+    font-weight: bold;
+}
+
+#certsection h1 {
+    font-size: 75px;
+}
+
+#textsection p {
+    padding: 0 2.5vh 2.5vh;
+    margin: 0;
+}
+
+#certsection p {
+    font-size: 50px;
+}
+
+#textsection .extrapadding {
+    padding-top: 10vh;
+}
+
+#textsection .paralarge {
+    font-size: calc(2.5vh + (20 - 2.5) * ((100vw - 300px) / 1620));
+}
+
+#textsection .paralarge, #certsection .paralarge {
+    font-size: calc(2.5vh + (20 - 2.5) * ((100vw - 300px) / 1620));
+    color: #101828;
+}
+
+#certsection .paralarge {
+    font-size: 50px;
+}
+
+#textsection .paramedium {
+    font-size: calc(2vh + (15 - 2) * ((100vw - 300px) / 1620));
+    color: #000000;
+}
+
+#textsection button {
+    margin-top: 2.5vh;
+    background-color: #657486;
+    border: none;
+    font-size: calc(2.5vh + (10 - 2.5) * ((100vw - 300px) / 1620));
+}
+
+#textsection #imagetext {
+    font-size: calc(3.5vh + (26 - 3.5) * ((100vw - 300px) / 1620));
+    color: #101828;
+    padding: 0 20vw 0 20vw;
+}
+
+#textsection .imagefooter {
+    font-size: calc(1.5vh + (12 - 1.5) * ((100vw - 300px) / 1620));
+}
+
+.modal .imagefooter {
+    color: gray;
+    font-size: calc(1vh + (8 - 1) * ((100vw - 300px) / 1620));
+}
+
+#textsection #examplestep {
+    width: 50vw;
+    color: #CC613A;
+    font-weight: bold;
+}
+
+.examplebox {
+    padding: 0;
+    margin-bottom: 2.5vh;
+    height: 30vh;
+    background-color: #f6f6f6;
+}
+
+/* ------------------- more styling in Media Screen responsiveness */
+.letterpickbox {
+    align-content: stretch;    
+    width: 60vw;
+}
+
+#lettersquarebox, .letterpickbox {
+    padding: 0;
+}
+
+#lettersquarebox {
+    width: 80vw;
+    margin-bottom: 5vh;
+}
+
+.lettersquare, .letterpick {
+    max-width: 7vh;
+    height: 12.5vh;
+    padding: 0;
+    font-size: calc(5vh + (30 - 5) * ((100vw - 300px) / 1620));
+    font-weight: bold;
+}
+
+.lettersquare {
+    margin: 2vw;
+    border-bottom: 4px solid #000000;
+    color: #CC613A;
+}
+
+.letterpick {
+    margin: 0 1vw;
+    color: #000000;
+}
+
+
+/* ------------------- more styling in Media Screen responsiveness */
+.wordsquarebox {
+    padding: 3vh;
+    background-color: #f6f6f6;
+}
+
+.wordpickbox {
+    align-content: stretch;    
+    width: 60vw;
+    padding: 0;
+}
+
+.wordsquare, .wordpick {
+    font-weight: bold;
+}
+
+.wordsquare {
+    border-bottom: 2px solid #000000;
+    color: #CC613A;
+}
+
+.wordpick {
+    width: 12.5vh;
+    margin: 0 1vw;
+    color: #000000;
+}
+
+#certName {
+    color: #CC613A;
+    font-size: calc(2.5vh + (20 - 2.5) * ((100vw - 300px) / 1620));
+    font-weight: bold;
+}
+
+/* ------------------- Option Form Styling */
+
+#optionform {
+    padding-top: 10vh;
+    width: 50vw;
+    height: 50vh;
+    font-size: calc(3vh + (18 - 3) * ((100vw - 300px) / 1620));
+}
+
+#optionform input[type=radio] {
+    margin-top: 1vh;
+    border: 0px;
+    width: calc(2.5vh + (15 - 2.5) * ((100vw - 300px) / 1620));
+    height: calc(2.5vh + (15 - 2.5) * ((100vw - 300px) / 1620));
+}
+
+/* ------------------- Check Form Styling */
+/* ------------------- more styling in Media Screen responsiveness */
+
+#checkform {
+    width: 70vw;
+    height: 40vh;
+    font-size: calc(2vh + (15 - 2) * ((100vw - 300px) / 1620));
+}
+
+#checkform input[type=checkbox] {
+    border: 0px;
+    width: calc(2.5vh + (15 - 2.5) * ((100vw - 300px) / 1620));
+    height: calc(2.5vh + (15 - 2.5) * ((100vw - 300px) / 1620));
+}
+
+#checkform label {
+    width: 60vw;
+    text-align: left;
+}
+
+/* ------------------- Image Styling */
+
+#ohnoimage {
+    height: 20vh;
+    padding-bottom: 2.5vh;
+}
+
+#valueimage {
+    width: calc(20vh + (70 - 20) * ((100vw - 300px) / 1620));
+    margin-bottom: 5vh;
+}
+
+.wastepopupimagecontainer {
+    align-content: center;
+    padding-bottom: 2.5vh;
+}
+
+#wastepopupimage {
+    height: 17.5vh;
+}
+
+/* ------------------- Arrow Styling */
+
+.arrowtext {
+    font-weight: normal;
+}
+
+#arrowvalue, #arrowwaste, #arrowmaskvalue, #arrowmaskwaste {
+    position: absolute;
+    top: 26.5vh;
+    left: 0;
+    height: 33vh;
+    border: none;
+}
+
+#arrowvalue, #arrowwaste {
+    background-color: #CC613A;
+    padding: 2vw;
+}
+
+#arrowmaskvalue, #arrowmaskwaste {
+    background-color: #ffffff;
+}
+
+#arrowvalue {
+    left:0;
+    width: 33vw;
+    color: #ffffff;
+    font-size: calc(2vh + (10 - 2) * ((100vw - 300px) / 1620));
+}
+
+#arrowmaskvalue {
+    right: 67vw;
+    width: 33vw;
+}
+
+#arrowwaste, #arrowmaskwaste {
+    left: 65.7vw;
+    width: 33vw;
+    color: #ffffff;
+    font-size: calc(2vh + (10 - 2) * ((100vw - 300px) / 1620));
+}
+
+#leftcarouselarrow, #rightcarouselarrow, #examplecarouselarrow {
+    font-size: 7.5vh;
+}
+
+#leftcarouselarrow {    
+    color: #eeeeee;
+    padding: 0 10vw 0 0;
+}
+
+#rightcarouselarrow {
+    color: #657486;
+    padding: 0 0 0 10vw;
+}
+
+#examplecarouselarrow {    
+    color: #dddcdc;
+}
+
+#downarrow, #uparrow {
+    color: #657486;
+    font-size: calc(5vh + (30 - 5) * ((100vw - 300px) / 1620));
+}
+
+#scrolltwo {
+    display: none;
+}
+
+/* ------------------- Video Styling */
+
+#onettovideo {
+    max-height: 30vh;
+    max-width: 80vw;
+}
+
+#playbutton {
+    width: 100px;
+    color: #ffffff;
+}
+
+/* ------------------- Modal Styling */
+
+#homeModal .btn, #helpModal .btn {
+    width: 85px;
+    font-size: 14px;    
+}
+
+.modal-header {
+    color: #CC613A;
+    font-size: calc(2.5vh + (10 - 2.5) * ((100vw - 300px) / 1620));
+}
+
+.modal-body {
+    color: #101828;
+    font-size: calc(10px + (18 - 10) * ((100vw - 300px) / 1620));
+}
+
+.modal-footer {
+    color: #101828;
+    font-size: calc(10px + (18 - 10) * ((100vw - 300px) / 1620));
+}
+
+#name, #email, #question, #passwordemail {
+    width: 100%;
+    margin-bottom: 2vh;
+}
+
+.passwordreset {
+    width: 50vw;
+}
+
+.resetpassword, #passwordmessage {
+    width: 0;
+}
+
+/* ------------------- Waste pop-up Styling */
+/* ------------------- more styling in Media Screen responsiveness */
+
+#wastepopup {
+    position: absolute;
+    top: 15vh;
+    left: 1vw;
+    height: 76.5vh;
+    width: 97vw;
+    background-color: #ffffff;
+    border: 1px solid #657486;
+    visibility: hidden;
+}
+
+/* ------------------- Drag and Drop Styling */
+/* ------------------- more styling in Media Screen responsiveness */
+
+.dragboxheader {
+    font-size: calc(2vh + (12 - 2) * ((100vw - 300px) / 1620));
+}
+
+.dragcontainerouter {
+    width: 80vw;
+    align-content: center;
+}
+
+.dragcontainerleft, .dragcontainermid, .dragcontainerright {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dragbox, .dragcard {
+    padding: 0;
+}
+
+.dragbox {
+    background-color: #C4C4C4;
+}
+
+.dragcard {
+    background-color: rgb(248, 247, 247);
+    border: 1px solid #C4C4C4;
+    padding: 2px;
+    font-size: 2vh;
+}
+
+
+/* ------------------- Order Box Styling */
+/* ------------------- more styling in Media Screen responsiveness */
+
+.orderboxheader {
+    font-size: calc(2vh + (12 - 2) * ((100vw - 300px) / 1620));
+}
+
+.ordercontainerouter {
+    width: 80vw;
+    align-content: center;
+}
+
+.ordercontainerleft, .ordercontainerright {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ordercontainerleft {
+    color: #CC613A;
+}
+
+.orderbox, .ordercard {
+    line-height: 2.2vh;
+}
+
+.ordercard {
+    padding: 2px;
+    border: 1px solid #C4C4C4;
+    background-color: rgb(248, 247, 247);
+}
+
+/* ------------------- Footer Styling */
+
+#footer, #footer button {
+    background-color: #EFEFEF;
+    font-family: 'Cairo', sans-serif;
+    font-size: calc(2.5vh + (10 - 2.5) * ((100vw - 300px) / 1620));
+    height: 7.5vh;
+}
+
+#footer svg {
+    color: #657486;
+}
+
+#footer a, #footer button {
+    color: #101828;
+}
+
+/* ------------------- Media Screen responsiveness */
+
+@media screen and (orientation: portrait){ /* Credit: https://stackoverflow.com/questions/43589507/how-can-you-have-bootstrap-responsiveness-based-on-screen-ratio-instead-of-scree */
+
+    .username {
+        font-size: calc(7vw + (25 - 5) * ((100vw - 300px) / 1620));
+    }
+
+    .extramarginbottom {
+        margin-bottom: 1vh;
+    }
+
+    #divleft {
+        margin-right: auto;
+    }
+
+    #divright {
+        margin-left: auto;
+    }
+
+    #transportation, 
+    #inventory,
+    #motion,
+    #waiting,
+    #overproduction,
+    #overprocessing,
+    #defects,
+    #skills {
+        height: 13vh;
+        padding: .5vh .5vh 0 .5vh;
+    }
+    
+    #checkform input[type=checkbox] {
+        margin-top: 1vh;
+    }
+
+    .wastecontainer {
+        width: 26vh;
+    }
+
+    .wasteimagecontainer {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .dragcontainerouter {
+        width: 90vw;
+    }
+
+    .dragcontainerleft, .dragcontainermid, .dragcontainerright, .dragbox, .dragcard {
+        width: 29vw;
+    }
+
+    .dragbox, .dragcard {
+        height: 8.5vh;
+        margin-bottom: 2vw;
+        font-size: 2vh;
+    }
+
+    .ordercontainerouter {
+        width: 90vw;
+    }
+
+    .ordercontainerleft, .ordercontainermid, .ordercontainerright, .orderbox, .ordercard {
+        width: 44vw;
+    }
+
+    .orderbox, .ordercard {
+        height: 5vh;
+        margin-bottom: 2vw;
+        font-size: 1.8vh;
+    }
+
+    .wordsquarebox, .wordpickbox {
+        width: 75vw;
+        font-size: calc(2.5vh + (12 - 2.5) * ((100vw - 300px) / 1620));
+    }
+
+    .wordsquare {
+        width: 12.5vh;
+    }
+
+    .wordsquare, .wordpick {
+        padding-bottom: 4vh;
+        margin: 1vw 1vw 3vw;
+        height: 3.5vh;
+    }
+
+    #totalScore {
+        font-size: calc(25vw + (30 - 5) * ((100vw - 300px) / 1620));
+    }login
+
+}
+
+@media screen and (orientation: landscape){ /* Credit: https://stackoverflow.com/questions/43589507/how-can-you-have-bootstrap-responsiveness-based-on-screen-ratio-instead-of-scree */
+
+    .username {
+        font-size: calc(5vh + (25 - 5) * ((100vw - 300px) / 1620));
+    }
+
+    #totalScore {
+        font-size: calc(15vh + (30 - 5) * ((100vw - 300px) / 1620));
+    }
+
+    #textsection .loginput {
+        width: 25vw;
+    }
+
+    .extramarginbottom {
+        margin-bottom: 5vh;
+    }
+
+    #divleft {
+        margin-right: 0;
+    }
+
+    #divright {
+        margin-left: 0;
+    }
+
+    #transportation, 
+    #inventory,
+    #motion,
+    #waiting,
+    #overproduction,
+    #overprocessing,
+    #defects,
+    #skills {
+        height: 24.5vh;
+        padding: .5vh .5vh 0 .5vh;
+    }
+    
+    .wastecontainer {
+        width: 100vh;
+    }
+
+    .wasteimagecontainer {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .examplecontainer {
+        width: 65vw;
+    }
+
+    .dragcontainerouter {
+        width: 75vw;
+    }
+
+    .dragcontainerleft, .dragcontainermid, .dragcontainerright {
+        width: 24vw;
+    }
+
+    .dragbox, .dragcard {
+        width: 24vw;
+        height: 8vh;
+        margin-bottom: .5vw;
+        font-size: 3vh;
+    }
+
+    .ordercontainerouter {
+        width: 70vw;
+    }
+
+    .ordercontainerleft, .ordercontainermid, .ordercontainerright {
+        width: 34vw;
+    }
+
+    .orderbox, .ordercard {
+        width: 34vw;
+        height: 5.25vh;
+        margin-bottom: .5vw;
+        font-size: 3vh;
+    }
+
+    .wordsquarebox, .wordpickbox {
+        font-size: 2.5vh;
+    }
+
+    .wordsquarebox {
+        width: 90vw;
+    }
+    
+    .wordpickbox {
+        width: 95vw;
+        padding: 5vh 0;
+    }
+
+    .wordsquare  {
+        width: 12.5vh;
+    }
+
+    .wordsquare, .word  {
+        margin: 0 1vw 1vw;
+    }
+
+    .wordsquare, .wordpick, .word {
+        height: 5vh;
+    }
+
+    .resultscontainer {
+        width: 90vw;
+    }
+
+}
+
+.alert-dismissible .close {
+    border-color: #5c6674;
+    color: #ffffff;
+    z-index: 2;
+    padding: 0.75rem 1.25rem;
+  }
+
+@media screen and (min-width: 768px) {
+    #helpbtn {
+        font-size: calc(2.5vh + (5 - 2.5) * ((100vw - 768px) / 300));
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    #ohnoimage {
+        height: 30vh;
+    }
+        
+    #textsection .paralarge{
+        padding: 0 5vw 0 5vw;
+    }
+        
+    #textsection .extrapadding {
+        padding-top: 10vh;
+    }
+
+    #onettovideo {
+        max-height: 30vh;
+        max-width: 25vw;
+    }
+
+}
