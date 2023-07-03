@@ -14,7 +14,7 @@
         {% endif %}
 
         {% if user.is_authenticated %}
-            <p class="paralarge">Below are all the learning modules you have been enrolled in:
+            <p class="paralarge">Below are all the Contractor Portals you have been access to:
                 <br>
                 {% for group in user.groups.all %}
                     {% with my_url=group.name|cut:" "|lower %}
@@ -25,7 +25,7 @@
                     {% endwith %}
                 {% endfor %}
             </p>
-            <p class="paramedium">Click the links to complete the modules.</p>
+            <p class="paramedium">Click the links to enter the portal.</p>
             <button type="button" class="btn">
                 <a href="{% url 'account_logout' %}"> Sign Out</a>
             </button>
