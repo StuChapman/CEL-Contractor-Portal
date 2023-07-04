@@ -425,6 +425,20 @@ nav {
     font-weight: bold;
 }
 
+/* ------------------- Order Form Styling */
+
+.orderform {
+    width: 75vw;
+}
+
+.orderform li {
+    text-align: left;
+}
+
+.orderform label, .orderform input {
+    margin-left: auto;
+}
+
 /* ------------------- Option Form Styling */
 
 #optionform {
