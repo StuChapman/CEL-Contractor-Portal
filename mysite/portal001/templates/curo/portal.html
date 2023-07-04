@@ -9,11 +9,50 @@
             {% if user.is_authenticated %}
                 <form action="" method="POST">
                     {% csrf_token %}
-                    {{ form.as_ul }}
+                    <!--{{ form.as_ul }}-->
+                    <li>
+                        <label for="id_orderNumber">OrderNumber:</label>
+                        <input disabled="disabled" type="number" name="orderNumber" value="{{ form.orderNumber.value }}" step="1" required id="id_orderNumber">
+                    </li>
+                    <li>
+                        <label for="id_orderDescription">OrderDescription:</label>
+                        <input disabled="disabled" type="text" name="orderDescription" value="{{ form.orderDescription.value }}" maxlength="254" required id="id_orderDescription">
+                    </li>                        
+                    <li>
+                        <label for="id_name">Name:</label>
+                        <input disabled="disabled" type="text" name="name" value="{{ form.name.value }}" maxlength="254" required id="id_name">
+                    </li>
+                    <li>
+                        <label for="id_address">Address:</label>
+                        <input disabled="disabled" type="text" name="address" value="{{ form.address.value }}" maxlength="254" required id="id_address">
+                    </li>
+                    <li>
+                        <label for="id_contractor">Contractor:</label>
+                        <input disabled="disabled" type="text" name="contractor" value="{{ form.contractor.value }}" maxlength="254" required id="id_contractor">
+                    </li>
+                    <li>
+                        <label for="id_appointmentDate">AppointmentDate:</label>
+                        <input disabled="disabled" type="text" name="appointmentDate" value="{{ form.appointmentDate.value }}" required id="id_appointmentDate">
+                    </li>
+                    <li>
+                        <label for="id_primaryContact">PrimaryContact:</label>
+                        <input disabled="disabled" type="email" name="primaryContact" value="{{ form.primaryContact.value }}" maxlength="254" required id="id_primaryContact">
+                     </li>
+                    <li>
+                        <label for="id_secondaryContact">SecondaryContact:</label>
+                        <input disabled="disabled" type="email" name="secondaryContact" value="{{ form.secondaryContact.value }}" maxlength="254" required id="id_secondaryContact">
+                    </li>
+                    <li>
+                        <label for="id_notes">Notes:</label>
+                        <input disabled="disabled" type="text" name="notes" value="{{ form.notes.value }}" maxlength="254" required id="id_notes">
+                    </li>
+                    <li>
+                        <label for="id_dateLastUpdate">DateLastUpdate:</label>
+                        <input disabled="disabled" type="text" name="dateLastUpdate" value="{{ form.dateLastUpdate.value }}" required id="id_dateLastUpdate">
+                    </li>
                 </form>
-                    <fieldset>
-                        
-                    </fieldset>
+                <br>
+                <p>Record 1 of: {{ order_list_length }}</p>
             {% endif %}
         </section>
     {% endif %}

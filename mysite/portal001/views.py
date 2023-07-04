@@ -12,7 +12,7 @@ from django.db.models import Q
 
 def curo(request):
     """ A view to return the intro page """
-    thisOrder = 12345678
+    thisOrder = 1234567
     queries = (Q(orderNumber__icontains=thisOrder) |
                Q(orderDescription__icontains=thisOrder))
     orders = Orders.objects.all()
