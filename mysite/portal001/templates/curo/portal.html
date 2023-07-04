@@ -7,6 +7,7 @@
         <section id="textsection">
             <h1>Contractor Portal</h1>
             {% if user.is_authenticated %}
+                <p>Record 1 of: {{ order_list_length }}</p>
                 <form class="orderform ml-auto mr-auto" action="" method="POST">
                     {% csrf_token %}
                     <!--{{ form.as_ul }}-->
@@ -17,7 +18,13 @@
                                 <input disabled="disabled" type="number" name="orderNumber" value="{{ form.orderNumber.value }}" step="1" required id="id_orderNumber">
                             </li>
                             <li>
-                                <label for="id_orderDescription">OrderDescription:</label>
+                                <label for="id_orderDescription">OrderDescription: 
+                                    {% for group in user.groups.all %}
+                                        {% if group.name == 'Edit' %}
+                                        <button id="editorderDescription" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder(orderDescription);">edit</button>
+                                        {% endif %}
+                                    {% endfor %}
+                                </label>
                                 <input disabled="disabled" type="text" name="orderDescription" value="{{ form.orderDescription.value }}" maxlength="254" required id="id_orderDescription">
                             </li>                        
                             <li>
@@ -28,12 +35,12 @@
                                 <label for="id_address">Address:</label>
                                 <input disabled="disabled" type="text" name="address" value="{{ form.address.value }}" maxlength="254" required id="id_address">
                             </li>
+                        </div>
+                        <div class="col-lg-6">
                             <li>
                                 <label for="id_contractor">Contractor:</label>
                                 <input disabled="disabled" type="text" name="contractor" value="{{ form.contractor.value }}" maxlength="254" required id="id_contractor">
                             </li>
-                        </div>
-                        <div class="col-lg-6">
                             <li>
                                 <label for="id_appointmentDate">AppointmentDate:</label>
                                 <input disabled="disabled" type="text" name="appointmentDate" value="{{ form.appointmentDate.value }}" required id="id_appointmentDate">
@@ -46,19 +53,19 @@
                                 <label for="id_secondaryContact">SecondaryContact:</label>
                                 <input disabled="disabled" type="email" name="secondaryContact" value="{{ form.secondaryContact.value }}" maxlength="254" required id="id_secondaryContact">
                             </li>
-                            <li>
-                                <label for="id_notes">Notes:</label>
-                                <input disabled="disabled" type="text" name="notes" value="{{ form.notes.value }}" maxlength="254" required id="id_notes">
-                            </li>
-                            <li>
-                                <label for="id_dateLastUpdate">DateLastUpdate:</label>
-                                <input disabled="disabled" type="text" name="dateLastUpdate" value="{{ form.dateLastUpdate.value }}" required id="id_dateLastUpdate">
-                            </li>
                         </div>
                     </div>
+                    <div class="col-12">
+                        <li>
+                            <label for="id_notes">Notes:</label>
+                            <textarea disabled="disabled" type="text" name="notes" maxlength="254" required id="id_notes">{{ form.notes.value }}</textarea>
+                        </li>
+                        <li>
+                            <label for="id_dateLastUpdate">DateLastUpdate:</label>
+                            <input disabled="disabled" type="text" name="dateLastUpdate" value="{{ form.dateLastUpdate.value }}" required id="id_dateLastUpdate">
+                        </li>
+                    </div>
                 </form>
-                <br>
-                <p>Record 1 of: {{ order_list_length }}</p>
             {% endif %}
         </section>
     {% endif %}

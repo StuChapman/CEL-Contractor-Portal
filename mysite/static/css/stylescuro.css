@@ -433,10 +433,31 @@ nav {
 
 .orderform li {
     text-align: left;
+    list-style-type: none;
 }
 
-.orderform label, .orderform input {
+.orderform label, .orderform input, .orderform textarea {
+    display:block;
     margin-left: auto;
+    width: 100%;
+}
+
+#id_orderNumber, #id_dateLastUpdate {
+    border: none;
+    background-color: #ffffff;
+}
+
+.orderform label .editorderbtn {
+    background-color: #ffffff !important;
+    color: #C0DC3B !important;
+    font-size:  1rem !important;
+    text-align: verical !important;
+}
+
+.orderform label .editorderbtn:hover {
+    color: #635F5F !important;
+    text-decoration: none;
+    cursor: pointer;    
 }
 
 /* ------------------- Option Form Styling */
