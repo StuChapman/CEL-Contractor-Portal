@@ -7,7 +7,7 @@
         <section id="textsection">
             <h1>Contractor Portal</h1>
             {% if user.is_authenticated %}
-                <p>Record 1 of: {{ order_list_length }}</p>
+                <p>Record: 1 of {{ order_list_length }}</p>
                 <form class="orderform ml-auto mr-auto" action="" method="POST">
                     {% csrf_token %}
                     <!--{{ form.as_ul }}-->
@@ -28,40 +28,82 @@
                                 <input disabled="disabled" type="text" name="orderDescription" value="{{ form.orderDescription.value }}" maxlength="254" required id="id_orderDescription">
                             </li>                        
                             <li>
-                                <label for="id_name">Name:</label>
+                                <label for="id_name">Name: 
+                                    {% for group in user.groups.all %}
+                                        {% if group.name == 'Edit' %}
+                                        <button id="editorderName" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder(name);">edit</button>
+                                        {% endif %}
+                                    {% endfor %}
+                               </label>
                                 <input disabled="disabled" type="text" name="name" value="{{ form.name.value }}" maxlength="254" required id="id_name">
                             </li>
                             <li>
-                                <label for="id_address">Address:</label>
-                                <input disabled="disabled" type="text" name="address" value="{{ form.address.value }}" maxlength="254" required id="id_address">
+                                <label for="id_address">Address: 
+                                    {% for group in user.groups.all %}
+                                        {% if group.name == 'Edit' %}
+                                        <button id="editorderAddress" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder(address);">edit</button>
+                                        {% endif %}
+                                    {% endfor %}
+                               </label>
+                                <textarea disabled="disabled" type="text" name="address" maxlength="254" rows="1" required id="id_address">{{ form.address.value }}</textarea>
                             </li>
                         </div>
                         <div class="col-lg-6">
                             <li>
-                                <label for="id_contractor">Contractor:</label>
+                                <label for="id_contractor">Contractor: 
+                                    {% for group in user.groups.all %}
+                                        {% if group.name == 'Edit' %}
+                                        <button id="editorderContractor" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder(contractor);">edit</button>
+                                        {% endif %}
+                                    {% endfor %}
+                               </label>
                                 <input disabled="disabled" type="text" name="contractor" value="{{ form.contractor.value }}" maxlength="254" required id="id_contractor">
                             </li>
                             <li>
-                                <label for="id_appointmentDate">AppointmentDate:</label>
+                                <label for="id_appointmentDate">AppointmentDate: 
+                                    {% for group in user.groups.all %}
+                                        {% if group.name == 'Edit' %}
+                                        <button id="editorderappointmentDate" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder(appointmentDate);">edit</button>
+                                        {% endif %}
+                                    {% endfor %}
+                               </label>
                                 <input disabled="disabled" type="text" name="appointmentDate" value="{{ form.appointmentDate.value }}" required id="id_appointmentDate">
                             </li>
                             <li>
-                                <label for="id_primaryContact">PrimaryContact:</label>
+                                <label for="id_primaryContact">PrimaryContact: 
+                                    {% for group in user.groups.all %}
+                                        {% if group.name == 'Edit' %}
+                                        <button id="editorderprimaryContact" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder(primaryContact);">edit</button>
+                                        {% endif %}
+                                    {% endfor %}
+                               </label>
                                 <input disabled="disabled" type="email" name="primaryContact" value="{{ form.primaryContact.value }}" maxlength="254" required id="id_primaryContact">
                             </li>
                             <li>
-                                <label for="id_secondaryContact">SecondaryContact:</label>
+                                <label for="id_secondaryContact">SecondaryContact: 
+                                    {% for group in user.groups.all %}
+                                        {% if group.name == 'Edit' %}
+                                        <button id="editordersecondaryContact" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder(secondaryContact);">edit</button>
+                                        {% endif %}
+                                    {% endfor %}
+                               </label>
                                 <input disabled="disabled" type="email" name="secondaryContact" value="{{ form.secondaryContact.value }}" maxlength="254" required id="id_secondaryContact">
                             </li>
                         </div>
                     </div>
                     <div class="col-12">
                         <li>
-                            <label for="id_notes">Notes:</label>
-                            <textarea disabled="disabled" type="text" name="notes" maxlength="254" required id="id_notes">{{ form.notes.value }}</textarea>
+                            <label for="id_notes">Notes:
+                                {% for group in user.groups.all %}
+                                    {% if group.name == 'Edit' %}
+                                    <button id="editordernotes" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder(notes);">add note</button>
+                                    {% endif %}
+                                {% endfor %}</label>
+                           </label>
+                            <textarea disabled="disabled" type="text" name="notes" maxlength="999" required id="id_notes">{{ form.notes.value }}</textarea>
                         </li>
                         <li>
-                            <label for="id_dateLastUpdate">DateLastUpdate:</label>
+                            <label for="id_dateLastUpdate">DateLastUpdate:
                             <input disabled="disabled" type="text" name="dateLastUpdate" value="{{ form.dateLastUpdate.value }}" required id="id_dateLastUpdate">
                         </li>
                     </div>

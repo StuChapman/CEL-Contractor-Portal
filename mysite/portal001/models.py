@@ -13,11 +13,11 @@ class Orders(models.Model):
     name = models.CharField(max_length=254, null=False)
     address = models.CharField(max_length=254, null=False)
     contractor = models.CharField(max_length=254, null=False)
-    appointmentDate = models.DateField()
+    appointmentDate = models.DateTimeField()
     primaryContact = models.EmailField(max_length=254)
     secondaryContact = models.EmailField(max_length=254)
-    notes = models.CharField(max_length=254, null=True)
-    dateLastUpdate = models.DateField()
+    notes = models.CharField(max_length=999, null=True)
+    dateLastUpdate = models.DateTimeField()
 
     def __str__(self):
         return str(int(self.orderNumber))

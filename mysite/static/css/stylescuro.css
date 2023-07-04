@@ -443,8 +443,9 @@ nav {
 }
 
 #id_orderNumber, #id_dateLastUpdate {
-    border: none;
+    border-color: #ffffff;
     background-color: #ffffff;
+    border-style:solid;
 }
 
 .orderform label .editorderbtn {
@@ -452,6 +453,10 @@ nav {
     color: #C0DC3B !important;
     font-size:  1rem !important;
     text-align: verical !important;
+}
+
+.orderform li {
+    margin-top: 2vh !important;
 }
 
 .orderform label .editorderbtn:hover {

@@ -19,7 +19,9 @@
                 {% for group in user.groups.all %}
                     {% with my_url=group.name|cut:" "|lower %}
                     <span>
-                        <a class="orange-highlight" href ="{% url my_url %}">{{ group.name }}</a>
+                        {% if group.name|cut:" "|lower != "edit" %}
+                            <a class="orange-highlight" href ="{% url my_url %}">{{ group.name }}</a>
+                        {% endif %}
                     </span>
                     <br>
                     {% endwith %}
