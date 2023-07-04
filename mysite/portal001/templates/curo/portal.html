@@ -7,18 +7,13 @@
         <section id="textsection">
             <h1>Contractor Portal</h1>
             {% if user.is_authenticated %}
-                <form id ="order_form">
-                    {{ order_form.orderNumber }}
-                    {{ order_form.orderDescription }}
-                    {{ order_form.name }}
-                    {{ order_form.address }}
-                    {{ order_form.contractor }}
-                    {{ order_form.appointmentDate }}
-                    {{ order_form.primaryContact }}
-                    {{ order_form.secondaryContact }}
-                    {{ order_form.notes }}
-                    {{ order_form.dateLastUpdate }}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_ul }}
                 </form>
+                    <fieldset>
+                        
+                    </fieldset>
             {% endif %}
         </section>
     {% endif %}
