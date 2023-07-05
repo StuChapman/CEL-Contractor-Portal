@@ -7,6 +7,7 @@ from .models import Orders
 from .forms import OrderForm
 from django.db.models import Q
 
+
 # Create your views here.
 
 
@@ -27,3 +28,9 @@ def curo(request):
     }
 
     return render(request, 'curo/portal.html', context)
+
+
+def updateorderform(request):
+    """ A view to return the index page """
+
+    return render(request, 'curo/home.html')

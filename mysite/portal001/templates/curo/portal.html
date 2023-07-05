@@ -5,9 +5,10 @@
     {% if user.is_authenticated %}
         <!--Text Section-->
         <section id="textsection">
+            <a href="{% url 'updateorderform' %}"> Sign Out</a>
             {% if user.is_authenticated %}
                 <p class="mt-3">Record: 1 of {{ order_list_length }}</p>
-                <form class="orderform ml-auto mr-auto" action="" method="POST">
+                <form action="{% url 'updateorderform' %}" class="orderform ml-auto mr-auto" method="POST">
                     {% csrf_token %}
                     <!--{{ form.as_ul }}-->
                     <div class="row">
@@ -112,7 +113,7 @@
                         <div class="col-lg-6">
                             {% for group in user.groups.all %}
                                 {% if group.name == 'Edit' %}
-                                    <button type="button" class="btn btn-blue hildden">Save Changes</button>
+                                    <button type='' class="btn btn-blue hidden" id="saveeditbtn" onclick="return saveEdit();">Save Changes</button>
                                 {% endif %}
                             {% endfor %}
                         </div>
