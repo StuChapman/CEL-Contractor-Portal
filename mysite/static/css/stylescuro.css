@@ -41,7 +41,7 @@ label {
     margin: 0;
 }
 
-.orange-highlight {
+.orange-highlight, .order-number {
      color: #C0DC3B;
  }
 
@@ -135,6 +135,14 @@ nav {
     height: 8vh;
     color: #ffffff;
     font-size: calc(14px + (22 - 14) * ((100vw - 300px) / 1620));
+}
+
+.navtitle {
+    font-size: calc(4vh + (20 - 5) * ((100vw - 300px) / 1620));
+    color: #635F5F;
+    font-weight: bold;
+    vertical-align: middle;
+    padding-left: 3vw;
 }
 
 .hidden {

@@ -16,7 +16,7 @@ class Orders(models.Model):
     appointmentDate = models.DateTimeField()
     primaryContact = models.EmailField(max_length=254)
     secondaryContact = models.EmailField(max_length=254)
-    notes = models.CharField(max_length=999, null=True)
+    notes = models.CharField(max_length=9999, null=True)
     dateLastUpdate = models.DateTimeField()
 
     def __str__(self):
