@@ -5,12 +5,10 @@
     {% if user.is_authenticated %}
         <!--Text Section-->
         <section id="textsection">
-            <a class="orange-highlight" href="{% url 'indexes' %}"> Sign Out</a>
             {% if user.is_authenticated %}
                 <p class="mt-3">Record: 1 of {{ order_list_length }}</p>
-                <form action="{% url 'updateorderform' %}" class="orderform ml-auto mr-auto" method="POST">
+                <form action="{% url 'updateOrderForm' %}" class="orderform ml-auto mr-auto" method="POST">
                     {% csrf_token %}
-                    <!--{{ form.as_ul }}-->
                     <div class="row">
                         <div class="col-lg-6">
                             <li>
