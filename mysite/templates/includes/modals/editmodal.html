@@ -3,28 +3,25 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Submit your question...</h5>
+                    <h5 class="modal-title" id="editModalLabel">Edit </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <form>
+                    {% if user.is_authenticated %}
                     <div class="modal-body">
-                        {% if user.is_authenticated %}
-                            <label class="mr-auto" for="email">Email address *<span class="imagefooter">(required)</span></label><br>
-                            <input type="email" id="email" name="email" required value="{{ user.username }}">
-                        {% else %}
-                            <label class="mr-auto" for="email">Email address *<span class="imagefooter">(required)</span></label><br>
-                            <input type="email" id="email" name="email" required>
-                        {% endif %}
+                        <label class="mr-auto" for="editupdate">Type here...</label><br>
+                        <textarea id="editupdate" rows="2" required></textarea>
                         <br>
-                        <label class="mr-auto" for="question">Type your question here... *<span class="imagefooter">(min 10 characters)</span></label><br>
-                        <textarea id="question" rows="2" required></textarea>
                     </div>
                     <div class="modal-footer">
-                        <label class="mr-auto" for="submit">You will receive an email from continuous-engagement.com</label><br>
-                        <button type="submit" id="submit" class="btn btn-blue" onclick="return sendEmail(this);" >Submit</button>
+                        <button type="submit" id="submit" class="btn btn-blue" onclick="return saveEdit();" >Submit</button>
                     </div>
+                    {% else %}
+                        <label class="mr-auto" for="editupdate">I'm sorry, you don't have permission to edit<span class="imagefooter">(min 10 characters)</span></label><br>
+                        <textarea id="editupdate" rows="2" required></textarea>
+                    {% endif %}
                 </form>
             </div>
         </div>

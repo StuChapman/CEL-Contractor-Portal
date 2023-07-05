@@ -20,7 +20,7 @@
                                 <label for="id_orderDescription">OrderDescription: 
                                     {% for group in user.groups.all %}
                                         {% if group.name == 'Edit' %}
-                                        <button id="editorderDescription" type="button" class="editorderbtn m-0 p-0"  data-toggle="modal" data-target="#editModal" onclick="return editOrder(orderDescription);">edit</button>
+                                        <button id="editorderDescription" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('orderDescription');">edit</button>
                                         {% endif %}
                                     {% endfor %}
                                 </label>
@@ -30,7 +30,7 @@
                                 <label for="id_name">Name: 
                                     {% for group in user.groups.all %}
                                         {% if group.name == 'Edit' %}
-                                        <button id="editorderName" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder(name);">edit</button>
+                                        <button id="editorderName" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('name');">edit</button>
                                         {% endif %}
                                     {% endfor %}
                                </label>
@@ -40,7 +40,7 @@
                                 <label for="id_address">Address: 
                                     {% for group in user.groups.all %}
                                         {% if group.name == 'Edit' %}
-                                        <button id="editorderAddress" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder(address);">edit</button>
+                                        <button id="editorderAddress" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('address');">edit</button>
                                         {% endif %}
                                     {% endfor %}
                                </label>
@@ -52,7 +52,7 @@
                                 <label for="id_contractor">Contractor: 
                                     {% for group in user.groups.all %}
                                         {% if group.name == 'Edit' %}
-                                        <button id="editorderContractor" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder(contractor);">edit</button>
+                                        <button id="editorderContractor" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('contractor');">edit</button>
                                         {% endif %}
                                     {% endfor %}
                                </label>
@@ -62,7 +62,7 @@
                                 <label for="id_appointmentDate">AppointmentDate: 
                                     {% for group in user.groups.all %}
                                         {% if group.name == 'Edit' %}
-                                        <button id="editorderappointmentDate" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder(appointmentDate);">edit</button>
+                                        <button id="editorderappointmentDate" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('appointmentDate');">edit</button>
                                         {% endif %}
                                     {% endfor %}
                                </label>
@@ -72,7 +72,7 @@
                                 <label for="id_primaryContact">PrimaryContact: 
                                     {% for group in user.groups.all %}
                                         {% if group.name == 'Edit' %}
-                                        <button id="editorderprimaryContact" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder(primaryContact);">edit</button>
+                                        <button id="editorderprimaryContact" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('primaryContact');">edit</button>
                                         {% endif %}
                                     {% endfor %}
                                </label>
@@ -82,7 +82,7 @@
                                 <label for="id_secondaryContact">SecondaryContact: 
                                     {% for group in user.groups.all %}
                                         {% if group.name == 'Edit' %}
-                                        <button id="editordersecondaryContact" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder(secondaryContact);">edit</button>
+                                        <button id="editordersecondaryContact" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('secondaryContact');">edit</button>
                                         {% endif %}
                                     {% endfor %}
                                </label>
