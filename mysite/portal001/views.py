@@ -17,6 +17,7 @@ def curo(request):
                   .order_by('orderNumber').first())
     order_list_length = orders.filter(queries).count()
     form = OrderForm(instance=order_list)
+
     context = {
         'form': form,
         'order_list': order_list,
@@ -28,11 +29,13 @@ def curo(request):
 
 def updateOrderForm(request):
     """ Update the order form """
-
-    orders = Orders.objects.all()
+    orderNumber = 12345676
+    thisorder = Orders.objects.get(orderNumber=orderNumber)
 
     if request.method == 'POST':
-        form = OrderForm(request.POST)
+        form = OrderForm(request.POST, instance=thisorder)
+        if form.is_valid():
+            form.save()
     else:
         return render(request, 'home/home.html')
 
