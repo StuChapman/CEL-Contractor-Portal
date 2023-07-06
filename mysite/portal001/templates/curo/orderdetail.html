@@ -7,14 +7,47 @@
         <section id="textsection">
             {% if user.is_authenticated %}
                 <p class="mt-3">Record: 1 of {{ order_list_length }}</p>
-                <form action="{% url 'updateOrder' %}?order_number={{ orderno }}"  method="POST">
+                <form action="{% url 'updateOrder' %}?order_number={{ orderno }}"  method="POST" class="orderform ml-auto mr-auto">
                     {% csrf_token %}
-                    {{ form }}
-                    {% for group in user.groups.all %}
-                        {% if group.name == 'Edit' %}
-                            <input type="submit" name="submit">
-                        {% endif %}
-                    {% endfor %}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            {{ form.orderNumber.label_tag }}
+                            {{ form.orderNumber }}
+                            {{ form.orderDescription.label_tag }}
+                            {{ form.orderDescription }}
+                            {{ form.name.label_tag }}
+                            {{ form.name }}
+                            {{ form.address.label_tag }}
+                            {{ form.address }}
+                        </div>
+                        <div class="col-lg-6">
+                            {{ form.contractor.label_tag }}
+                            {{ form.contractor }}
+                            {{ form.appointmentDate.label_tag }}
+                            {{ form.appointmentDate }}
+                            {{ form.primaryContact.label_tag }}
+                            {{ form.primaryContact }}
+                            {{ form.secondaryContact.label_tag }}
+                            {{ form.secondaryContact }}
+                        </div>
+                        <div class="col-lg-12">
+                            {{ form.notes.label_tag }}
+                            {{ form.notes }}
+                        </div>
+                        <div class="col-lg-6">
+                            {{ form.dateLastUpdate.label_tag }}
+                            {{ form.dateLastUpdate }}
+                        </div>
+                        <div class="col-lg-6">
+                            {{ form.dateCreated.label_tag }}
+                            {{ form.dateCreated }}
+                        </div>
+                        {% for group in user.groups.all %}
+                            {% if group.name == 'Edit' %}
+                                <input type="submit" name="submit">
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </form>
             {% endif %}
         </section>

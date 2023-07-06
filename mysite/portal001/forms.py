@@ -9,7 +9,7 @@ class OrderForm(forms.ModelForm):
         fields = ('orderNumber', 'orderDescription', 'name',
                   'address', 'contractor',
                   'appointmentDate', 'primaryContact', 'secondaryContact',
-                  'notes', 'dateLastUpdate',)
+                  'notes', 'dateLastUpdate', 'dateCreated',)
 
     def __init__(self, *args, **kwargs):
         """
