@@ -8,7 +8,18 @@
             {% if user.is_authenticated %}
                 <p class="mt-3">{{ order_list_length }} orders</p>
                 {% for order in orderlist %}
-                    <p>{{ orderNumber }}</p>
+                    <p>
+                        <a class="orange-highlight" href ="{% url 'selectOrder' order.orderNumber %}">{{ order.orderNumber }}</a>
+                        {{ order.orderDescription }}
+                        {{ order.name }}
+                        {{ order.address }}
+                        {{ order.contractor }}
+                        {{ order.appointmentDate }}
+                        {{ order.primaryContact }}
+                        {{ order.secondaryContact }}
+                        {{ order.notes }}
+                        {{ order.dateLastUpdate }}
+                    </p>
                 {% endfor %}
             {% endif %}
         </section>

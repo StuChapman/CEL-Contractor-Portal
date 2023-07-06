@@ -10,13 +10,8 @@ from django.db.models import Q
 def curo(request):
     """ A view to return the intro page """
 
-    queries = (Q(orderNumber__icontains=thisOrder) |
-               Q(orderDescription__icontains=thisOrder))
-    orders = Orders.objects.all()
-    order_list = (orders.filter(queries)
-                  .order_by('orderNumber').first())
-    order_list_length = orders.filter(queries).count()
-    orderlist = OrderForm(instance=order_list)
+    orderlist = Orders.objects.all().order_by('-orderNumber')
+    order_list_length = orderlist.count()
 
     context = {
         'orderlist': orderlist,
@@ -26,14 +21,17 @@ def curo(request):
     return render(request, 'curo/orderlist.html', context)
 
 
-def selectOrder(request):
+def selectOrder(request, orderno):
     """ Update the order form """
-    orderNumber = 12345676
-    thisorder = Orders.objects.get(orderNumber=orderNumber)
-    form = OrderForm(request.POST, instance=thisorder)
+
+    orders = Orders.objects.all()
+    this_order = Orders.objects.get(orderNumber=orderno)
+    order_list_length = orders.filter(orderNumber=orderno).count()
+    form = OrderForm(instance=this_order)
 
     context = {
         'form': form,
+        'order_list_length': order_list_length,
     }
 
     return render(request, 'curo/orderdetail.html', context)
