@@ -456,7 +456,7 @@ nav {
     border-style:solid;
 }
 
-.orderform label .editorderbtn {
+.orderform .editorderbtn {
     background-color: #ffffff !important;
     color: #C0DC3B !important;
     font-size:  1rem !important;
