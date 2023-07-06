@@ -10,7 +10,11 @@
                 <form action="{% url 'updateOrder' %}"  method="POST">
                     {% csrf_token %}
                     {{ form }}
-                    <input type="submit" name="submit">
+                    {% for group in user.groups.all %}
+                        {% if group.name == 'Edit' %}
+                            <input type="submit" name="submit">
+                        {% endif %}
+                    {% endfor %}
                 </form>
             {% endif %}
         </section>

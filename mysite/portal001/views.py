@@ -5,6 +5,7 @@ from . import views
 from .models import Orders
 from .forms import OrderForm
 from django.db.models import Q
+from django.utils import timezone
 
 
 def curo(request):
@@ -51,6 +52,7 @@ def updateOrder(request):
 
     context = {
         'form': form,
+        'order_list_length': '1',
     }
 
     return render(request, 'curo/orderdetail.html', context)
