@@ -28,4 +28,5 @@ class OrderForm(forms.ModelForm):
             'secondaryContact': 'Secondary Contact',
             'notes': 'Notes',
             'dateLastUpdate': 'Last Updated',
+            'dateCreated': 'Date Created',
         }

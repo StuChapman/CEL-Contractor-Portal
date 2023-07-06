@@ -471,10 +471,27 @@ nav {
     margin-top: 2vh !important;
 }
 
+.orderform input {
+    margin-bottom: 2vh !important;
+}
+
 .orderform label .editorderbtn:hover {
     color: #635F5F !important;
     text-decoration: none;
     cursor: pointer;    
+}
+
+#order-submit {
+    width: 10vw;
+    height: 70%;
+    background-color: #C0DC3B;
+    color: white;
+    border-radius: 5px;
+    border-color: #635F5F;
+}
+
+#id_orderNumber, #id_dateLastUpdate, #id_dateCreated {
+    color: #C0DC3B;
 }
 
 /* ------------------- Option Form Styling */
