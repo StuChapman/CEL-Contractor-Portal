@@ -31,6 +31,7 @@ def selectOrder(request, orderno):
     form = OrderForm(instance=this_order)
 
     context = {
+        'orderno': orderno,
         'form': form,
         'order_list_length': order_list_length,
     }
@@ -40,17 +41,41 @@ def selectOrder(request, orderno):
 
 def updateOrder(request):
     """ Update the order form """
-    orderNumber = 12345676
-    thisorder = Orders.objects.get(orderNumber=orderNumber)
+
+    if request.GET:
+        if 'order_number' in request.GET:
+            orderno = request.GET['order_number']
+            thisorder = Orders.objects.get(orderNumber=orderno)
+    else:
+        messages.success(request, 'Oops! Something went wrong.')
+        orderlist = Orders.objects.all().order_by('-orderNumber')
+        order_list_length = orderlist.count()
+
+        context = {
+            'orderlist': orderlist,
+            'order_list_length': order_list_length,
+        }
+
+        return render(request, 'curo/orderlist.html', context)
 
     if request.method == 'POST':
         form = OrderForm(request.POST, instance=thisorder)
         if form.is_valid():
             form.save()
     else:
-        return render(request, 'home/home.html')
+        messages.success(request, 'Oops! Something went wrong.')
+        orderlist = Orders.objects.all().order_by('-orderNumber')
+        order_list_length = orderlist.count()
+
+        context = {
+            'orderlist': orderlist,
+            'order_list_length': order_list_length,
+        }
+
+        return render(request, 'curo/orderlist.html', context)
 
     context = {
+        'orderno': orderno,
         'form': form,
         'order_list_length': '1',
     }
