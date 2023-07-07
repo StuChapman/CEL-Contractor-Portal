@@ -482,7 +482,66 @@ nav {
 }
 
 #order-submit {
-    width: 10vw;
+    height: 70%;
+    background-color: #C0DC3B;
+    color: white;
+    border-radius: 5px;
+    border-color: #635F5F;
+}
+
+#id_orderNumber, #id_dateLastUpdate, #id_dateCreated {
+    color: #C0DC3B;
+}
+
+/* ------------------- Order List Styling */
+
+.orderlist {
+    width: 95vw;
+}
+
+.orderlist p, .orderlist div {
+    text-align: left;
+    list-style-type: none;
+}
+
+.orderlist p {
+    font-size: calc(2vh + (15 - 2.5) * ((100vw - 300px) / 1620));
+}
+
+.orderlist label, .orderlist input, .orderlist textarea {
+    display:block;
+    margin-left: auto;
+    width: 100%;
+}
+
+#id_orderNumber, #id_dateLastUpdate, #id_dateCreated {
+    border-color: #ffffff;
+    background-color: #ffffff;
+    border-style:solid;
+}
+
+.orderlist .editorderbtn {
+    background-color: #ffffff !important;
+    color: #C0DC3B !important;
+    font-size:  1rem !important;
+    text-align: vertical !important;
+}
+
+#textsection .orderlist label {
+    text-align: left !important;
+}
+
+.orderlist li {
+    margin-top: 2vh !important;
+}
+
+.orderlist label .editorderbtn:hover {
+    color: #635F5F !important;
+    text-decoration: none;
+    cursor: pointer;    
+}
+
+#order-submit {
     height: 70%;
     background-color: #C0DC3B;
     color: white;
@@ -776,6 +835,14 @@ nav {
 
 @media screen and (orientation: portrait){ /* Credit: https://stackoverflow.com/questions/43589507/how-can-you-have-bootstrap-responsiveness-based-on-screen-ratio-instead-of-scree */
 
+    .orderlist div {
+        font-size: calc(2vh + (20 - 2.5) * ((100vw - 300px) / 1620));
+    }
+
+    #order-submit {
+        width: 30vw;
+    }
+
     #arrowimage {
         width: 20vw;
     }
@@ -878,6 +945,14 @@ nav {
 }
 
 @media screen and (orientation: landscape){ /* Credit: https://stackoverflow.com/questions/43589507/how-can-you-have-bootstrap-responsiveness-based-on-screen-ratio-instead-of-scree */
+
+    .orderlist div {
+        font-size: calc(3vh + (30 - 2.5) * ((100vw - 300px) / 1620));
+    }
+
+    #order-submit {
+        width: 10vw;
+    }
 
     #arrowimage {
         height: 20vh;
