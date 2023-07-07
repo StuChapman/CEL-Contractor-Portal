@@ -20,6 +20,10 @@ body, html {
     margin-right: 5rem;
 }
 
+.auto_height { /* credit to https://stackoverflow.com/questions/6262472/multiple-lines-of-input-in-input-type-text */
+    width: 100%;
+}
+
 a  {
     background-color: transparent;
     color: #ffffff;
