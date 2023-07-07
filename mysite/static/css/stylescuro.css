@@ -508,49 +508,14 @@ nav {
     padding-left: 15px;
 }
 
-.orderlist label, .orderlist input, .orderlist textarea {
+.orderlist textarea {
     display:block;
     margin-left: auto;
     width: 100%;
 }
 
-#id_orderNumber, #id_dateLastUpdate, #id_dateCreated {
-    border-color: #ffffff;
-    background-color: #ffffff;
-    border-style:solid;
-}
-
-.orderlist .editorderbtn {
-    background-color: #ffffff !important;
-    color: #C0DC3B !important;
-    font-size:  1rem !important;
-    text-align: vertical !important;
-}
-
-#textsection .orderlist label {
-    text-align: left !important;
-}
-
-.orderlist li {
-    margin-top: 2vh !important;
-}
-
-.orderlist label .editorderbtn:hover {
-    color: #635F5F !important;
-    text-decoration: none;
-    cursor: pointer;    
-}
-
-#order-submit {
-    height: 70%;
-    background-color: #C0DC3B;
-    color: white;
-    border-radius: 5px;
-    border-color: #635F5F;
-}
-
-#id_orderNumber, #id_dateLastUpdate, #id_dateCreated {
-    color: #C0DC3B;
+.orderlist .orderlistspan {
+    color: gray;
 }
 
 /* ------------------- Option Form Styling */
