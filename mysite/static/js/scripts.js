@@ -4,12 +4,6 @@ var originalText
 var newText
 var updatefield
 
-// Function: auto height textarea //
-function auto_height(elem) {  /* javascript */
-    elem.style.height = "1px";
-    elem.style.height = (elem.scrollHeight)+"px";
-}
-
 // Function: open edit modal //
 function editOrder(orderfield) {
 
@@ -99,8 +93,16 @@ function saveOrder() {
     const today = d.toLocaleString( 'sv' );
     $('input[name="dateLastUpdate"]').val(today);
     
-    let notesVal =  $('input[name="notes"]').val();
-    $('input[name="notes"]').val(originalText + ': changed to: ' + newText + + '<br/>' + notesVal);
+    if (originalText != newText) {
+        let notesVal =  $('input[name="notes"]').val();
+        $('input[name="notes"]').val('{' 
+                                + today + ' || '
+                                + updatefield + ': '
+                                + originalText 
+                                + ' -- changed to: ' 
+                                + newText + '}' + '|||' 
+                                + "\n" + notesVal);
+    }
 
     $("#order-submit").addClass("unhidden");
 }

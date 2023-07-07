@@ -20,10 +20,6 @@ body, html {
     margin-right: 5rem;
 }
 
-.auto_height { /* credit to https://stackoverflow.com/questions/6262472/multiple-lines-of-input-in-input-type-text */
-    width: 100%;
-}
-
 a  {
     background-color: transparent;
     color: #ffffff;
@@ -475,7 +471,7 @@ nav {
     margin-top: 2vh !important;
 }
 
-.orderform input {
+.orderform input, .orderform textarea {
     margin-bottom: 2vh !important;
 }
 

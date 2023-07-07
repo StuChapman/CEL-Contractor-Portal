@@ -110,7 +110,7 @@
                         <div class="col-lg-12">
                             {{ form.notes.label_tag }}
                             {{ form.notes }}
-                            <textarea disabled="disabled" type="text" name="notes" maxlength="9999" required id="id_notes" oninput="auto_height(this)">{{ form.notes.value }}</textarea>
+                            <textarea disabled="disabled" type="text" name="notes" maxlength="9999" rows="4" required id="id_notes">{{ form.notes.value }}</textarea>
                         </div>
                         <div class="col-lg-4">
                             {{ form.dateLastUpdate.label_tag }}
