@@ -108,7 +108,18 @@
                             {{ form.secondaryContact }}
                         </div>
                         <div class="col-lg-12">
-                            {{ form.notes.label_tag }}
+                            <div class="row">
+                                <div class="col pl-0">
+                                    {{ form.notes.label_tag }}
+                                </div>
+                                <div class="col-auto pr-0">
+                                    {% for group in user.groups.all %}
+                                        {% if group.name == 'Edit' %}
+                                            <button id="editsecondaryContact" type="button" data-toggle="modal" data-target="#addnoteModal" class="editorderbtn m-0 p-0">add note</button>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
                             {{ form.notes }}
                             <textarea disabled="disabled" type="text" name="notes" maxlength="9999" rows="4" required id="id_notes">{{ form.notes.value }}</textarea>
                         </div>

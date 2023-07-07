@@ -4,7 +4,7 @@ var originalText
 var newText
 var updatefield
 
-// Function: open edit modal //
+// Function: allow edit to selected field //
 function editOrder(orderfield) {
 
     updatefield = orderfield;
@@ -47,7 +47,7 @@ function editOrder(orderfield) {
     $('input[name="submit"]').prop('disabled', false);
 }
 
-// Function: open edit modal //
+// Function: save edited order //
 function saveOrder() {
 
     switch(updatefield) {
@@ -92,7 +92,7 @@ function saveOrder() {
     const d = new Date();
     const today = d.toLocaleString( 'sv' );
     $('input[name="dateLastUpdate"]').val(today);
-    
+
     if (originalText != newText) {
         let notesVal =  $('input[name="notes"]').val();
         $('input[name="notes"]').val('{' 
@@ -100,9 +100,33 @@ function saveOrder() {
                                 + updatefield + ': '
                                 + originalText 
                                 + ' -- changed to: ' 
-                                + newText + '}' + '|||' 
+                                + newText + '}' + ' -||-' 
                                 + "\n" + notesVal);
     }
 
     $("#order-submit").addClass("unhidden");
+}
+
+
+// Function: open addnoteModal and add note //
+function addNote() {
+
+    updatefield = 'notes';
+    newText = $('#editupdate').val();
+
+    $("#order-submit").removeClass("hidden");
+    $('input[name="submit"]').prop('disabled', false);
+    $('input[name="notes"]').prop('disabled', false);
+
+    const d = new Date();
+    const today = d.toLocaleString( 'sv' );
+    $('input[name="dateLastUpdate"]').val(today);
+
+    let notesVal =  $('input[name="notes"]').val();
+    $('input[name="notes"]').val('{' 
+                            + today + ' || '
+                            + newText + '}' + ' -||-' 
+                            + "\n" + notesVal);
+
+    $('input[name="notes"]').prop('disabled', true);
 }
