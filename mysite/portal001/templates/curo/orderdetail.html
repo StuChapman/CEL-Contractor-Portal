@@ -108,6 +108,7 @@
                             {{ form.secondaryContact }}
                         </div>
                         <div class="col-lg-12">
+                            <input type="text" name="addnotes" maxlength="254" required id="addnotes">
                             <div class="row">
                                 <div class="col pl-0">
                                     {{ form.notes.label_tag }}
@@ -115,12 +116,11 @@
                                 <div class="col-auto pr-0">
                                     {% for group in user.groups.all %}
                                         {% if group.name == 'Edit' %}
-                                            <button id="editsecondaryContact" type="button" data-toggle="modal" data-target="#addnoteModal" class="editorderbtn m-0 p-0">add note</button>
+                                            <button id="editnotes" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('notes');">add note</button>
                                         {% endif %}
                                     {% endfor %}
                                 </div>
                             </div>
-                            {{ form.notes }}
                             <textarea disabled="disabled" type="text" name="notes" maxlength="9999" rows="4" required id="id_notes">{{ form.notes.value }}</textarea>
                         </div>
                         <div class="col-lg-4">
@@ -137,6 +137,9 @@
                                     <input type="submit" name="submit" id="order-submit" class="hidden" value="Save Changes"  onclick="return saveOrder();">
                                 {% endif %}
                             {% endfor %}
+                        </div>
+                        <div class="col-lg-12">
+                            <span class="hidden">{{ form.notes }}</span>
                         </div>
                     </div>
                 </form>

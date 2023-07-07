@@ -39,6 +39,13 @@ function editOrder(orderfield) {
             $('input[name="secondaryContact"]').prop('disabled', false);
             originalText = $('input[name="secondaryContact"]').val();
             break;
+        case 'notes':
+            $('input[name="addnotes"]').prop('disabled', false);
+            $('input[name="addnotes"]').css("background-color", '#C0DC3B');
+            $('input[name="addnotes"]').css("color", 'white');
+            $('input[name="addnotes"]').attr("placeholder", "Add notes here...");
+            originalText = $('input[name="notes"]').val();
+            break;
         default:
             break;
     }
@@ -72,6 +79,12 @@ function saveOrder() {
         case 'secondaryContact':
             newText = $('input[name="secondaryContact"]').val();
             break;
+        case 'secondaryContact':
+            newText = $('input[name="secondaryContact"]').val();
+            break;
+        case 'notes':
+            newText = $('input[name="addnotes"]').val();
+            break;
         default:
             break;
     }
@@ -93,13 +106,17 @@ function saveOrder() {
     const today = d.toLocaleString( 'sv' );
     $('input[name="dateLastUpdate"]').val(today);
 
+    if (updatefield == 'notes') {
+        updatetext = "";
+    } else {
+        updatetext = ': ' + originalText + ' -- changed to:';
+    }
+
     if (originalText != newText) {
         let notesVal =  $('input[name="notes"]').val();
         $('input[name="notes"]').val('{' 
                                 + today + ' || '
-                                + updatefield + ': '
-                                + originalText 
-                                + ' -- changed to: ' 
+                                + updatetext
                                 + newText + '}' + ' -||-' 
                                 + "\n" + notesVal);
     }
@@ -116,7 +133,19 @@ function addNote() {
 
     $("#order-submit").removeClass("hidden");
     $('input[name="submit"]').prop('disabled', false);
+
+    $('input[name="csrfmiddlewaretoken"]').prop('disabled', false);
+    $('input[name="orderNumber"]').prop('disabled', false);
+    $('input[name="orderDescription"]').prop('disabled', false);
+    $('input[name="name"]').prop('disabled', false);
+    $('input[name="address"]').prop('disabled', false);
+    $('input[name="contractor"]').prop('disabled', false);
+    $('input[name="appointmentDate"]').prop('disabled', false);
+    $('input[name="primaryContact"]').prop('disabled', false);
+    $('input[name="secondaryContact"]').prop('disabled', false);
     $('input[name="notes"]').prop('disabled', false);
+    $('input[name="dateLastUpdate"]').prop('disabled', false);
+    $('input[name="dateCreated"]').prop('disabled', false);
 
     const d = new Date();
     const today = d.toLocaleString( 'sv' );
