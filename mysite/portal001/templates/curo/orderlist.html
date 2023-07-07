@@ -10,7 +10,7 @@
                 {% for order in orderlist %}
                     <div class="orderlist">
                         <div class ="row">
-                            <p class="col-lg-3 pb-0"><a class="orange-highlight" href ="{% url 'selectOrder' order.orderNumber %}">{{ order.orderNumber }}</a></p>
+                            <p class="col-lg-3 pb-0">Order Number: <a class="orange-highlight" href ="{% url 'selectOrder' order.orderNumber %}">{{ order.orderNumber }}</a></p>
                             <div class="col-lg-3">{{ order.orderDescription }}</div>
                             <div class="col-lg-3">{{ order.name }}</div>
                             <div class="col-lg-3">{{ order.address }}</div>

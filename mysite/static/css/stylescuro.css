@@ -504,8 +504,8 @@ nav {
     list-style-type: none;
 }
 
-.orderlist p {
-    font-size: calc(2vh + (15 - 2.5) * ((100vw - 300px) / 1620));
+#textsection .orderlist p {
+    padding-left: 15px;
 }
 
 .orderlist label, .orderlist input, .orderlist textarea {
@@ -835,7 +835,7 @@ nav {
 
 @media screen and (orientation: portrait){ /* Credit: https://stackoverflow.com/questions/43589507/how-can-you-have-bootstrap-responsiveness-based-on-screen-ratio-instead-of-scree */
 
-    .orderlist div {
+    .orderlist div, #textsection .orderlist p {
         font-size: calc(2vh + (20 - 2.5) * ((100vw - 300px) / 1620));
     }
 
@@ -946,8 +946,16 @@ nav {
 
 @media screen and (orientation: landscape){ /* Credit: https://stackoverflow.com/questions/43589507/how-can-you-have-bootstrap-responsiveness-based-on-screen-ratio-instead-of-scree */
 
-    .orderlist div {
-        font-size: calc(3vh + (30 - 2.5) * ((100vw - 300px) / 1620));
+    @media screen and (min-width: 359px) {
+        .orderlist div, #textsection .orderlist p {
+            font-size: calc(3vh + (30 - 2.5) * ((100vw - 300px) / 1620));
+        }        
+    }
+
+    @media screen and (min-width: 1200px) {
+        .orderlist div, #textsection .orderlist p {
+            font-size: calc(1.5vh + (15 - 2.5) * ((100vw - 300px) / 1620));
+        }
     }
 
     #order-submit {
@@ -1079,7 +1087,7 @@ nav {
     padding: 0.75rem 1.25rem;
   }
 
-  @media screen and (min-width: 359px) {
+@media screen and (min-width: 359px) {
     #hygrometerimage {
         height: 20vh;
     }
