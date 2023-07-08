@@ -105,14 +105,27 @@ def createOrder(request):
 
 def searchOrders(request):
     """ A view to return a list of orders that meet the search criteria """
-    thisOrder = 1234567
-    queries = (Q(orderNumber__icontains=thisOrder) |
-               Q(orderDescription__icontains=thisOrder))
-    orders = Orders.objects.all()
-    order_list = (orders.filter(queries)
-                  .order_by('orderNumber').first())
-    order_list_length = orders.filter(queries).count()
-    orderlist = OrderForm(instance=order_list)
+
+    orderlist = Orders.objects.all().order_by('-orderNumber')
+    order_list_length = orderlist.count()
+
+    if request.GET:
+        if 'search_string' in request.GET:
+            searchstring = request.GET['search_string']
+            queries = (Q(orderNumber__icontains=searchstring) |
+                       Q(orderDescription__icontains=searchstring) |
+                       Q(name__icontains=searchstring) |
+                       Q(address__icontains=searchstring) |
+                       Q(contractor__icontains=searchstring) |
+                       Q(primaryContact__icontains=searchstring) |
+                       Q(secondaryContact__icontains=searchstring) |
+                       Q(notes__icontains=searchstring))
+            orders = Orders.objects.all()
+            orderlist = (orders.filter(queries)
+                         .order_by('orderNumber'))
+            order_list_length = orders.filter(queries).count()
+    else:
+        messages.success(request, 'Oops! Something went wrong.')
 
     context = {
         'orderlist': orderlist,
