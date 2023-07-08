@@ -16,11 +16,26 @@
                         </form>
                     </div>
                     <div class="col-lg-4">
-                        <form action="{% url 'orderOrders' %}?order_list={{ orderlist }}" method="GET" id="order_form" >
-                            <input class="search-input text-blue text-xs" type="text" name="order_field" id="order_field" placeholder=" order by ..." maxlength="18">
+                        <form action="{% url 'orderOrders' %}" method="GET" id="order_field_form" >
+                            <select class="search-input text-blue text-xs" type="text" name="order_field" id="order_field" placeholder=" order by ..." maxlength="18">
+                                <option value="blank">order by ...</option>
+                                <option value="orderNumber">Order Number</option>
+                                <option value="orderDescription">Description</option>
+                                <option value="name">Name</option>
+                                <option value="address">Address</option>
+                                <option value="contractor">Contractor</option>
+                                <option value="appointmentDate">Appointment Date</option>
+                                <option value="primaryContact">Primary Contact</option>
+                                <option value="secondaryContact">Secondary Contact</option>
+                                <option value="notes">Notes</option>
+                                <option value="dateLastUpdate">Last Updated</option>
+                                <option value="dateCreated">Date Created</option>
+                            </select>
                             <button class="mt-0 text-center" type="submit">
-                                <i class="fas fa-search"></i>
+                                <i class="fa-solid fa-sort-down"></i>
+                                </a>
                             </button>
+                            <input class="hidden" type="text" name="searchstring" id="searchstring" value="{{ searchstring }}" maxlength="18">
                         </form>
                     </div>
                     <div class="col-lg-4">

@@ -78,7 +78,11 @@ label {
 
 /*------------------- Hover Styling */
 
-a:hover, #helpbtn:hover, .btn-orange:hover, .btn-blue:hover {
+a:hover, 
+#helpbtn:hover, 
+.btn-orange:hover, 
+.btn-blue:hover, 
+#textsection .searchform button:hover {
     color: rgb(255, 255, 255, .5);
     text-decoration: none;
     cursor: pointer;
@@ -514,8 +518,12 @@ nav {
     width: 100%;
 }
 
-.orderlist .orderlistspan {
+.orderlist .orderlistspan, .search-input {
     color: gray;
+}
+
+#searchstring {
+    width: 1px;
 }
 
 /* ------------------- Option Form Styling */
