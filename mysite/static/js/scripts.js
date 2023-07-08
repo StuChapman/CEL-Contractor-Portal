@@ -116,6 +116,7 @@ function saveOrder() {
         let notesVal =  $('input[name="notes"]').val();
         $('input[name="notes"]').val('{' 
                                 + today + ' || '
+                                + updatefield + ': '
                                 + updatetext
                                 + newText + '}' + ' -||-' 
                                 + "\n" + notesVal);
