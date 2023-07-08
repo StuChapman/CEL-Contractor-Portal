@@ -133,3 +133,45 @@ def searchOrders(request):
     }
 
     return render(request, 'curo/orderlist.html', context)
+
+
+def orderOrders(request):
+    """ A view to order the orders by a selected field """
+
+    orderlist = Orders.objects.all().order_by('-orderNumber')
+    order_list_length = orderlist.count()
+
+    if request.GET:
+        if 'order_field' in request.GET:
+            orderfield = request.GET['order_field']
+            if orderfield == 'orderNumber':
+                orderlist = Orders.objects.all().order_by('orderNumber')
+            if orderfield == 'orderDescription':
+                orderlist = Orders.objects.all().order_by('orderDescription')
+            if orderfield == 'name':
+                orderlist = Orders.objects.all().order_by('name')
+            if orderfield == 'address':
+                orderlist = Orders.objects.all().order_by('address')
+            if orderfield == 'contractor':
+                orderlist = Orders.objects.all().order_by('contractor')
+            if orderfield == 'appointmentDate':
+                orderlist = Orders.objects.all().order_by('appointmentDate')
+            if orderfield == 'primaryContact':
+                orderlist = Orders.objects.all().order_by('primaryContact')
+            if orderfield == 'secondaryContact':
+                orderlist = Orders.objects.all().order_by('secondaryContact')
+            if orderfield == 'notes':
+                orderlist = Orders.objects.all().order_by('notes')
+            if orderfield == 'dateLastUpdate':
+                orderlist = Orders.objects.all().order_by('dateLastUpdate')
+            if orderfield == 'dateCreated':
+                orderlist = Orders.objects.all().order_by('dateCreated')
+    else:
+        messages.success(request, 'Oops! Something went wrong.')
+
+    context = {
+        'orderlist': orderlist,
+        'order_list_length': order_list_length,
+    }
+
+    return render(request, 'curo/orderlist.html', context)
