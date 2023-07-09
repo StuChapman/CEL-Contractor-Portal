@@ -100,25 +100,29 @@ def saveOrder(request):
 
     if request.method == 'POST':
         form = OrderForm(request.POST)
-        if form.is_valid():
-            form.save()
+
+        """ check if that OrderNumber already exists """
+        orders = Orders.objects.all()
+        this_order = form.data['orderNumber']
+        order_exists = (orders.filter
+                        (orderNumber=this_order))
+        if order_exists:
+            messages.success(request, 'That Order Number already exists!')
+        else:
+            if form.is_valid():
+                form.save()
     else:
         messages.success(request, 'Oops! Something went awry.')
-        orderlist = Orders.objects.all().order_by('-orderNumber')
-        order_list_length = orderlist.count()
 
-        context = {
-            'orderlist': orderlist,
-            'order_list_length': order_list_length,
-        }
-
-        return render(request, 'curo/orderlist.html', context)
+    orderlist = Orders.objects.all().order_by('-orderNumber')
+    order_list_length = orderlist.count()
 
     context = {
-        'form': form,
+        'orderlist': orderlist,
+        'order_list_length': order_list_length,
     }
 
-    return render(request, 'curo/orderdetail.html', context)
+    return render(request, 'curo/orderlist.html', context)
 
 
 def searchOrders(request):
