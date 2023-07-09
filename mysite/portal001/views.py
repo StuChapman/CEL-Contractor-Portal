@@ -84,17 +84,14 @@ def updateOrder(request):
 
 
 def createOrder(request):
-    """ Update the order form """
+    """ Create a new order """
 
     orders = Orders.objects.all()
 
     if request.method == 'POST':
-        print(request.POST)
         form = OrderForm(request.POST)
-        if form.is_valid():
-            form.save()
     else:
-        return render(request, 'home/home.html')
+        return render(request, 'curo/ordernew.html.html')
 
     context = {
         'form': form,

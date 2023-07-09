@@ -14,10 +14,10 @@ class Orders(models.Model):
     name = models.CharField(max_length=254, null=False)
     address = models.CharField(max_length=254, null=False)
     contractor = models.CharField(max_length=254, null=False)
-    appointmentDate = models.DateTimeField()
+    appointmentDate = models.DateTimeField(null=True, blank=True)
     primaryContact = models.EmailField(max_length=254)
     secondaryContact = models.EmailField(max_length=254)
-    notes = models.CharField(max_length=9999, null=True)
+    notes = models.CharField(max_length=9999, null=True, blank=True)
     dateLastUpdate = models.DateTimeField()
     dateCreated = models.DateTimeField(default=timezone.now)
 

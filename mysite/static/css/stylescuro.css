@@ -251,8 +251,7 @@ nav {
 
 #topper, #topper a {
     background-color: #EFEFEF;
-    font-size: calc(2vh + (5 - 2) * ((100vw - 300px) / 1620));
-    color: #101828;button;
+    color: #101828;
     height: 4vh;
     text-align: center;
     font-family: 'Cairo', sans-serif;
@@ -491,10 +490,6 @@ nav {
     color: white;
     border-radius: 5px;
     border-color: #635F5F;
-}
-
-#id_orderNumber, #id_dateLastUpdate, #id_dateCreated {
-    color: #C0DC3B;
 }
 
 /* ------------------- Order List Styling */
@@ -809,6 +804,12 @@ nav {
 
 @media screen and (orientation: portrait){ /* Credit: https://stackoverflow.com/questions/43589507/how-can-you-have-bootstrap-responsiveness-based-on-screen-ratio-instead-of-scree */
 
+    #topper, #topper a {
+        background-color: #EFEFEF;
+        height: 4vh;
+        font-size: calc(2vh + (5 - 2) * ((100vw - 300px) / 1620));
+    }
+
     .orderlist div, 
     #textsection .orderlist p, 
     .searchform, 
@@ -917,7 +918,7 @@ nav {
 
     #totalScore {
         font-size: calc(25vw + (30 - 5) * ((100vw - 300px) / 1620));
-    }login
+    }
 
 }
 
@@ -929,7 +930,13 @@ nav {
         .searchform, 
         #textsection .searchform button {
             font-size: calc(3vh + (30 - 2.5) * ((100vw - 300px) / 1620));
-        }        
+        }
+    
+        #topper, #topper a {
+            background-color: #EFEFEF;
+            height: 6vh;
+            font-size: calc(3vh + (7.5 - 2) * ((100vw - 300px) / 1620));
+        }
     }
 
     @media screen and (min-width: 1200px) {
@@ -938,6 +945,12 @@ nav {
         .searchform, 
         #textsection .searchform button {
             font-size: calc(1.5vh + (15 - 2.5) * ((100vw - 300px) / 1620));
+        }
+        
+        #topper, #topper a {
+            background-color: #EFEFEF;
+            height: 4vh;
+            font-size: calc(2vh + (5 - 2) * ((100vw - 300px) / 1620));
         }
     }
 
@@ -1068,17 +1081,26 @@ nav {
     color: #ffffff;
     z-index: 2;
     padding: 0.75rem 1.25rem;
-  }
+}
 
 @media screen and (min-width: 359px) {
     #hygrometerimage {
         height: 20vh;
+    }
+
+    #id_orderNumber, #id_dateLastUpdate, #id_dateCreated {
+        color: #47520E;
+        font-weight: bold;
     }
 }
 
 @media screen and (min-width: 768px) {
     #helpbtn {
         font-size: calc(2.5vh + (5 - 2.5) * ((100vw - 768px) / 300));
+    }
+
+    #id_orderNumber, #id_dateLastUpdate, #id_dateCreated {
+        color: #C0DC3B;
     }
 }
 

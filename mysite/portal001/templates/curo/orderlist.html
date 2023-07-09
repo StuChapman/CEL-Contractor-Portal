@@ -7,7 +7,7 @@
         <section id="textsection">
             {% if user.is_authenticated %}
                 <div class ="row mt-3 mb-3 searchform">
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 mb-2">
                         <form action="{% url 'searchOrders' %}" method="GET" id="search_form" >
                             <input class="search-input text-blue text-xs" type="text" name="search_string" id="search_string" placeholder=" search ..." maxlength="18">
                             <button class="mt-0 text-center" type="submit">
