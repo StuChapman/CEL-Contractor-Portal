@@ -87,17 +87,37 @@ def createOrder(request):
     """ Create a new order """
 
     orders = Orders.objects.all()
-
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
-    else:
-        return render(request, 'curo/ordernew.html.html')
+    this_order = Orders.objects.get(orderNumber='12345678')
+    form = OrderForm(instance=this_order)
 
     context = {
+        'orderno': '12345678',
         'form': form,
     }
 
-    return render(request, 'curo/portal.html', context)
+    return render(request, 'curo/ordernew.html', context)
+
+
+def saveOrder(request):
+    """ Save the neworder """
+
+    orders = Orders.objects.all()
+    orderlist = Orders.objects.all().order_by('-orderNumber')
+    order_list_length = orderlist.count()
+
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        messages.success(request, 'Oops! Something went wrong.')
+
+    context = {
+        'orderlist': orderlist,
+        'order_list_length': order_list_length,
+    }
+
+    return render(request, 'curo/orderlist.html', context)
 
 
 def searchOrders(request):

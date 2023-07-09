@@ -18,7 +18,7 @@ class Orders(models.Model):
     primaryContact = models.EmailField(max_length=254)
     secondaryContact = models.EmailField(max_length=254)
     notes = models.CharField(max_length=9999, null=True, blank=True)
-    dateLastUpdate = models.DateTimeField()
+    dateLastUpdate = models.DateTimeField(default=timezone.now)
     dateCreated = models.DateTimeField(default=timezone.now)
 
     def __str__(self):

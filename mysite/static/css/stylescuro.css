@@ -438,22 +438,23 @@ nav {
 
 /* ------------------- Order Form Styling */
 
-.orderform {
+.orderform, .neworder {
     width: 75vw;
 }
 
-.orderform li {
+.orderform li, .neworder li {
     text-align: left;
     list-style-type: none;
 }
 
-.orderform label, .orderform input, .orderform textarea {
+.orderform label, .orderform input, .orderform textarea,
+.neworder label, .neworder input, .neworder textarea {
     display:block;
     margin-left: auto;
     width: 100%;
 }
 
-#id_orderNumber, #id_dateLastUpdate, #id_dateCreated {
+.orderform #id_orderNumber, .orderform #id_dateLastUpdate, .orderform #id_dateCreated {
     border-color: #ffffff;
     background-color: #ffffff;
     border-style:solid;
@@ -466,11 +467,12 @@ nav {
     text-align: vertical !important;
 }
 
-#textsection .orderform label {
+#textsection .orderform label,
+#textsection .neworder label {
     text-align: left !important;
 }
 
-.orderform li {
+.orderform li, .neworder li {
     margin-top: 2vh !important;
 }
 
@@ -490,6 +492,10 @@ nav {
     color: white;
     border-radius: 5px;
     border-color: #635F5F;
+}
+
+.new-order-submit {
+    height: 7.5vh;
 }
 
 /* ------------------- Order List Styling */
@@ -1088,7 +1094,7 @@ nav {
         height: 20vh;
     }
 
-    #id_orderNumber, #id_dateLastUpdate, #id_dateCreated {
+    .orderform #id_orderNumber, .orderform #id_dateLastUpdate, .orderform #id_dateCreated {
         color: #47520E;
         font-weight: bold;
     }
@@ -1099,7 +1105,7 @@ nav {
         font-size: calc(2.5vh + (5 - 2.5) * ((100vw - 768px) / 300));
     }
 
-    #id_orderNumber, #id_dateLastUpdate, #id_dateCreated {
+    .orderform #id_orderNumber, .orderform #id_dateLastUpdate, .orderform #id_dateCreated {
         color: #C0DC3B;
     }
 }

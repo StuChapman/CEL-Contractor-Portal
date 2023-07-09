@@ -6,6 +6,7 @@ urlpatterns = [
     path('selectOrder/<orderno>', views.selectOrder, name='selectOrder'),
     path('updateOrder', views.updateOrder, name='updateOrder'),
     path('createOrder', views.createOrder, name='createOrder'),
+    path('saveOrder', views.saveOrder, name='saveOrder'),
     path('searchOrders', views.searchOrders, name='searchOrders'),
     path('orderOrders', views.orderOrders, name='orderOrders'),
 ]
