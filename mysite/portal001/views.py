@@ -86,12 +86,9 @@ def updateOrder(request):
 def createOrder(request):
     """ Create a new order """
 
-    orders = Orders.objects.all()
-    this_order = Orders.objects.get(orderNumber='12345678')
-    form = OrderForm(instance=this_order)
+    form = OrderForm()
 
     context = {
-        'orderno': '12345678',
         'form': form,
     }
 
@@ -101,28 +98,12 @@ def createOrder(request):
 def saveOrder(request):
     """ Save the neworder """
 
-    if request.GET:
-        if 'order_number' in request.GET:
-            orderno = request.GET['order_number']
-            thisorder = Orders.objects.get(orderNumber=orderno)
-    else:
-        messages.success(request, 'Oops! Something went wrong.')
-        orderlist = Orders.objects.all().order_by('-orderNumber')
-        order_list_length = orderlist.count()
-
-        context = {
-            'orderlist': orderlist,
-            'order_list_length': order_list_length,
-        }
-
-        return render(request, 'curo/orderlist.html', context)
-
     if request.method == 'POST':
-        form = OrderForm(request.POST, instance=thisorder)
+        form = OrderForm(request.POST)
         if form.is_valid():
             form.save()
     else:
-        messages.success(request, 'Oops! Something went wrong.')
+        messages.success(request, 'Oops! Something went awry.')
         orderlist = Orders.objects.all().order_by('-orderNumber')
         order_list_length = orderlist.count()
 
@@ -134,9 +115,7 @@ def saveOrder(request):
         return render(request, 'curo/orderlist.html', context)
 
     context = {
-        'orderno': orderno,
         'form': form,
-        'order_list_length': '1',
     }
 
     return render(request, 'curo/orderdetail.html', context)

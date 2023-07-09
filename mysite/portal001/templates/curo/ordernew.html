@@ -7,7 +7,7 @@
         <section id="textsection">
             {% if user.is_authenticated %}
                 <p class="mt-3">Enter a new Order</p>
-                <form action="{% url 'updateOrder' %}?order_number={{ orderno }}"  method="POST" class="neworder ml-auto mr-auto">
+                <form action="{% url 'saveOrder' %}"  method="POST" class="neworder ml-auto mr-auto">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-lg-6">
@@ -37,11 +37,7 @@
                             {{ form.dateCreated }}
                         </div>
                         <div class="col-lg-12">
-                            <div class="row">
-                                <div class="col pl-0">
-                                    {{ form.notes.label_tag }}
-                                </div>
-                            </div>
+                            {{ form.notes.label_tag }}
                             {{ form.notes }}
                         </div>
                         <div class="col-lg-12 new-order-submit mt-3">
