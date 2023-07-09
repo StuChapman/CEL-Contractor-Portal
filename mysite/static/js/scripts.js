@@ -160,3 +160,17 @@ function addNote() {
 
     $('input[name="notes"]').prop('disabled', true);
 }
+
+// Function: set order for search view az //
+function orderAz() {
+
+    $('input[name="searchorder"]').val('az');
+    
+}
+
+// Function: set order for search view za //
+function orderZa() {
+
+    $('input[name="searchorder"]').val('za');
+    
+}

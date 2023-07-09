@@ -31,11 +31,16 @@
                                 <option value="dateLastUpdate">Last Updated</option>
                                 <option value="dateCreated">Date Created</option>
                             </select>
-                            <button class="mt-0 text-center" type="submit">
-                                <i class="fa-solid fa-sort-down"></i>
+                            <button class="mt-0 text-center" type="submit" onclick="return orderAz();">
+                                <i class="fa-solid fa-arrow-down-a-z"></i>
                                 </a>
                             </button>
-                            <input class="hidden" type="text" name="searchstring" id="searchstring" value="{{ searchstring }}" maxlength="18">
+                            <button class="mt-0 text-center" type="submit" onclick="return orderZa();">
+                                <i class="fa-solid fa-arrow-down-z-a"></i>
+                                </a>
+                            </button>
+                            <input class="hidden m-0 p-0" type="text" name="searchstring" id="searchstring" value="{{ searchstring }}">
+                            <input class="hidden m-0 p-0" type="text" name="searchorder" id="searchorder">
                         </form>
                     </div>
                     <div class="col-lg-4">

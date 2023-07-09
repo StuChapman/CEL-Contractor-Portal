@@ -158,31 +158,67 @@ def orderOrders(request):
             orders = Orders.objects.all()
             orderlist = (orders.filter(queries))
             order_list_length = orderlist.count()
+        
+        if 'searchorder' in request.GET:
+            searchorder = request.GET['searchorder']
 
         if 'order_field' in request.GET:
             orderfield = request.GET['order_field']
             if orderfield == 'orderNumber':
-                orderlist = orderlist.order_by('orderNumber')
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('orderNumber')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-orderNumber')
             if orderfield == 'orderDescription':
-                orderlist = orderlist.order_by('orderDescription')
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('orderDescription')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-orderDescription')
             if orderfield == 'name':
-                orderlist = orderlist.order_by('name')
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('name')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-name')
             if orderfield == 'address':
-                orderlist = orderlist.order_by('address')
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('address')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-address')
             if orderfield == 'contractor':
-                orderlist = orderlist.order_by('contractor')
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('contractor')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-contractor')
             if orderfield == 'appointmentDate':
-                orderlist = orderlist.order_by('appointmentDate')
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('appointmentDate')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-appointmentDate')
             if orderfield == 'primaryContact':
-                orderlist = orderlist.order_by('primaryContact')
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('primaryContact')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-primaryContact')
             if orderfield == 'secondaryContact':
-                orderlist = orderlist.order_by('secondaryContact')
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('secondaryContact')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-secondaryContact')
             if orderfield == 'notes':
-                orderlist = orderlist.order_by('notes')
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('notes')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-notes')
             if orderfield == 'dateLastUpdate':
-                orderlist = orderlist.order_by('dateLastUpdate')
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('dateLastUpdate')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-dateLastUpdate')
             if orderfield == 'dateCreated':
-                orderlist = orderlist.order_by('dateCreated')
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('dateCreated')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-dateCreated')
     else:
         messages.success(request, 'Oops! Something went wrong.')
 

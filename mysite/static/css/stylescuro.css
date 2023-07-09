@@ -522,8 +522,9 @@ nav {
     color: gray;
 }
 
-#searchstring {
+#searchstring, #searchorder {
     width: 1px;
+    border: 0;
 }
 
 /* ------------------- Option Form Styling */
