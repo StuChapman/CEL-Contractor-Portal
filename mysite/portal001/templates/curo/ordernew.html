@@ -31,12 +31,6 @@
                             {{ form.secondaryContact }}
                         </div>
                         <div class="col-lg-12">
-                            {{ form.dateLastUpdate.label_tag }}
-                            {{ form.dateLastUpdate }}
-                            {{ form.dateCreated.label_tag }}
-                            {{ form.dateCreated }}
-                        </div>
-                        <div class="col-lg-12">
                             {{ form.notes.label_tag }}
                             {{ form.notes }}
                         </div>
@@ -47,8 +41,14 @@
                                 {% endif %}
                             {% endfor %}
                         </div>
-                        <div class="col-lg-12">
-                            <span class="hidden">{{ form.notes }}</span>
+                        <div class="col-lg-12 hidden">
+                            {{ form.notes }}
+                        </div>
+                        <div class="col-lg-12 hidden">
+                            {{ form.dateLastUpdate.label_tag }}
+                            {{ form.dateLastUpdate }}
+                            {{ form.dateCreated.label_tag }}
+                            {{ form.dateCreated }}
                         </div>
                     </div>
                 </form>
