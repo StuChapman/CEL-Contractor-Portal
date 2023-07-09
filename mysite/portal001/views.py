@@ -101,23 +101,45 @@ def createOrder(request):
 def saveOrder(request):
     """ Save the neworder """
 
-    orders = Orders.objects.all()
-    orderlist = Orders.objects.all().order_by('-orderNumber')
-    order_list_length = orderlist.count()
+    if request.GET:
+        if 'order_number' in request.GET:
+            orderno = request.GET['order_number']
+            thisorder = Orders.objects.get(orderNumber=orderno)
+    else:
+        messages.success(request, 'Oops! Something went wrong.')
+        orderlist = Orders.objects.all().order_by('-orderNumber')
+        order_list_length = orderlist.count()
+
+        context = {
+            'orderlist': orderlist,
+            'order_list_length': order_list_length,
+        }
+
+        return render(request, 'curo/orderlist.html', context)
 
     if request.method == 'POST':
-        form = OrderForm(request.POST)
+        form = OrderForm(request.POST, instance=thisorder)
         if form.is_valid():
             form.save()
     else:
         messages.success(request, 'Oops! Something went wrong.')
+        orderlist = Orders.objects.all().order_by('-orderNumber')
+        order_list_length = orderlist.count()
+
+        context = {
+            'orderlist': orderlist,
+            'order_list_length': order_list_length,
+        }
+
+        return render(request, 'curo/orderlist.html', context)
 
     context = {
-        'orderlist': orderlist,
-        'order_list_length': order_list_length,
+        'orderno': orderno,
+        'form': form,
+        'order_list_length': '1',
     }
 
-    return render(request, 'curo/orderlist.html', context)
+    return render(request, 'curo/orderdetail.html', context)
 
 
 def searchOrders(request):
