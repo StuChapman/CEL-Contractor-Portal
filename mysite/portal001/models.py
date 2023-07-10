@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 
 # Create your models here.
 
@@ -17,7 +18,8 @@ class Orders(models.Model):
     contractor = models.ForeignKey('Contractors',
                                    on_delete=models.CASCADE)
     appointmentDate = models.DateTimeField(null=True, blank=True)
-    primaryContact = models.EmailField(max_length=254)
+    primaryContact = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                       on_delete=models.CASCADE)
     secondaryContact = models.EmailField(max_length=254)
     notes = models.CharField(max_length=9999, null=True, blank=True)
     dateLastUpdate = models.DateTimeField(default=timezone.now)

@@ -25,7 +25,7 @@ function editOrder(orderfield) {
             originalText = $('input[name="address"]').val();
             break;
         case 'contractor':
-            $('input[name="contractor"]').prop('disabled', false);
+            $('select[name="contractor"]').prop('disabled', false);
             originalText = $('input[name="contractor"]').val();
             break;
         case 'appointmentDate':
@@ -33,8 +33,8 @@ function editOrder(orderfield) {
             originalText = $('input[name="appointmentDate"]').val();
             break;
         case 'primaryContact':
-            $('input[name="primaryContact"]').prop('disabled', false);
-            originalText = $('input[name="primaryContact"]').val();
+            $('select[name="primaryContact"]').prop('disabled', false);
+            originalText = $('select[name="primaryContact"]').val();
             break;
         case 'secondaryContact':
             $('input[name="secondaryContact"]').prop('disabled', false);
@@ -69,13 +69,13 @@ function saveOrder() {
             newText = $('input[name="address"]').val();
             break;
         case 'contractor':
-            newText = $('input[name="contractor"]').val();
+            newText = $('select[name="contractor"]').val();
             break;
         case 'appointmentDate':
             newText = $('input[name="appointmentDate"]').val();
             break;
         case 'primaryContact':
-            newText = $('input[name="primaryContact"]').val();
+            newText = $('select[name="primaryContact"]').val();
             break;
         case 'secondaryContact':
             newText = $('input[name="secondaryContact"]').val();
@@ -95,9 +95,9 @@ function saveOrder() {
     $('input[name="orderDescription"]').prop('disabled', false);
     $('input[name="name"]').prop('disabled', false);
     $('input[name="address"]').prop('disabled', false);
-    $('input[name="contractor"]').prop('disabled', false);
+    $('select[name="contractor"]').prop('disabled', false);
     $('input[name="appointmentDate"]').prop('disabled', false);
-    $('input[name="primaryContact"]').prop('disabled', false);
+    $('select[name="primaryContact"]').prop('disabled', false);
     $('input[name="secondaryContact"]').prop('disabled', false);
     $('input[name="notes"]').prop('disabled', false);
     $('input[name="dateLastUpdate"]').prop('disabled', false);
@@ -144,7 +144,7 @@ function addNote() {
     $('input[name="orderDescription"]').prop('disabled', false);
     $('input[name="name"]').prop('disabled', false);
     $('input[name="address"]').prop('disabled', false);
-    $('input[name="contractor"]').prop('disabled', false);
+    $('select[name="contractor"]').prop('disabled', false);
     $('input[name="appointmentDate"]').prop('disabled', false);
     $('input[name="primaryContact"]').prop('disabled', false);
     $('input[name="secondaryContact"]').prop('disabled', false);

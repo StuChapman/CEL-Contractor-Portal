@@ -448,7 +448,8 @@ nav {
 }
 
 .orderform label, .orderform input, .orderform textarea,
-.neworder label, .neworder input, .neworder textarea, .neworder select {
+.neworder label, .neworder input, .neworder textarea, 
+.neworder select, .orderform select {
     display:block;
     margin-left: auto;
     width: 100%;
@@ -476,7 +477,7 @@ nav {
     margin-top: 2vh !important;
 }
 
-.orderform input, .orderform textarea {
+.orderform input, .orderform textarea, .orderform select {
     margin-bottom: 2vh !important;
 }
 
@@ -812,7 +813,8 @@ nav {
 @media screen and (orientation: portrait){ /* Credit: https://stackoverflow.com/questions/43589507/how-can-you-have-bootstrap-responsiveness-based-on-screen-ratio-instead-of-scree */
 
     .orderform label, .orderform input, .orderform textarea,
-    .neworder label, .neworder input, .neworder textarea, .neworder select {
+    .neworder label, .neworder input, .neworder textarea, 
+    .neworder select, .orderform select {
         height: 5vh;
     }
 
@@ -950,7 +952,8 @@ nav {
             font-size: calc(3vh + (7.5 - 2) * ((100vw - 300px) / 1620));
         }
         .orderform label, .orderform input, .orderform textarea,
-        .neworder label, .neworder input, .neworder textarea, .neworder select {
+        .neworder label, .neworder input, .neworder textarea, 
+        .neworder select, .orderform select {
             height: 7.5vh;
         }
     }
@@ -969,7 +972,8 @@ nav {
             font-size: calc(2vh + (5 - 2) * ((100vw - 300px) / 1620));
         }
         .orderform label, .orderform input, .orderform textarea,
-        .neworder label, .neworder input, .neworder textarea, .neworder select {
+        .neworder label, .neworder input, .neworder textarea, 
+        .neworder select, .orderform select {
             height: 5vh;
         }
     }

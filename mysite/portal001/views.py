@@ -144,7 +144,6 @@ def searchOrders(request):
                        Q(name__icontains=searchstring) |
                        Q(address__icontains=searchstring) |
                        Q(contractor__contractor__icontains=searchstring) |
-                       Q(primaryContact__icontains=searchstring) |
                        Q(secondaryContact__icontains=searchstring) |
                        Q(notes__icontains=searchstring))
             orders = Orders.objects.all()
@@ -178,7 +177,6 @@ def orderOrders(request):
                        Q(name__icontains=searchstring) |
                        Q(address__icontains=searchstring) |
                        Q(contractor__contractor__icontains=searchstring) |
-                       Q(primaryContact__icontains=searchstring) |
                        Q(secondaryContact__icontains=searchstring) |
                        Q(notes__icontains=searchstring))
             orders = Orders.objects.all()
