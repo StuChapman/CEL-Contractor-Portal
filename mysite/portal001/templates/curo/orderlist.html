@@ -9,7 +9,7 @@
                 <div class ="row mt-3 mb-3 searchform">
                     <div class="col-lg-4 mb-2">
                         <form action="{% url 'searchOrders' %}" method="GET" id="search_form" >
-                            <input class="search-input text-blue text-xs" type="text" name="search_string" id="search_string" placeholder=" search ..." maxlength="18">
+                            <input class="search-input text-blue text-xs" type="text" name="search_string" id="search_string" placeholder=" search ..." maxlength="50">
                             <button class="mt-0 text-center" type="submit">
                                 <i class="fas fa-search"></i>
                             </button>
@@ -17,7 +17,7 @@
                     </div>
                     <div class="col-lg-4">
                         <form action="{% url 'orderOrders' %}" method="GET" id="order_field_form" >
-                            <select class="search-input text-blue text-xs" type="text" name="order_field" id="order_field" placeholder=" order by ..." maxlength="18">
+                            <select class="search-input text-blue text-xs" type="text" name="order_field" id="order_field" placeholder=" order by ..." maxlength="50">
                                 <option value="blank">order by ...</option>
                                 <option value="orderNumber">Order Number</option>
                                 <option value="orderDescription">Description</option>
