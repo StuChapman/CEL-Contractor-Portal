@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.urls import path
 from django.contrib import messages
 from . import views
-from .models import Orders
+from .models import Orders, Contractors
 from .forms import OrderForm
 from django.db.models import Q
 from django.utils import timezone
@@ -86,17 +86,19 @@ def updateOrder(request):
 def createOrder(request):
     """ Create a new order """
 
+    contractors = Contractors.objects.all()
     form = OrderForm()
 
     context = {
         'form': form,
+        'contractors': contractors,
     }
 
     return render(request, 'curo/ordernew.html', context)
 
 
 def saveOrder(request):
-    """ Save the neworder """
+    """ Save the new order """
 
     if request.method == 'POST':
         form = OrderForm(request.POST)
@@ -111,6 +113,8 @@ def saveOrder(request):
         else:
             if form.is_valid():
                 form.save()
+            else:
+                messages.success(request, 'Order not valid.')
     else:
         messages.success(request, 'Oops! Something went awry.')
 
@@ -139,7 +143,7 @@ def searchOrders(request):
                        Q(orderDescription__icontains=searchstring) |
                        Q(name__icontains=searchstring) |
                        Q(address__icontains=searchstring) |
-                       Q(contractor__icontains=searchstring) |
+                       Q(contractor__contractor__icontains=searchstring) |
                        Q(primaryContact__icontains=searchstring) |
                        Q(secondaryContact__icontains=searchstring) |
                        Q(notes__icontains=searchstring))
@@ -173,7 +177,7 @@ def orderOrders(request):
                        Q(orderDescription__icontains=searchstring) |
                        Q(name__icontains=searchstring) |
                        Q(address__icontains=searchstring) |
-                       Q(contractor__icontains=searchstring) |
+                       Q(contractor__contractor__icontains=searchstring) |
                        Q(primaryContact__icontains=searchstring) |
                        Q(secondaryContact__icontains=searchstring) |
                        Q(notes__icontains=searchstring))

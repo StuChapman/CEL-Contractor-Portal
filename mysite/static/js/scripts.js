@@ -3,6 +3,7 @@
 var originalText
 var newText
 var updatefield
+var user
 
 // Function: allow edit to selected field //
 function editOrder(orderfield) {
@@ -112,13 +113,16 @@ function saveOrder() {
         updatetext = ': ' + originalText + ' -- changed to:';
     }
 
+    username = $("#user-name").text();
+
     if (originalText != newText) {
         let notesVal =  $('input[name="notes"]').val();
         $('input[name="notes"]').val('{' 
-                                + today + ' || '
+                                + today + ': '
+                                + username + ' || '
                                 + updatefield + ': '
                                 + updatetext
-                                + newText + '}' + ' -||-' 
+                                + newText + '}' + ' ------||------' 
                                 + "\n" + notesVal);
     }
 

@@ -448,7 +448,7 @@ nav {
 }
 
 .orderform label, .orderform input, .orderform textarea,
-.neworder label, .neworder input, .neworder textarea {
+.neworder label, .neworder input, .neworder textarea, .neworder select {
     display:block;
     margin-left: auto;
     width: 100%;
@@ -494,8 +494,9 @@ nav {
     border-color: #635F5F;
 }
 
-.new-order-submit {
-    height: 7.5vh;
+.new-order-submit #order-submit {
+    min-height: 2rem;
+    min-width: 8rem;
 }
 
 /* ------------------- Order List Styling */
@@ -810,6 +811,11 @@ nav {
 
 @media screen and (orientation: portrait){ /* Credit: https://stackoverflow.com/questions/43589507/how-can-you-have-bootstrap-responsiveness-based-on-screen-ratio-instead-of-scree */
 
+    .orderform label, .orderform input, .orderform textarea,
+    .neworder label, .neworder input, .neworder textarea, .neworder select {
+        height: 5vh;
+    }
+
     #topper, #topper a {
         background-color: #EFEFEF;
         height: 4vh;
@@ -943,9 +949,13 @@ nav {
             height: 6vh;
             font-size: calc(3vh + (7.5 - 2) * ((100vw - 300px) / 1620));
         }
+        .orderform label, .orderform input, .orderform textarea,
+        .neworder label, .neworder input, .neworder textarea, .neworder select {
+            height: 7.5vh;
+        }
     }
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1179px) {
         .orderlist div, 
         #textsection .orderlist p, 
         .searchform, 
@@ -957,6 +967,10 @@ nav {
             background-color: #EFEFEF;
             height: 4vh;
             font-size: calc(2vh + (5 - 2) * ((100vw - 300px) / 1620));
+        }
+        .orderform label, .orderform input, .orderform textarea,
+        .neworder label, .neworder input, .neworder textarea, .neworder select {
+            height: 5vh;
         }
     }
 

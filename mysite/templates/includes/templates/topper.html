@@ -1,6 +1,6 @@
 <div id="topper" class="d-block align-vertically align-horizontally">
     {% if user.is_authenticated %}
-    <p class="d-none d-lg-block paramedium ml-auto mr-auto">Welcome: {{ user.username }} ...
+    <p class="d-none d-lg-block paramedium ml-auto mr-auto">Welcome: <span id="user-name">{{ user.username }}</span> ...
         <a class="mr-3 ml-3" href="{% url 'account_logout' %}"> Sign Out <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         <a class="mr-3 ml-3" href="{% url 'curo' %}"> List View <i class="fa-solid fa-list"></i></a>
         <a class="mr-3 ml-3" href="{% url 'createOrder' %}"> Add Order <i class="fa-solid fa-folder-plus"></i></a>
