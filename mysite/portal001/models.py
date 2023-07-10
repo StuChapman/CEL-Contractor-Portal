@@ -16,11 +16,15 @@ class Orders(models.Model):
     name = models.CharField(max_length=254, null=False)
     address = models.CharField(max_length=254, null=False)
     contractor = models.ForeignKey('Contractors',
-                                   on_delete=models.CASCADE)
+                                   on_delete=models.CASCADE,
+                                   related_name='username')
     appointmentDate = models.DateTimeField(null=True, blank=True)
     primaryContact = models.ForeignKey(settings.AUTH_USER_MODEL,
                                        on_delete=models.CASCADE)
-    secondaryContact = models.EmailField(max_length=254)
+    secondaryContact = models.ForeignKey('Contractors',
+                                         on_delete=models.CASCADE,
+                                         to_field='secondaryContact',
+                                         related_name='email')
     notes = models.CharField(max_length=9999, null=True, blank=True)
     dateLastUpdate = models.DateTimeField(default=timezone.now)
     dateCreated = models.DateTimeField(default=timezone.now)
@@ -35,7 +39,7 @@ class Contractors(models.Model):
         verbose_name_plural = 'Contractors'
 
     contractor = models.CharField(max_length=254, null=False, primary_key=True)
-    secondaryContact = models.EmailField(max_length=254)
+    secondaryContact = models.EmailField(max_length=254, unique=True)
     services = models.CharField(max_length=9999, null=True, blank=True)
 
     def __str__(self):
