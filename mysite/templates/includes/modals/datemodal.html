@@ -1,0 +1,27 @@
+    <!-- Help Modal -->
+    <div class="modal fade" id="dateModal" tabindex="-1" role="dialog" aria-labelledby="dateModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dateModalLabel">Enter date ...</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <label class="mr-auto" for="date_day">Day</label><br>
+                        <select name="date_day" required id="date_day"></select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="submit" class="btn btn-blue" onclick="return sendEmail(this);" >Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<script>
+    for (let day = 1; day = 31; day++) {
+        $('#date_day').append('<option>day</option>');
+    }
+</script>
