@@ -142,7 +142,6 @@ nav {
 }
 
 .navtitle {
-    font-size: calc(4vh + (20 - 5) * ((100vw - 300px) / 1620));
     color: #635F5F;
     font-weight: bold;
     vertical-align: middle;
@@ -1112,6 +1111,10 @@ nav {
         height: 20vh;
     }
 
+.navtitle {
+    font-size: calc(3vh + (15 - 5) * ((100vw - 300px) / 1620));
+}
+
     .orderform #id_orderNumber, .orderform #id_dateLastUpdate, .orderform #id_dateCreated {
         color: #47520E;
         font-weight: bold;
@@ -1121,6 +1124,10 @@ nav {
 @media screen and (min-width: 768px) {
     #helpbtn {
         font-size: calc(2.5vh + (5 - 2.5) * ((100vw - 768px) / 300));
+    }
+
+    .navtitle {
+        font-size: calc(4vh + (20 - 5) * ((100vw - 300px) / 1620));
     }
 
     .orderform #id_orderNumber, .orderform #id_dateLastUpdate, .orderform #id_dateCreated {
