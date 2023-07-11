@@ -37,8 +37,8 @@ function editOrder(orderfield) {
             originalText = $('select[name="primaryContact"]').val();
             break;
         case 'secondaryContact':
-            $('input[name="secondaryContact"]').prop('disabled', false);
-            originalText = $('input[name="secondaryContact"]').val();
+            $('select[name="secondaryContact"]').prop('disabled', false);
+            originalText = $('select[name="secondaryContact"]').val();
             break;
         case 'notes':
             $('input[name="addnotes"]').prop('disabled', false);
@@ -78,10 +78,7 @@ function saveOrder() {
             newText = $('select[name="primaryContact"]').val();
             break;
         case 'secondaryContact':
-            newText = $('input[name="secondaryContact"]').val();
-            break;
-        case 'secondaryContact':
-            newText = $('input[name="secondaryContact"]').val();
+            newText = $('select[name="secondaryContact"]').val();
             break;
         case 'notes':
             newText = $('input[name="addnotes"]').val();
@@ -98,7 +95,7 @@ function saveOrder() {
     $('select[name="contractor"]').prop('disabled', false);
     $('input[name="appointmentDate"]').prop('disabled', false);
     $('select[name="primaryContact"]').prop('disabled', false);
-    $('input[name="secondaryContact"]').prop('disabled', false);
+    $('select[name="secondaryContact"]').prop('disabled', false);
     $('input[name="notes"]').prop('disabled', false);
     $('input[name="dateLastUpdate"]').prop('disabled', false);
     $('input[name="dateCreated"]').prop('disabled', false);
@@ -147,7 +144,7 @@ function addNote() {
     $('select[name="contractor"]').prop('disabled', false);
     $('input[name="appointmentDate"]').prop('disabled', false);
     $('input[name="primaryContact"]').prop('disabled', false);
-    $('input[name="secondaryContact"]').prop('disabled', false);
+    $('select[name="secondaryContact"]').prop('disabled', false);
     $('input[name="notes"]').prop('disabled', false);
     $('input[name="dateLastUpdate"]').prop('disabled', false);
     $('input[name="dateCreated"]').prop('disabled', false);

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-$3oh2m$!-wb)cko02gr(5p83_(7jmlz3g@cs$pshk^md3^y6cn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-THIS_SITE = 'https://8000-stuchapman-celcontracto-v5wyatxsagp.ws-eu101.gitpod.io'
+THIS_SITE = 'https://8000-stuchapman-celcontracto-lz84f5617ux.ws-eu101.gitpod.io'
 
 CSRF_TRUSTED_ORIGINS = [THIS_SITE, THIS_SITE]
 
