@@ -23,7 +23,14 @@
                         <div class="col-lg-6">
                             {{ form.contractor.label_tag }}
                             {{ form.contractor }}
-                            {{ form.appointmentDate.label_tag }}
+                            <div class="row">
+                                <div class="col pl-0">
+                                    {{ form.appointmentDate.label_tag }}
+                                </div>
+                                <div class="col-auto pr-0">
+                                    <button id="editappointmentDate" type="button" class="editorderbtn m-0 p-0" data-toggle="modal" data-target="#dateModal" onclick="return populateDateModal();">edit</button>
+                                </div>
+                            </div>
                             {{ form.appointmentDate }}
                             {{ form.primaryContact.label_tag }}
                             {{ form.primaryContact }}
