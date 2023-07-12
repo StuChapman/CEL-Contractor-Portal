@@ -278,9 +278,8 @@ $(document).ready(function () {
                     $('#id_monthpicker').val() == '05'  || 
                         $('#id_monthpicker').val() == '07'  || 
                             $('#id_monthpicker').val() == '08'  || 
-                                $('#id_monthpicker').val() == '09'  || 
-                                    $('#id_monthpicker').val() == '10'  || 
-                                        $('#id_monthpicker').val() == '12' ){
+                                $('#id_monthpicker').val() == '10'  || 
+                                    $('#id_monthpicker').val() == '12' ){
             for (var i = 1; i < 10; i++) {
                 $('#id_daypicker').append($('<option>', {
                     value: '0' + i,
