@@ -212,7 +212,10 @@ function populateDateModal() {
 // Function: populate the appointment date field //
 function appointmentDate() {
 
-    $('input[name="appointmentDate"]').val(dateYear);
+    var apptdate = $("#id_yearpicker").val() + '-' +
+                        $("#id_monthpicker").val() + '-' +
+                            $('#id_daypicker').val() + ' 00:00:00';
+    $('input[name="appointmentDate"]').val(apptdate);
 
 }
 
@@ -227,30 +230,65 @@ $(document).ready(function () {
 $(document).ready(function () {
 
     $("#id_monthpicker").change(function (event) {
-    
-    // populate day select //
-    $('#id_daypicker').empty()
-    $('#id_daypicker').append($('<option>', {value: '',  text: 'select day...'}));
-    if ($('#id_monthpicker').val() == '01' || 
-            $('#id_monthpicker').val() == '03' || 
-                $('#id_monthpicker').val() == '05'  || 
-                    $('#id_monthpicker').val() == '07'  || 
-                        $('#id_monthpicker').val() == '08'  || 
-                            $('#id_monthpicker').val() == '09'  || 
-                                $('#id_monthpicker').val() == '10'  || 
-                                    $('#id_monthpicker').val() == '12' ){
-        $('#id_daypicker').append($('<option>', {value: '31',  text: '31'}));
-    }
-    if ($('#id_monthpicker').val() == '02' ){
-        $('#id_daypicker').append($('<option>', {value: '28',  text: '28'}));
-    }
+        // populate day select //
+        $('#id_daypicker').empty()
+        $('#id_daypicker').append($('<option>', {value: '',  text: 'select day...'}));
+        if ($('#id_monthpicker').val() == '01' || 
+                $('#id_monthpicker').val() == '03' || 
+                    $('#id_monthpicker').val() == '05'  || 
+                        $('#id_monthpicker').val() == '07'  || 
+                            $('#id_monthpicker').val() == '08'  || 
+                                $('#id_monthpicker').val() == '09'  || 
+                                    $('#id_monthpicker').val() == '10'  || 
+                                        $('#id_monthpicker').val() == '12' ){
+            for (var i = 1; i < 10; i++) {
+                $('#id_daypicker').append($('<option>', {
+                    value: '0' + i,
+                    text: '0' + i
+                }));
+            }
+            for (var i = 10; i < 32; i++) {
+                $('#id_daypicker').append($('<option>', {
+                    value: i,
+                    text: i
+                }));
+            }
+        }
+        if ($('#id_monthpicker').val() == '02' ){
+            for (var i = 1; i < 10; i++) {
+                $('#id_daypicker').append($('<option>', {
+                    value: '0' + i,
+                    text: '0' + i
+                }));
+            }
+            for (var i = 10; i < 29; i++) {
+                $('#id_daypicker').append($('<option>', {
+                    value: i,
+                    text: i
+                }));
+            }
+            var leapyear = $('#id_yearpicker').val();
+            if ((leapyear & 3) == 0 && ((leapyear % 25) != 0 || (leapyear & 15) == 0)){
+                console.log(leapyear);
+                $('#id_daypicker').append($('<option>', {value: '29',  text: '29'}));
+            }
+        }
+        if ($('#id_monthpicker').val() == '04' || 
+                $('#id_monthpicker').val() == '06' || 
+                    $('#id_monthpicker').val() == '09'  || 
+                        $('#id_monthpicker').val() == '11' ){
+                            for (var i = 1; i < 10; i++) {
+                                $('#id_daypicker').append($('<option>', {
+                                    value: '0' + i,
+                                    text: '0' + i
+                                }));
+                            }
+                            for (var i = 10; i < 31; i++) {
+                                $('#id_daypicker').append($('<option>', {
+                                    value: i,
+                                    text: i
+                                }));
+                            }
+        }
     });
-    if ($('#id_monthpicker').val() == '04' || 
-            $('#id_monthpicker').val() == '06' || 
-                $('#id_monthpicker').val() == '09'  || 
-                    $('#id_monthpicker').val() == '11' ){
-        $('#id_daypicker').append($('<option>', {value: '30',  text: '30'}));
-    }
-    });
-
 });
