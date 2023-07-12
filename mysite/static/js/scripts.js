@@ -4,6 +4,7 @@ var originalText
 var newText
 var updatefield
 var user
+var dateYear
 
 // Function: allow edit to selected field //
 function editOrder(orderfield) {
@@ -143,7 +144,7 @@ function addNote() {
     $('input[name="address"]').prop('disabled', false);
     $('select[name="contractor"]').prop('disabled', false);
     $('input[name="appointmentDate"]').prop('disabled', false);
-    $('input[name="primaryContact"]').prop('disabled', false);
+    $('select[name="primaryContact"]').prop('disabled', false);
     $('select[name="secondaryContact"]').prop('disabled', false);
     $('input[name="notes"]').prop('disabled', false);
     $('input[name="dateLastUpdate"]').prop('disabled', false);
@@ -175,3 +176,26 @@ function orderZa() {
     $('input[name="searchorder"]').val('za');
     
 }
+
+// Function: populate the date modal //
+function populateDateModal() {
+
+    editOrder('appointmentDate');
+    $('select[name="id_yearpicker"]').prop('disabled', false);
+    
+}
+
+
+// Function: populate the appointment date field //
+function appointmentDate() {
+
+    $('input[name="appointmentDate"]').val(dateYear);
+
+}
+
+$(document).ready(function () {
+
+    $("#id_yearpicker").change(function (event) {
+        dateYear =  $(this).val();
+    });
+});

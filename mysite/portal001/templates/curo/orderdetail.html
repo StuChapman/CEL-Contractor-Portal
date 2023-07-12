@@ -74,7 +74,7 @@
                                 <div class="col-auto pr-0">
                                     {% for group in user.groups.all %}
                                         {% if group.name == 'Edit' %}
-                                            <button id="editappointmentDate" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('appointmentDate');">edit</button>
+                                            <button id="editappointmentDate" type="button" class="editorderbtn m-0 p-0" data-toggle="modal" data-target="#dateModal" onclick="return populateDateModal();">edit</button>
                                         {% endif %}
                                     {% endfor %}
                                 </div>
@@ -151,6 +151,8 @@
 {% block postloadjs %}
 <script>
     $("input").prop('disabled', true);
-    $("select").prop('disabled', true);
+    $('select[name="contractor"]').prop('disabled', true);
+    $('select[name="primaryContact"]').prop('disabled', true);
+    $('select[name="secondaryContact"]').prop('disabled', true);
 </script>
 {% endblock %}

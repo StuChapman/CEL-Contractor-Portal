@@ -63,7 +63,7 @@ def updateOrder(request):
         if form.is_valid():
             form.save()
     else:
-        messages.success(request, 'Oops! Something went wrong.')
+        messages.success(request, 'Order not valid.')
         orderlist = Orders.objects.all().order_by('-orderNumber')
         order_list_length = orderlist.count()
 
