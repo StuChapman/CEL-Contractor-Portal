@@ -183,7 +183,9 @@ function populateDateModal() {
     editOrder('appointmentDate');
 
     // populate year select //
-    let thisyear = new Date().getFullYear()
+    let thisyear = new Date().getFullYear();
+    $('#id_yearpicker').empty();
+    $('#id_yearpicker').append($('<option>', {value: '',  text: 'select year...'}));
     for (var i = thisyear -1; i < thisyear +2; i++) {
         $('#id_yearpicker').append($('<option>', {
             value: i,
@@ -192,20 +194,24 @@ function populateDateModal() {
     }
 
     // populate month select //
-        $('#id_monthpicker').append($('<option>', {value: '01',  text: 'Jan'}));
-        $('#id_monthpicker').append($('<option>', {value: '02',  text: 'Feb'}));
-        $('#id_monthpicker').append($('<option>', {value: '03',  text: 'Mar'}));
-        $('#id_monthpicker').append($('<option>', {value: '04',  text: 'Apr'}));
-        $('#id_monthpicker').append($('<option>', {value: '05',  text: 'May'}));
-        $('#id_monthpicker').append($('<option>', {value: '06',  text: 'Jun'}));
-        $('#id_monthpicker').append($('<option>', {value: '07',  text: 'Jul'}));
-        $('#id_monthpicker').append($('<option>', {value: '08',  text: 'Aug'}));
-        $('#id_monthpicker').append($('<option>', {value: '09',  text: 'Sep'}));
-        $('#id_monthpicker').append($('<option>', {value: '10',  text: 'Oct'}));
-        $('#id_monthpicker').append($('<option>', {value: '11',  text: 'Nov'}));
-        $('#id_monthpicker').append($('<option>', {value: '12',  text: 'Dec'}));
+    $('#id_monthpicker').empty();
+    $('#id_monthpicker').append($('<option>', {value: '',  text: 'select month...'}));
+    $('#id_monthpicker').append($('<option>', {value: '01',  text: 'Jan'}));
+    $('#id_monthpicker').append($('<option>', {value: '02',  text: 'Feb'}));
+    $('#id_monthpicker').append($('<option>', {value: '03',  text: 'Mar'}));
+    $('#id_monthpicker').append($('<option>', {value: '04',  text: 'Apr'}));
+    $('#id_monthpicker').append($('<option>', {value: '05',  text: 'May'}));
+    $('#id_monthpicker').append($('<option>', {value: '06',  text: 'Jun'}));
+    $('#id_monthpicker').append($('<option>', {value: '07',  text: 'Jul'}));
+    $('#id_monthpicker').append($('<option>', {value: '08',  text: 'Aug'}));
+    $('#id_monthpicker').append($('<option>', {value: '09',  text: 'Sep'}));
+    $('#id_monthpicker').append($('<option>', {value: '10',  text: 'Oct'}));
+    $('#id_monthpicker').append($('<option>', {value: '11',  text: 'Nov'}));
+    $('#id_monthpicker').append($('<option>', {value: '12',  text: 'Dec'}));
 
     // populate hour select //
+    $('#id_hourpicker').empty();
+    $('#id_hourpicker').append($('<option>', {value: '',  text: 'select hour ...'}));
     for (var i = 1; i < 10; i++) {
         $('#id_hourpicker').append($('<option>', {
             value: '0' + i,
@@ -220,7 +226,9 @@ function populateDateModal() {
     }
 
     // populate minute select //
-    for (var i = 1; i < 10; i++) {
+    $('#id_minutepicker').empty();
+    $('#id_minutepicker').append($('<option>', {value: '',  text: 'select minutes ...'}));
+    for (var i = 0; i < 10; i++) {
         if (i % 10 === 0) {
             $('#id_minutepicker').append($('<option>', {
                 value: '0' + i,
