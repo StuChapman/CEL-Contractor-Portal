@@ -181,7 +181,6 @@ function orderZa() {
 function populateDateModal() {
 
     editOrder('appointmentDate');
-    $('select[name="id_yearpicker"]').prop('disabled', false);
 
     // populate year select //
     let thisyear = new Date().getFullYear()
@@ -206,6 +205,37 @@ function populateDateModal() {
         $('#id_monthpicker').append($('<option>', {value: '11',  text: 'Nov'}));
         $('#id_monthpicker').append($('<option>', {value: '12',  text: 'Dec'}));
 
+    // populate hour select //
+    for (var i = 1; i < 10; i++) {
+        $('#id_hourpicker').append($('<option>', {
+            value: '0' + i,
+            text: '0' + i
+        }));
+    }
+    for (var i = 10; i < 25; i++) {
+        $('#id_hourpicker').append($('<option>', {
+            value: i,
+            text: i
+        }));
+    }
+
+    // populate minute select //
+    for (var i = 1; i < 10; i++) {
+        if (i % 10 === 0) {
+            $('#id_minutepicker').append($('<option>', {
+                value: '0' + i,
+                text: '0' + i
+            }));
+        }
+    }
+    for (var i = 10; i < 51; i++) {
+        if (i % 10 === 0) {
+            $('#id_minutepicker').append($('<option>', {
+                value: i,
+                text: i
+            }));
+        }
+    }
 }
 
 
@@ -214,7 +244,9 @@ function appointmentDate() {
 
     var apptdate = $("#id_yearpicker").val() + '-' +
                         $("#id_monthpicker").val() + '-' +
-                            $('#id_daypicker').val() + ' 00:00:00';
+                            $('#id_daypicker').val() + ' ' +
+                                $("#id_hourpicker").val() + ':' +
+                                    $('#id_minutepicker').val() + ':00';
     $('input[name="appointmentDate"]').val(apptdate);
 
 }

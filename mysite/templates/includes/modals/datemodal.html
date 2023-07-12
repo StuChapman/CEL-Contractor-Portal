@@ -9,19 +9,39 @@
                     </button>
                 </div>
                 <form>
-                    <div class="modal-body d-inline">
-                        <label class="mr-auto" for="id_yearpicker">YYYY</label><br>
-                        <select name="id_yearpicker" required id="id_yearpicker">
-                            <option value="">select year...</option>
-                        </select>
-                        <label class="mr-auto" for="id_monthpicker">MMM</label><br>
-                        <select name="id_monthpicker" required id="id_monthpicker">
-                            <option value="">select month...</option>
-                        </select>
-                        <label class="mr-auto" for="id_daypicker">DD</label><br>
-                        <select name="id_daypicker" required id="id_daypicker">
-                            <option value="">select day...</option>
-                        </select>
+                    <div class="modal-body row">
+                        <div class="col-4"
+                            <label class="mr-auto" for="id_yearpicker">YYYY</label><br>
+                            <select name="id_yearpicker" required id="id_yearpicker">
+                                <option value="">select year...</option>
+                            </select>
+                        </div>
+                        <div class="col-4"
+                            <label class="mr-auto" for="id_monthpicker">MMM</label><br>
+                            <select name="id_monthpicker" required id="id_monthpicker">
+                                <option value="">select month...</option>
+                            </select>
+                        </div>
+                        <div class="col-4"
+                            <label class="mr-auto" for="id_daypicker">DD</label><br>
+                            <select name="id_daypicker" required id="id_daypicker">
+                                <option value="">select day...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-body row">
+                        <div class="col-4"
+                            <label class="mr-auto" for="id_hourpicker">hh</label><br>
+                            <select name="id_hourpicker" required id="id_hourpicker">
+                                <option value="">select hour...</option>
+                            </select>
+                        </div>
+                        <div class="col-4"
+                            <label class="mr-auto" for="id_minutepicker">mm</label><br>
+                            <select name="id_minutepicker" required id="id_minutepicker">
+                                <option value="">select minutes...</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="datesavebtn m-0 p-0" data-dismiss="modal" aria-label="Close" id="appointmentDateBtn" onclick="return appointmentDate();" >OK</button>

@@ -499,6 +499,10 @@ nav {
     min-width: 8rem;
 }
 
+#id_notes {
+    height: 10vh;
+}
+
 /* ------------------- Order List Styling */
 
 .orderlist {
@@ -790,6 +794,10 @@ nav {
     background-color: rgb(248, 247, 247);
 }
 
+.neworder label {
+    margin-top: 1rem;
+}
+
 /* ------------------- Footer Styling */
 
 #footer, #footer button {
@@ -811,6 +819,18 @@ nav {
 
 @media screen and (orientation: portrait){ /* Credit: https://stackoverflow.com/questions/43589507/how-can-you-have-bootstrap-responsiveness-based-on-screen-ratio-instead-of-scree */
 
+    @media screen and (min-width: 279px) {
+        .modal-body select {
+            width: 25vw;
+        }
+    }
+
+    @media screen and (min-width: 719px) {
+        .modal-body select {
+            width: 10vw;
+        }
+    }
+    
     .orderform label, .orderform input, .orderform textarea,
     .neworder label, .neworder input, .neworder textarea, 
     .neworder select, .orderform select {
@@ -955,9 +975,18 @@ nav {
         .neworder select, .orderform select {
             height: 7.5vh;
         }
+        .modal-body select {
+            width: 17.5vw;
+        }
     }
 
-    @media screen and (min-width: 1179px) {
+    @media screen and (min-width: 914px) {
+        .modal-body select {
+            width: 15vw;
+        }
+    }
+
+    @media screen and (min-width: 1113px) {
         .orderlist div, 
         #textsection .orderlist p, 
         .searchform, 
@@ -974,6 +1003,9 @@ nav {
         .neworder label, .neworder input, .neworder textarea, 
         .neworder select, .orderform select {
             height: 5vh;
+        }
+        .modal-body select {
+            width: 10vw;
         }
     }
 
