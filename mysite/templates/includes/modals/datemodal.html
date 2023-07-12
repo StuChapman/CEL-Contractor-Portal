@@ -9,18 +9,23 @@
                     </button>
                 </div>
                 <form>
-                    <div class="modal-body">
-                        <label class="mr-auto" for="question">YYYY</label><br>
+                    <div class="modal-body d-inline">
+                        <label class="mr-auto" for="id_yearpicker">YYYY</label><br>
                         <select name="id_yearpicker" required id="id_yearpicker">
-                            <option value="">---------</option>
-                            <option value="2024-08-12 09:15:15" selected>2024-08-12 09:15:15</option>
-                            <option value="DM Surveyors">DM Surveyors</option>
-                            <option value="Ventilation Ltd">Ventilation Ltd</option>
-                            <option value="Heating Engineers">Heating Engineers</option>
+                            <option value="">select year...</option>
+                            <option value="2024-08-12 09:15:15">2024-08-12 09:15:15</option>
+                        </select>
+                        <label class="mr-auto" for="id_monthpicker">MMM</label><br>
+                        <select name="id_monthpicker" required id="id_monthpicker">
+                            <option value="">select month...</option>
+                        </select>
+                        <label class="mr-auto" for="id_daypicker">DD</label><br>
+                        <select name="id_daypicker" required id="id_daypicker">
+                            <option value="">select day...</option>
                         </select>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="appointmentDateBtn" class="btn btn-blue" onclick="return appointmentDate();" >Update</button>
+                        <button type="button" class="datesavebtn m-0 p-0" data-dismiss="modal" aria-label="Close" id="appointmentDateBtn" onclick="return appointmentDate();" >OK</button>
                     </div>
                 </form>
             </div>
