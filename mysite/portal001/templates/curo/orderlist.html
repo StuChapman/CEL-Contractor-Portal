@@ -10,7 +10,7 @@
                     <div class="col-lg-4 mb-2">
                         <form action="{% url 'searchOrders' %}" method="GET" id="search_form" >
                             <input class="search-input text-blue text-xs" type="text" name="search_string" id="search_string" placeholder=" search ..." maxlength="50">
-                            <button class="mt-0 text-center" type="submit">
+                            <button class="mt-0 text-center" type="submit" onclick="return validateSearch();">
                                 <i class="fas fa-search"></i>
                             </button>
                         </form>

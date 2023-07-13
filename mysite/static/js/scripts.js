@@ -62,12 +62,27 @@ function saveOrder() {
     switch(updatefield) {
         case 'orderDescription':
             newText = $('input[name="orderDescription"]').val();
+            if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 10) {
+                alert('Please enter an OrderDescription of at least 10 characters, in text only.');
+                this.question.focus();
+                return false;
+            }
             break;
         case 'name':
             newText = $('input[name="name"]').val();
+            if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 1) {
+                alert('Please enter a Name, in text only');
+                this.question.focus();
+                return false;
+            }
             break;
         case 'address':
             newText = $('input[name="address"]').val();
+            if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(newText)) || newText.length  < 1) {
+                alert('Please enter an Address, in text and numerals only');
+                this.question.focus();
+                return false;
+            }
             break;
         case 'contractor':
             newText = $('select[name="contractor"]').val();
@@ -83,6 +98,11 @@ function saveOrder() {
             break;
         case 'notes':
             newText = $('input[name="addnotes"]').val();
+            if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 10) {
+                alert('Please enter Notes, of at least 10 characters, in text and numerals only');
+                this.question.focus();
+                return false;
+            }
             break;
         default:
             break;
@@ -331,3 +351,17 @@ $(document).ready(function () {
         }
     });
 });
+
+// Function: validate the search text //
+function validateSearch() {
+
+    searchString = $('input[name="search_string"]').val();
+
+    if (!searchString.length < 1) {
+        if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(searchString)) || searchString.length < 3) {
+            alert('Please enter text to Search, in text and numerals only');
+            this.question.focus();
+            return false;
+        }
+    }    
+}
