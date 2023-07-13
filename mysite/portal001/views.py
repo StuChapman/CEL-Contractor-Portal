@@ -68,11 +68,11 @@ def updateOrder(request):
             messages.success(request, mark_safe('There was a problem with \
                     orderDescription.'))
         validate_name = form.data['name']
-        if not re.match("[^A-Za-z0-9_.]", ''.join(validate_name)):
+        if not re.match("[A-Za-z0-9 _.,'$]*", ''.join(validate_name)):
             messages.success(request, mark_safe('There was a problem with \
                     name.'))
         validate_address = form.data['address']
-        if not re.match("^[A-Za-z0-9+,]+$", ''.join(validate_address)):
+        if not re.match("^[A-Za-z0-9 _.,'$]*", ''.join(validate_address)):
             messages.success(request, mark_safe('There was a problem with \
                     address.'))
         if form.is_valid():
