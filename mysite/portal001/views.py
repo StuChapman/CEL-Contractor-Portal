@@ -62,6 +62,19 @@ def updateOrder(request):
 
     if request.method == 'POST':
         form = OrderForm(request.POST, instance=thisorder)
+        """ validate the form data """
+        validate_orderDescription = form.data['orderDescription']
+        if not re.match("^[a-zA-Z ]+$", ''.join(validate_orderDescription)):
+            messages.success(request, mark_safe('There was a problem with \
+                    orderDescription.'))
+        validate_name = form.data['name']
+        if not re.match("^[a-zA-Z?:',.-]+$", ''.join(validate_name)):
+            messages.success(request, mark_safe('There was a problem with \
+                    name.'))
+        validate_address = form.data['address']
+        if not re.match("^[a-zA-Z0-9 ]+$", ''.join(validate_address)):
+            messages.success(request, mark_safe('There was a problem with \
+                    address.'))
         if form.is_valid():
             form.save()
     else:
@@ -113,11 +126,6 @@ def saveOrder(request):
         if order_exists:
             messages.success(request, 'That Order Number already exists!')
         else:
-            """ validate the form data """
-            validate_orderDescription = form.data['orderDescription']
-            if not re.match("^[a-zA-Z ]+$", ''.join(validate_orderDescription)):
-                messages.success(request, mark_safe('There was a problem with \
-                        orderDescription.'))
             if form.is_valid():
                 form.save()
             else:
