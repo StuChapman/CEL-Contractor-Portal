@@ -5,6 +5,7 @@ var newText
 var updatefield
 var user
 var dateYear
+var expandvar
 
 // Function: allow edit to selected field //
 function editOrder(orderfield) {
@@ -404,4 +405,17 @@ function validateSearch() {
             return false;
         }
     }    
+}
+
+// Function: expend the notes textarea //
+function expandNotes() {
+
+    if (expandvar == 'contract') {
+        expandvar = 'expand';
+        $('#id_notes').css('height','10vh');
+    } else {
+        expandvar = 'contract';
+        $('#id_notes').css('height','30vh');
+    }
+    $('#expandnotes').html(expandvar).button("refresh");
 }

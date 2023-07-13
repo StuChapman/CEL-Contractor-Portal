@@ -122,6 +122,7 @@
                                 </div>
                             </div>
                             <textarea disabled="disabled" type="text" name="notes" maxlength="9999" rows="4" required id="id_notes">{{ form.notes.value }}</textarea>
+                            <button id="expandnotes" type="button" class="editorderbtn m-0 p-0" onclick="return expandNotes();">expand</button>
                         </div>
                         <div class="col-lg-4">
                             {{ form.dateLastUpdate.label_tag }}

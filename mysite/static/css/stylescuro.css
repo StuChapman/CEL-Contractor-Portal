@@ -460,7 +460,7 @@ nav {
     border-style:solid;
 }
 
-.orderform .editorderbtn, .neworder .editorderbtn{
+.orderform .editorderbtn, .neworder .editorderbtn, .orderlist .editorderbtn{
     background-color: #ffffff !important;
     color: #C0DC3B !important;
     font-size:  1rem !important;
@@ -476,11 +476,11 @@ nav {
     margin-top: 2vh !important;
 }
 
-.orderform input, .orderform textarea, .orderform select {
+.orderform input, .orderform select {
     margin-bottom: 2vh !important;
 }
 
-.orderform label .editorderbtn:hover, .neworder .editorderbtn:hover {
+.orderform label .editorderbtn:hover, .neworder .editorderbtn:hover, .orderlist .editorderbtn:hover {
     color: #635F5F !important;
     text-decoration: none;
     cursor: pointer;    
@@ -794,7 +794,7 @@ nav {
     background-color: rgb(248, 247, 247);
 }
 
-.neworder label, .neworder .editorderbtn {
+.neworder label, .neworder .editorderbtn, .orderlist .editorderbtn {
     margin-top: 1rem !important;
 }
 
