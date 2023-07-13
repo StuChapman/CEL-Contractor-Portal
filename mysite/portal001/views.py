@@ -149,7 +149,7 @@ def searchOrders(request):
                        Q(notes__icontains=searchstring))
             orders = Orders.objects.all()
             orderlist = (orders.filter(queries)
-                         .order_by('orderNumber'))
+                         .order_by('-orderNumber'))
             order_list_length = orders.filter(queries).count()
     else:
         messages.success(request, 'Oops! Something went wrong.')

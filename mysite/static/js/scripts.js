@@ -64,7 +64,7 @@ function saveOrder() {
             newText = $('input[name="orderDescription"]').val();
             if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 10) {
                 alert('Please enter an OrderDescription of at least 10 characters, in text only.');
-                this.question.focus();
+                $('input[name="orderDescription"]').focus();
                 return false;
             }
             break;
@@ -72,7 +72,7 @@ function saveOrder() {
             newText = $('input[name="name"]').val();
             if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 1) {
                 alert('Please enter a Name, in text only');
-                this.question.focus();
+                $('input[name="name"]').focus();
                 return false;
             }
             break;
@@ -80,7 +80,7 @@ function saveOrder() {
             newText = $('input[name="address"]').val();
             if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(newText)) || newText.length  < 1) {
                 alert('Please enter an Address, in text and numerals only');
-                this.question.focus();
+                $('input[name="address"]').focus();
                 return false;
             }
             break;
@@ -100,7 +100,7 @@ function saveOrder() {
             newText = $('input[name="addnotes"]').val();
             if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 10) {
                 alert('Please enter Notes, of at least 10 characters, in text and numerals only');
-                this.question.focus();
+                $('input[name="addnotes"]').focus();
                 return false;
             }
             break;
@@ -270,12 +270,52 @@ function populateDateModal() {
 // Function: populate the appointment date field //
 function appointmentDate() {
 
+    let id_yearpicker = $("#id_yearpicker").val();
+    if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(id_yearpicker)) || id_yearpicker.length < 1) {
+        alert('Please select a year');
+        $('input[name="id_yearpicker"]').focus();
+        return false;
+    }
+
+    let id_monthpicker = $("#id_monthpicker").val();
+    if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(id_monthpicker)) || id_monthpicker.length < 1) {
+        alert('Please select a month');
+        $('input[name="id_monthpicker"]').focus();
+        return false;
+    }
+
+    let id_daypicker = $("#id_daypicker").val();
+    if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(id_daypicker)) || id_daypicker.length < 1) {
+        alert('Please select a day');
+        $('input[name="id_daypicker"]').focus();
+        return false;
+    }
+
+    let id_hourpicker = $("#id_hourpicker").val();
+    if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(id_hourpicker)) || id_hourpicker.length < 1) {
+        alert('Please select an hour');
+        $('input[name="id_hourpicker"]').focus();
+        return false;
+    }
+
+    let id_minutepicker = $("#id_minutepicker").val();
+    if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(id_minutepicker)) || id_minutepicker.length < 1) {
+        alert('Please select minutes');
+        $('input[name="id_minutepicker"]').focus();
+        return false;
+    }
+
     var apptdate = $("#id_yearpicker").val() + '-' +
                         $("#id_monthpicker").val() + '-' +
                             $('#id_daypicker').val() + ' ' +
                                 $("#id_hourpicker").val() + ':' +
                                     $('#id_minutepicker').val() + ':00';
     $('input[name="appointmentDate"]').val(apptdate);
+
+    $('#dateModal').modal('hide');
+    $('body').removeClass('modal-open');
+    $('body').css('padding-right', '0px');
+    $('.modal-backdrop').remove();
 
 }
 
@@ -360,7 +400,7 @@ function validateSearch() {
     if (!searchString.length < 1) {
         if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(searchString)) || searchString.length < 3) {
             alert('Please enter text to Search, in text and numerals only');
-            this.question.focus();
+            $('input[name="search_string"]').focus();
             return false;
         }
     }    
