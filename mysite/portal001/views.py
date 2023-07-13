@@ -6,6 +6,8 @@ from .models import Orders, Contractors
 from .forms import OrderForm
 from django.db.models import Q
 from django.utils import timezone
+from django.utils.safestring import mark_safe
+import re
 
 
 def curo(request):
@@ -111,6 +113,11 @@ def saveOrder(request):
         if order_exists:
             messages.success(request, 'That Order Number already exists!')
         else:
+            """ validate the form data """
+            validate_orderDescription = form.data['orderDescription']
+            if not re.match("^[a-zA-Z ]+$", ''.join(validate_orderDescription)):
+                messages.success(request, mark_safe('There was a problem with \
+                        orderDescription.'))
             if form.is_valid():
                 form.save()
             else:
@@ -139,6 +146,11 @@ def searchOrders(request):
     if request.GET:
         if 'search_string' in request.GET:
             searchstring = request.GET['search_string']
+            if len(searchstring) != 0:
+                if not re.match("^[a-zA-Z ]+$", ''.join(searchstring)):
+                    messages.success(request,
+                                     mark_safe('There was a problem with  \
+                                                search'))
             queries = (Q(orderNumber__icontains=searchstring) |
                        Q(orderDescription__icontains=searchstring) |
                        Q(name__icontains=searchstring) |
