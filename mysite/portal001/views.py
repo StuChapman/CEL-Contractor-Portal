@@ -81,11 +81,11 @@ def updateOrder(request):
             abort_save = 1
         validate_notes = form.data['notes']
         if validate_notes != "":
-            if not re.match("^[0-9 a-z A-Z?:',|.-]+$", ''.join(validate_notes)):
+            if not re.match("^[0-9 a-z A-Z?:@',|.-]+$", ''.join(validate_notes)):
                 messages.success(request, mark_safe('There was a problem with \
                         notes.'))
-            abort_save = 1
-        if abort_save == 0:
+                abort_save = 1
+        if abort_save != 1:
             if form.is_valid():
                 form.save()
     else:
