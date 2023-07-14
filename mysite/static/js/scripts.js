@@ -29,6 +29,7 @@ function editOrder(orderfield) {
         case 'contractor':
             $('select[name="contractor"]').prop('disabled', false);
             originalText = $('input[name="contractor"]').val();
+            console.log(originalText);
             break;
         case 'appointmentDate':
             $('input[name="appointmentDate"]').prop('disabled', false);
@@ -37,10 +38,12 @@ function editOrder(orderfield) {
         case 'primaryContact':
             $('select[name="primaryContact"]').prop('disabled', false);
             originalText = $('select[name="primaryContact"]').val();
+            console.log(originalText);
             break;
         case 'secondaryContact':
             $('select[name="secondaryContact"]').prop('disabled', false);
             originalText = $('select[name="secondaryContact"]').val();
+            console.log(originalText);
             break;
         case 'notes':
             $('input[name="addnotes"]').prop('disabled', false);
@@ -71,6 +74,11 @@ function saveOrder() {
             break;
         case 'name':
             newText = $('input[name="name"]').val();
+            if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 1) {
+                alert('Please enter a Name, in text only');
+                $('input[name="name"]').focus();
+                return false;
+            }
             break;
         case 'address':
             newText = $('input[name="address"]').val();
@@ -99,7 +107,7 @@ function saveOrder() {
             break;
         case 'notes':
             newText = $('input[name="addnotes"]').val();
-            if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 10) {
+            if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(newText)) || newText.length < 10) {
                 alert('Please enter Notes, of at least 10 characters, in text and numerals only');
                 $('input[name="addnotes"]').focus();
                 return false;
@@ -399,7 +407,7 @@ function validateSearch() {
     searchString = $('input[name="search_string"]').val();
 
     if (!searchString.length < 1) {
-        if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(searchString)) || searchString.length < 3) {
+        if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(searchString)) || searchString.length < 3) {
             alert('Please enter text to Search, in text and numerals only');
             $('input[name="search_string"]').focus();
             return false;

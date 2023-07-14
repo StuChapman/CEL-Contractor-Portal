@@ -166,7 +166,7 @@ def searchOrders(request):
         if 'search_string' in request.GET:
             searchstring = request.GET['search_string']
             if len(searchstring) != 0:
-                if not re.match("^[a-zA-Z ]+$", ''.join(searchstring)):
+                if not re.match("^[0-9 a-z A-Z?:@',|.-]+$", ''.join(searchstring)):
                     messages.success(request,
                                      mark_safe('There was a problem with  \
                                                 search'))

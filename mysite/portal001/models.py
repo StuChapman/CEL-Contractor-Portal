@@ -17,7 +17,8 @@ class Orders(models.Model):
     address = models.CharField(max_length=254, null=False)
     contractor = models.ForeignKey('Contractors',
                                    on_delete=models.CASCADE,
-                                   related_name='username')
+                                   to_field='contractor',
+                                   related_name='name')
     appointmentDate = models.DateTimeField(null=True, blank=True)
     primaryContact = models.ForeignKey(settings.AUTH_USER_MODEL,
                                        on_delete=models.CASCADE)
@@ -31,6 +32,9 @@ class Orders(models.Model):
 
     def __str__(self):
         return str(int(self.orderNumber))
+
+    def __str__(secondaryContact):
+        return secondaryContact.secondaryContact
 
 
 class Contractors(models.Model):
