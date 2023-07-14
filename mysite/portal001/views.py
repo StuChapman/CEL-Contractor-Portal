@@ -44,6 +44,7 @@ def selectOrder(request, orderno):
 def updateOrder(request):
     """ Update the order form """
 
+    abort_save = 0
     if request.GET:
         if 'order_number' in request.GET:
             orderno = request.GET['order_number']
@@ -67,16 +68,26 @@ def updateOrder(request):
         if not re.match("^[a-zA-Z ]+$", ''.join(validate_orderDescription)):
             messages.success(request, mark_safe('There was a problem with \
                     orderDescription.'))
+            abort_save = 1
         validate_name = form.data['name']
-        if not re.match("[A-Za-z0-9 _.,'$]*", ''.join(validate_name)):
+        if not re.match("^[a-z A-Z?:',.-]+$", ''.join(validate_name)):
             messages.success(request, mark_safe('There was a problem with \
                     name.'))
+            abort_save = 1
         validate_address = form.data['address']
-        if not re.match("^[A-Za-z0-9 _.,'$]*", ''.join(validate_address)):
+        if not re.match("^[0-9 a-z A-Z?:',.-]+$", ''.join(validate_address)):
             messages.success(request, mark_safe('There was a problem with \
                     address.'))
-        if form.is_valid():
-            form.save()
+            abort_save = 1
+        validate_notes = form.data['notes']
+        if validate_notes != "":
+            if not re.match("^[0-9 a-z A-Z?:',|.-]+$", ''.join(validate_notes)):
+                messages.success(request, mark_safe('There was a problem with \
+                        notes.'))
+            abort_save = 1
+        if abort_save == 0:
+            if form.is_valid():
+                form.save()
     else:
         messages.success(request, 'Order not valid.')
         orderlist = Orders.objects.all().order_by('-orderNumber')

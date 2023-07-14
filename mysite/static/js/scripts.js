@@ -71,11 +71,6 @@ function saveOrder() {
             break;
         case 'name':
             newText = $('input[name="name"]').val();
-            if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 1) {
-                alert('Please enter a Name, in text only');
-                $('input[name="name"]').focus();
-                return false;
-            }
             break;
         case 'address':
             newText = $('input[name="address"]').val();
@@ -90,6 +85,11 @@ function saveOrder() {
             break;
         case 'appointmentDate':
             newText = $('input[name="appointmentDate"]').val();
+            if (!(/^[0-9 A-Z?:-]+$/.test(newText)) || newText.length  < 1) {
+                alert('Appointment Date should be in the format: YYYY-MM-DD HH:MM:SS');
+                $('input[name="address"]').focus();
+                return false;
+            }
             break;
         case 'primaryContact':
             newText = $('select[name="primaryContact"]').val();
@@ -129,19 +129,19 @@ function saveOrder() {
     if (updatefield == 'notes') {
         updatetext = "";
     } else {
-        updatetext = ': ' + originalText + ' -- changed to:';
+        updatetext = originalText + ' -- changed to: ';
     }
 
     username = $("#user-name").text();
 
     if (originalText != newText) {
         let notesVal =  $('input[name="notes"]').val();
-        $('input[name="notes"]').val('{' 
+        $('input[name="notes"]').val('|| ' 
                                 + today + ': '
-                                + username + ' || '
+                                + username + ' - '
                                 + updatefield + ': '
                                 + updatetext
-                                + newText + '}' + ' ------||------' 
+                                + newText + ' ||' + ' -------X-------' 
                                 + "\n" + notesVal);
     }
 
