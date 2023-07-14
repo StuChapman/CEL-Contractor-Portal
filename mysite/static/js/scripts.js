@@ -36,8 +36,7 @@ function editOrder(orderfield) {
             break;
         case 'primaryContact':
             $('select[name="primaryContact"]').prop('disabled', false);
-            originalText = $('select[name="primaryContact"]').val();
-            console.log(originalText);
+            originalText = $('select[name="primaryContact"]').find('option:selected').text()
             break;
         case 'secondaryContact':
             $('select[name="secondaryContact"]').prop('disabled', false);
@@ -98,7 +97,7 @@ function saveOrder() {
             }
             break;
         case 'primaryContact':
-            newText = $('select[name="primaryContact"]').val();
+            newText = $('select[name="primaryContact"]').find('option:selected').text()
             break;
         case 'secondaryContact':
             newText = $('select[name="secondaryContact"]').val();

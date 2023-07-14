@@ -35,7 +35,12 @@
                             {{ form.primaryContact.label_tag }}
                             {{ form.primaryContact }}
                             {{ form.secondaryContact.label_tag }}
-                            {{ form.secondaryContact }}
+                            <select name="secondaryContact" required id="id_secondaryContact">
+                                <option value="" selected>---------</option>
+                                {% for contractor in contractors %}
+                                    <option value="{{ contractor.secondaryContact}}" >{{ contractor.secondaryContact }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                         <div class="col-lg-12">
                             {{ form.notes.label_tag }}
