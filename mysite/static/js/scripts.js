@@ -28,8 +28,7 @@ function editOrder(orderfield) {
             break;
         case 'contractor':
             $('select[name="contractor"]').prop('disabled', false);
-            originalText = $('input[name="contractor"]').val();
-            console.log(originalText);
+            originalText = $("#id_contractor option:selected").text();
             break;
         case 'appointmentDate':
             $('input[name="appointmentDate"]').prop('disabled', false);
@@ -43,7 +42,6 @@ function editOrder(orderfield) {
         case 'secondaryContact':
             $('select[name="secondaryContact"]').prop('disabled', false);
             originalText = $('select[name="secondaryContact"]').val();
-            console.log(originalText);
             break;
         case 'notes':
             $('input[name="addnotes"]').prop('disabled', false);

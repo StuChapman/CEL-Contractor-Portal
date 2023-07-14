@@ -31,11 +31,13 @@ def selectOrder(request, orderno):
     this_order = Orders.objects.get(orderNumber=orderno)
     order_list_length = orders.filter(orderNumber=orderno).count()
     form = OrderForm(instance=this_order)
+    contractors = Contractors.objects.all()
 
     context = {
         'orderno': orderno,
         'form': form,
         'order_list_length': order_list_length,
+        'contractors': contractors,
     }
 
     return render(request, 'curo/orderdetail.html', context)
@@ -44,7 +46,9 @@ def selectOrder(request, orderno):
 def updateOrder(request):
     """ Update the order form """
 
+    contractors = Contractors.objects.all()
     abort_save = 0
+
     if request.GET:
         if 'order_number' in request.GET:
             orderno = request.GET['order_number']
@@ -104,6 +108,7 @@ def updateOrder(request):
         'orderno': orderno,
         'form': form,
         'order_list_length': '1',
+        'contractors': contractors,
     }
 
     return render(request, 'curo/orderdetail.html', context)
