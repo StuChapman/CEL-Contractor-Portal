@@ -404,7 +404,7 @@ function validateSearch() {
     searchString = $('input[name="search_string"]').val();
 
     if (!searchString.length < 1) {
-        if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(searchString)) || searchString.length < 3) {
+        if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(searchString)) || searchString.length < 2) {
             alert('Please enter text to Search, in text and numerals only');
             $('input[name="search_string"]').focus();
             return false;

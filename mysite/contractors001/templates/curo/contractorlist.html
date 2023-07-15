@@ -1,0 +1,62 @@
+{% extends "basemodule001.html" %}
+{% load static %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <!--Text Section-->
+        <section id="textsection">
+            {% if user.is_authenticated %}
+                <div class ="row mt-3 mb-3 searchform">
+                    <div class="col-lg-4 mb-2">
+                        <form action="{% url 'searchContractors' %}" method="GET" id="search_form" >
+                            <input class="search-input text-blue text-xs" type="text" name="search_string" id="search_string" placeholder=" search ..." maxlength="50">
+                            <button class="mt-0 text-center" type="submit" onclick="return validateSearch();">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-lg-4">
+                        <form action="{% url 'orderContractors' %}" method="GET" id="order_field_form" >
+                            <select class="search-input text-blue text-xs" type="text" name="order_field" id="order_field" placeholder=" order by ..." maxlength="50">
+                                <option value="blank">order by ...</option>
+                                <option value="contractor">Contractor</option>
+                                <option value="secondaryContact">Contact</option>
+                                <option value="services">Services</option>
+                            </select>
+                            <button class="mt-0 text-center" type="submit" onclick="return orderAz();">
+                                <i class="fa-solid fa-arrow-down-a-z"></i>
+                                </a>
+                            </button>
+                            <button class="mt-0 text-center" type="submit" onclick="return orderZa();">
+                                <i class="fa-solid fa-arrow-down-z-a"></i>
+                                </a>
+                            </button>
+                            <input class="hidden m-0 p-0" type="text" name="searchstring" id="searchstring" value="{{ searchstring }}">
+                            <input class="hidden m-0 p-0" type="text" name="searchorder" id="searchorder">
+                        </form>
+                    </div>
+                    <div class="col-lg-4">
+                        <p class="">{{ contractor_list_length }} contractor(s)</p>
+                    </div>
+                </div>
+                {% for contractor in contractorlist %}
+                    <div class="orderlist ml-auto mr-auto">
+                        <div class ="row">
+                            <div class="col-lg-4">
+                                <div class="mt-1 mb-1">Contractor:<span class="orderlistspan pl-2 pr-2 mb-4">{{ contractor.contractor }}</span></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mt-1 mb-1">Contact:<span class="orderlistspan pl-2 pr-2 mb-4">{{ contractor.secondaryContact }}</span></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mt-1 mb-1">Services:<span class="orderlistspan pl-2 pr-2 mb-4">{{ contractor.services }}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                {% endfor %}
+            {% endif %}
+        </section>
+    {% endif %}
+{% endblock %}

@@ -2,12 +2,13 @@
     {% if user.is_authenticated %}
     <p class="d-none d-lg-block paramedium ml-auto mr-auto">Welcome: <span id="user-name">{{ user.username }}</span> ...
         <a class="mr-3 ml-3" href="{% url 'account_logout' %}"> Sign Out <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-        <a class="mr-3 ml-3" href="{% url 'curo' %}"> List View <i class="fa-solid fa-list"></i></a>
+        <a class="mr-3 ml-3" href="{% url 'curo' %}"> Order List <i class="fa-solid fa-list"></i></a>
         {% for group in user.groups.all %}
             {% if group.name == 'Edit' %}
                 <a class="mr-3 ml-3" href="{% url 'createOrder' %}"> Add Order <i class="fa-solid fa-folder-plus"></i></a>
             {% endif %}
         {% endfor %}
+        <a class="mr-3 ml-3" href="{% url 'curoContractors' %}"> Contractors <i class="fa-solid fa-screwdriver-wrench"></i></a>
     </p>
     <p class="d-lg-none paramedium ml-auto mr-auto">
         <a class="mr-3 ml-3" href="{% url 'account_logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
@@ -17,6 +18,7 @@
                 <a class="mr-3 ml-3" href="{% url 'createOrder' %}"><i class="fa-solid fa-folder-plus"></i></a>
             {% endif %}
         {% endfor %}
+        <a class="mr-3 ml-3" href="{% url 'curoContractors' %}"><i class="fa-solid fa-screwdriver-wrench"></i></a>
     </p>
     {% else %}
     <p class="paramedium">Welcome: Please sign in to continue ...
