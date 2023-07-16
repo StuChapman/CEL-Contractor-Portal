@@ -43,7 +43,7 @@
                     <div class="orderlist ml-auto mr-auto">
                         <div class ="row">
                             <div class="col-lg-4">
-                                <div class="mt-1 mb-1">Contractor:<span class="orderlistspan pl-2 pr-2 mb-4">{{ contractor.contractor }}</span></div>
+                                <p class="pb-0 pl-0 mt-1 mb-1">Contractor: <a class="orange-highlight" href ="{% url 'selectContractor' contractor.contractor %}">{{ contractor.contractor }}</a></p>
                             </div>
                             <div class="col-lg-4">
                                 <div class="mt-1 mb-1">Contact:<span class="orderlistspan pl-2 pr-2 mb-4">{{ contractor.secondaryContact }}</span></div>

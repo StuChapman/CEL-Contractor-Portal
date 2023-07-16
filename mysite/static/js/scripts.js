@@ -42,6 +42,10 @@ function editOrder(orderfield) {
             $('select[name="secondaryContact"]').prop('disabled', false);
             originalText = $('select[name="secondaryContact"]').val();
             break;
+        case 'services':
+            $('select[name="services"]').prop('disabled', false);
+            originalText = $('select[name="services"]').val();
+            break;
         case 'notes':
             $('input[name="addnotes"]').prop('disabled', false);
             $('input[name="addnotes"]').css("background-color", '#C0DC3B');
@@ -101,6 +105,14 @@ function saveOrder() {
             break;
         case 'secondaryContact':
             newText = $('select[name="secondaryContact"]').val();
+            break;
+        case 'services':
+            newText = $('input[name="services"]').val();
+            if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(newText)) || newText.length < 10) {
+                alert('Please enter Services, of at least 10 characters, in text and numerals only');
+                $('input[name="services"]').focus();
+                return false;
+            }
             break;
         case 'notes':
             newText = $('input[name="addnotes"]').val();

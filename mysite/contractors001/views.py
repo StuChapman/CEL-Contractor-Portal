@@ -105,3 +105,22 @@ def orderContractors(request):
     }
 
     return render(request, 'curo/contractorlist.html', context)
+
+
+def selectContractor(request, contractor):
+    """ Update the order form """
+
+    contractors = Contractors.objects.all()
+    this_contractor = Contractors.objects.get(contractor=contractor)
+    contractor_list_length = contractors.filter(contractor=contractor).count()
+    form = ContractorForm(instance=this_contractor)
+    contractors = Contractors.objects.all()
+
+    context = {
+        'contractor': contractor,
+        'form': form,
+        'contractor_list_length': contractor_list_length,
+        'contractors': contractors,
+    }
+
+    return render(request, 'curo/contractordetail.html', context)
