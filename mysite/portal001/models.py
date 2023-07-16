@@ -22,19 +22,13 @@ class Orders(models.Model):
     appointmentDate = models.DateTimeField(null=True, blank=True)
     primaryContact = models.ForeignKey(settings.AUTH_USER_MODEL,
                                        on_delete=models.CASCADE)
-    secondaryContact = models.ForeignKey('Contractors',
-                                         on_delete=models.CASCADE,
-                                         to_field='secondaryContact',
-                                         related_name='email')
+    secondaryContact = models.EmailField(max_length=254)
     notes = models.CharField(max_length=9999, null=True, blank=True)
     dateLastUpdate = models.DateTimeField(default=timezone.now)
     dateCreated = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return str(int(self.orderNumber))
-
-    def __str__(secondaryContact):
-        return secondaryContact.secondaryContact
 
 
 class Contractors(models.Model):

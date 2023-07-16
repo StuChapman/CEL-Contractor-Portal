@@ -124,3 +124,65 @@ def selectContractor(request, contractor):
     }
 
     return render(request, 'curo/contractordetail.html', context)
+
+
+def updateContractor(request):
+    """ Update the order form """
+
+    contractors = Contractors.objects.all()
+    abort_save = 0
+
+    if request.GET:
+        if 'contractor' in request.GET:
+            contractor = request.GET['contractor']
+            thiscontractor = Contractors.objects.get(contractor=contractor)
+    else:
+        messages.success(request, 'Oops! Something went wrong.')
+        contractorlist = Contractors.objects.all().order_by('contractor')
+        contractor_list_length = contractorlist.count()
+
+        context = {
+            'contractorlist': contractorlist,
+            'contractor_list_length': contractor_list_length,
+        }
+
+        return render(request, 'curo/orderlist.html', context)
+
+    if request.method == 'POST':
+        form = ContractorForm(request.POST, instance=thiscontractor)
+        """ validate the form data """
+        validate_secondaryContact = form.data['secondaryContact']
+        if not re.match("^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$", ''.join(validate_secondaryContact)):
+            messages.success(request, mark_safe('There was a problem with \
+                    secondaryContact.'))
+            abort_save = 1
+        validate_services = form.data['services']
+        if validate_services != "":
+            if not re.match("^[0-9 a-z A-Z?:@',|.-]+$", ''.join(validate_services)):
+                messages.success(request, mark_safe('There was a problem with \
+                        Services.'))
+                abort_save = 1
+        if abort_save != 1:
+            if form.is_valid():
+                form.save()
+    else:
+        messages.success(request, 'Contractor not valid.')
+        contractorlist = Contractors.objects.all().order_by('contractor')
+        contractor_list_length = contractorlist.count()
+
+        context = {
+            'contractorlist': contractorlist,
+            'contractor_list_length': contractor_list_length,
+        }
+
+        return render(request, 'curo/contractorlist.html', context)
+
+    context = {
+        'contractor': contractor,
+        'form': form,
+        'contractor_list_length': '1',
+        'contractors': contractors,
+    }
+
+    return render(request, 'curo/contractordetail.html', context)
+

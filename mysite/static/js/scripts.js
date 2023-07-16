@@ -42,10 +42,6 @@ function editOrder(orderfield) {
             $('select[name="secondaryContact"]').prop('disabled', false);
             originalText = $('select[name="secondaryContact"]').val();
             break;
-        case 'services':
-            $('select[name="services"]').prop('disabled', false);
-            originalText = $('select[name="services"]').val();
-            break;
         case 'notes':
             $('input[name="addnotes"]').prop('disabled', false);
             $('input[name="addnotes"]').css("background-color", '#C0DC3B');
@@ -106,14 +102,6 @@ function saveOrder() {
         case 'secondaryContact':
             newText = $('select[name="secondaryContact"]').val();
             break;
-        case 'services':
-            newText = $('input[name="services"]').val();
-            if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(newText)) || newText.length < 10) {
-                alert('Please enter Services, of at least 10 characters, in text and numerals only');
-                $('input[name="services"]').focus();
-                return false;
-            }
-            break;
         case 'notes':
             newText = $('input[name="addnotes"]').val();
             if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(newText)) || newText.length < 10) {
@@ -165,6 +153,55 @@ function saveOrder() {
     $("#order-submit").addClass("unhidden");
 }
 
+
+// Function: save new order //
+function saveNewOrder() {
+
+    newText = $('input[name="orderDescription"]').val();
+    if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 10) {
+        alert('Please enter an OrderDescription of at least 10 characters, in text only.');
+        $('input[name="orderDescription"]').focus();
+    }
+
+    newText = $('input[name="name"]').val();
+    if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 1) {
+        alert('Please enter a Name, in text only');
+        $('input[name="name"]').focus();
+    }
+
+    newText = $('input[name="address"]').val();
+    if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(newText)) || newText.length  < 1) {
+        alert('Please enter an Address, in text and numerals only');
+        $('input[name="address"]').focus();
+    }
+
+    newText = $('input[name="appointmentDate"]').val();
+    if (!(/^[0-9 A-Z?:-]+$/.test(newText)) || newText.length  < 1) {
+        alert('Appointment Date should be in the format: YYYY-MM-DD HH:MM:SS');
+        $('input[name="address"]').focus();
+    }
+
+    newText = $('input[name="notes"]').val();
+    if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(newText)) || newText.length < 10) {
+        alert('Please enter Notes, of at least 10 characters, in text and numerals only');
+        $('input[name="notes"]').focus();
+    }
+
+    $('input[name="csrfmiddlewaretoken"]').prop('disabled', false);
+    $('input[name="orderNumber"]').prop('disabled', false);
+    $('input[name="orderDescription"]').prop('disabled', false);
+    $('input[name="name"]').prop('disabled', false);
+    $('input[name="address"]').prop('disabled', false);
+    $('select[name="contractor"]').prop('disabled', false);
+    $('input[name="appointmentDate"]').prop('disabled', false);
+    $('select[name="primaryContact"]').prop('disabled', false);
+    $('select[name="secondaryContact"]').prop('disabled', false);
+    $('input[name="notes"]').prop('disabled', false);
+    $('input[name="dateLastUpdate"]').prop('disabled', false);
+    $('input[name="dateCreated"]').prop('disabled', false);
+
+    $("#order-submit").addClass("unhidden");
+}
 
 // Function: open addnoteModal and add note //
 function addNote() {
@@ -435,4 +472,58 @@ function expandNotes() {
         $('#id_notes').css('height','30vh');
     }
     $('#expandnotes').html(expandvar).button("refresh");
+}
+
+
+// Function: allow edit to selected field //
+function editContractor(contractorfield) {
+
+    updatefield = contractorfield;
+    $('input[name="csrfmiddlewaretoken"]').prop('disabled', false);
+
+    switch(contractorfield) {
+        case 'secondaryContact':
+            $('input[name="secondaryContact"]').prop('disabled', false);
+            break;
+        case 'services':
+            $('input[name="services"]').prop('disabled', false);
+            break;
+        default:
+            break;
+    }
+
+    $("#order-submit").removeClass("hidden");
+    $('input[name="submit"]').prop('disabled', false);
+}
+
+// Function: save edited order //
+function saveContractor() {
+
+    switch(updatefield) {
+        case 'secondaryContact':
+            newText = $('input[name="secondaryContact"]').val();
+            if (!(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(newText))) {
+                alert('Email must be in a valid format.');
+                $('input[name="secondaryContact"]').focus();
+                return false;
+            }
+            break;
+        case 'services':
+            newText = $('input[name="services"]').val();
+            if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(newText)) || newText.length < 10) {
+                alert('Please enter Services, of at least 10 characters, in text and numerals only');
+                $('input[name="services"]').focus();
+                return false;
+            }
+            break;
+        default:
+            break;
+    }
+
+    $('input[name="csrfmiddlewaretoken"]').prop('disabled', false);
+    $('input[name="contractor"]').prop('disabled', false);
+    $('input[name="secondaryContact"]').prop('disabled', false);
+    $('input[name="services"]').prop('disabled', false);
+
+    $("#contractor-submit").addClass("unhidden");
 }
