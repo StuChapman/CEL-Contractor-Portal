@@ -131,8 +131,32 @@ def createOrder(request):
 def saveOrder(request):
     """ Save the new order """
 
+    abort_save = 0
+
     if request.method == 'POST':
         form = OrderForm(request.POST)
+        """ validate the form data """
+        validate_orderDescription = form.data['orderDescription']
+        if not re.match("^[a-zA-Z ]+$", ''.join(validate_orderDescription)):
+            messages.success(request, mark_safe('There was a problem with \
+                    orderDescription.'))
+            abort_save = 1
+        validate_name = form.data['name']
+        if not re.match("^[a-z A-Z?:',.-]+$", ''.join(validate_name)):
+            messages.success(request, mark_safe('There was a problem with \
+                    name.'))
+            abort_save = 1
+        validate_address = form.data['address']
+        if not re.match("^[0-9 a-z A-Z?:',.-]+$", ''.join(validate_address)):
+            messages.success(request, mark_safe('There was a problem with \
+                    address.'))
+            abort_save = 1
+        validate_notes = form.data['notes']
+        if validate_notes != "":
+            if not re.match("^[0-9 a-z A-Z?:@',|.-]+$", ''.join(validate_notes)):
+                messages.success(request, mark_safe('There was a problem with \
+                        notes.'))
+                abort_save = 1
 
         """ check if that OrderNumber already exists """
         orders = Orders.objects.all()
@@ -142,10 +166,11 @@ def saveOrder(request):
         if order_exists:
             messages.success(request, 'That Order Number already exists!')
         else:
-            if form.is_valid():
-                form.save()
-            else:
-                messages.success(request, 'Order not valid.')
+            if abort_save != 1:
+                if form.is_valid():
+                    form.save()
+                else:
+                    messages.success(request, 'Order not valid.')
     else:
         messages.success(request, 'Oops! Something went awry.')
 

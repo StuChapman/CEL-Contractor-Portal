@@ -157,36 +157,6 @@ function saveOrder() {
 // Function: save new order //
 function saveNewOrder() {
 
-    newText = $('input[name="orderDescription"]').val();
-    if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 10) {
-        alert('Please enter an OrderDescription of at least 10 characters, in text only.');
-        $('input[name="orderDescription"]').focus();
-    }
-
-    newText = $('input[name="name"]').val();
-    if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 1) {
-        alert('Please enter a Name, in text only');
-        $('input[name="name"]').focus();
-    }
-
-    newText = $('input[name="address"]').val();
-    if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(newText)) || newText.length  < 1) {
-        alert('Please enter an Address, in text and numerals only');
-        $('input[name="address"]').focus();
-    }
-
-    newText = $('input[name="appointmentDate"]').val();
-    if (!(/^[0-9 A-Z?:-]+$/.test(newText)) || newText.length  < 1) {
-        alert('Appointment Date should be in the format: YYYY-MM-DD HH:MM:SS');
-        $('input[name="address"]').focus();
-    }
-
-    newText = $('input[name="notes"]').val();
-    if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(newText)) || newText.length < 10) {
-        alert('Please enter Notes, of at least 10 characters, in text and numerals only');
-        $('input[name="notes"]').focus();
-    }
-
     $('input[name="csrfmiddlewaretoken"]').prop('disabled', false);
     $('input[name="orderNumber"]').prop('disabled', false);
     $('input[name="orderDescription"]').prop('disabled', false);
@@ -321,7 +291,6 @@ function populateDateModal() {
     }
 }
 
-
 // Function: populate the appointment date field //
 function appointmentDate() {
 
@@ -381,6 +350,50 @@ $(document).ready(function () {
     });
 });
 
+// Validate form entry fields //
+$(document).ready(function () {
+
+    $("#id_orderDescription").change(function (event) {
+        newText = $('input[name="orderDescription"]').val();
+        if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 10) {
+            alert('Please enter an OrderDescription of at least 10 characters, in text only.');
+            $('input[name="orderDescription"]').focus();
+        }        
+    });
+
+    $("#id_name").change(function (event) {
+        newText = $('input[name="name"]').val();
+        if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 1) {
+            alert('Please enter a Name, in text only');
+            $('input[name="name"]').focus();
+        }      
+    });
+
+    $("#id_address").change(function (event) {
+        newText = $('input[name="address"]').val();
+        if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(newText)) || newText.length  < 1) {
+            alert('Please enter an Address, in text and numerals only');
+            $('input[name="address"]').focus();
+        }      
+    });
+
+    $("#id_appointmentDate").change(function (event) {
+        newText = $('input[name="appointmentDate"]').val();
+        if (!(/^[0-9 A-Z?:-]+$/.test(newText)) || newText.length  < 1) {
+            alert('Appointment Date should be in the format: YYYY-MM-DD HH:MM:SS');
+            $('input[name="address"]').focus();
+        }      
+    });
+
+    $("#id_notes").change(function (event) {
+        newText = $('input[name="notes"]').val();
+        if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(newText)) || newText.length < 10) {
+            alert('Please enter Notes, of at least 10 characters, in text and numerals only');
+            $('input[name="notes"]').focus();
+        }      
+    });
+
+});
 
 $(document).ready(function () {
 
