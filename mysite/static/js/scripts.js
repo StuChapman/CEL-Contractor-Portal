@@ -385,6 +385,14 @@ $(document).ready(function () {
         }      
     });
 
+    $("#id_services").change(function (event) {
+        newText = $('input[name="services"]').val();
+        if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(newText)) || newText.length < 10) {
+            alert('Please enter Services, of at least 10 characters, in text and numerals only');
+            $('input[name="services"]').focus();
+        }      
+    });
+
     $("#id_notes").change(function (event) {
         newText = $('input[name="notes"]').val();
         if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(newText)) || newText.length < 10) {
@@ -392,7 +400,6 @@ $(document).ready(function () {
             $('input[name="notes"]').focus();
         }      
     });
-
 });
 
 $(document).ready(function () {
@@ -509,7 +516,7 @@ function editContractor(contractorfield) {
     $('input[name="submit"]').prop('disabled', false);
 }
 
-// Function: save edited order //
+// Function: save edited contractor //
 function saveContractor() {
 
     switch(updatefield) {
@@ -539,4 +546,15 @@ function saveContractor() {
     $('input[name="services"]').prop('disabled', false);
 
     $("#contractor-submit").addClass("unhidden");
+}
+
+// Function: save new contractor //
+function saveNewOrder() {
+
+    $('input[name="csrfmiddlewaretoken"]').prop('disabled', false);
+    $('select[name="contractor"]').prop('disabled', false);
+    $('select[name="secondaryContact"]').prop('disabled', false);
+    $('input[name="services"]').prop('disabled', false);
+
+    $("#order-submit").addClass("unhidden");
 }

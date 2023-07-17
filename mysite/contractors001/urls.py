@@ -9,5 +9,7 @@ urlpatterns = [
     path('selectContractor/<contractor>',
          views.selectContractor, name='selectContractor'),
     path('newContractor', views.newContractor, name='newContractor'),
-    path('saveNewContractor', views.saveNewContractor, name='saveNewContractor'),
+    path('updateContractor', views.updateContractor, name='updateContractor'),
+    path('saveNewContractor',
+         views.saveNewContractor, name='saveNewContractor'),
 ]
