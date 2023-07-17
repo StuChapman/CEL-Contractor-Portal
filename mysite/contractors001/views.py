@@ -186,3 +186,67 @@ def updateContractor(request):
 
     return render(request, 'curo/contractordetail.html', context)
 
+
+def newContractor(request):
+    """ Create a new contractor """
+
+    contractors = Contractors.objects.all()
+    form = ContractorForm()
+
+    context = {
+        'form': form,
+        'contractors': contractors,
+    }
+
+    return render(request, 'curo/contractornew.html', context)
+
+
+def saveNewContractor(request):
+    """ Save the new order """
+
+    abort_save = 0
+
+    if request.method == 'POST':
+        form = ContractorForm(request.POST)
+        """ validate the form data """
+        validate_contractor = form.data['contractor']
+        if not re.match("^[a-zA-Z ]+$", ''.join(validate_contractor)):
+            messages.success(request, mark_safe('There was a problem with \
+                    Contractor.'))
+            abort_save = 1
+        validate_secondaryContact = form.data['secondaryContact']
+        if not re.match("^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$", ''.join(validate_secondaryContact)):
+            messages.success(request, mark_safe('There was a problem with \
+                    secondaryContact.'))
+            abort_save = 1
+        validate_services = form.data['services']
+        if not re.match("^[0-9 a-z A-Z?:@',|.-]+$", ''.join(validate_services)):
+            messages.success(request, mark_safe('There was a problem with \
+                    Services.'))
+            abort_save = 1
+
+        """ check if that Contractor already exists """
+        contractors = Contractors.objects.all()
+        this_contractor = form.data['contractor']
+        contractor_exists = (contractors.filter
+                        (contractor=this_contractor))
+        if contractor_exists:
+            messages.success(request, 'That Contractor Number already exists!')
+        else:
+            if abort_save != 1:
+                if form.is_valid():
+                    form.save()
+                else:
+                    messages.success(request, 'Contractor not valid.')
+    else:
+        messages.success(request, 'Oops! Something went awry.')
+
+    contractorlist = Contractors.objects.all().order_by('contractor')
+    contractor_list_length = contractorlist.count()
+
+    context = {
+        'contractorlist': contractorlist,
+        'contractor_list_length': contractor_list_length,
+    }
+
+    return render(request, 'curo/contractorlist.html', context)
