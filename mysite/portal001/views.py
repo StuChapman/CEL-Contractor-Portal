@@ -478,3 +478,26 @@ def orderDashboard(request):
     }
 
     return render(request, 'curo/dashboard.html', context)
+
+
+def selectNotification(request, orderno):
+    """ Update the order form """
+
+    orders = Orders.objects.all()
+    this_order = Orders.objects.get(orderNumber=orderno)
+    order_list_length = orders.filter(orderNumber=orderno).count()
+    form = OrderForm(instance=this_order)
+    contractors = Contractors.objects.all()
+
+    thisnotification = Notifications(orderNumber=orderno,
+                                     readUnread=1)
+    thisnotification.save()
+
+    context = {
+        'orderno': orderno,
+        'form': form,
+        'order_list_length': order_list_length,
+        'contractors': contractors,
+    }
+
+    return render(request, 'curo/orderdetail.html', context)
