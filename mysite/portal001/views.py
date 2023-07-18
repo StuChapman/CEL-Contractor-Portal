@@ -352,6 +352,7 @@ def searchDashboard(request):
     orderlist = Orders.objects.all().order_by('-orderNumber')
     order_list_length = orderlist.count()
     searchstring = ""
+    notifications = Notifications.objects.all()
 
     if request.GET:
         if 'search_string' in request.GET:
@@ -380,6 +381,7 @@ def searchDashboard(request):
         'orderlist': orderlist,
         'order_list_length': order_list_length,
         'searchstring': searchstring,
+        'notifications': notifications,
     }
 
     return render(request, 'curo/dashboard.html', context)
@@ -391,6 +393,7 @@ def orderDashboard(request):
     orderlist = Orders.objects.all()
     order_list_length = orderlist.count()
     searchstring = ""
+    notifications = Notifications.objects.all()
 
     if request.GET:
         if 'searchstring' in request.GET:
@@ -475,6 +478,7 @@ def orderDashboard(request):
         'orderlist': orderlist,
         'order_list_length': order_list_length,
         'searchstring': searchstring,
+        'notifications': notifications,
     }
 
     return render(request, 'curo/dashboard.html', context)
