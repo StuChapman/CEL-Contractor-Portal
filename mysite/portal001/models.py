@@ -42,3 +42,16 @@ class Contractors(models.Model):
 
     def __str__(self):
         return str(self.contractor)
+
+
+class Notifications(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Notifications'
+
+    orderNumber = models.DecimalField(max_digits=10, decimal_places=0,
+                                      null=False, primary_key=True)
+    readUnread = models.DecimalField(max_digits=1, decimal_places=0, default=0)
+
+    def __str__(self):
+        return str(int(self.orderNumber))

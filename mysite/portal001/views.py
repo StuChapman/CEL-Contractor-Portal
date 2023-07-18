@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.urls import path
 from django.contrib import messages
 from . import views
-from .models import Orders, Contractors
+from .models import Orders, Contractors, Notifications
 from .forms import OrderForm
 from django.db.models import Q
 from django.utils import timezone
@@ -53,6 +53,8 @@ def updateOrder(request):
         if 'order_number' in request.GET:
             orderno = request.GET['order_number']
             thisorder = Orders.objects.get(orderNumber=orderno)
+            thisnotification = Notifications(orderNumber=orderno,
+                                             readUnread=0)
     else:
         messages.success(request, 'Oops! Something went wrong.')
         orderlist = Orders.objects.all().order_by('-orderNumber')
@@ -91,6 +93,7 @@ def updateOrder(request):
                 abort_save = 1
         if abort_save != 1:
             if form.is_valid():
+                thisnotification.save()
                 form.save()
     else:
         messages.success(request, 'Order not valid.')
@@ -163,11 +166,14 @@ def saveOrder(request):
         this_order = form.data['orderNumber']
         order_exists = (orders.filter
                         (orderNumber=this_order))
+        thisnotification = Notifications(orderNumber=this_order,
+                                         readUnread=0)
         if order_exists:
             messages.success(request, 'That Order Number already exists!')
         else:
             if abort_save != 1:
                 if form.is_valid():
+                    thisnotification.save()
                     form.save()
                 else:
                     messages.success(request, 'Order not valid.')
@@ -316,3 +322,24 @@ def orderOrders(request):
     }
 
     return render(request, 'curo/orderlist.html', context)
+
+
+def dashboard(request):
+    """ A view to return the intro page """
+
+    orders = Orders.objects.all()
+
+    queries = (Q(primaryContact__username__icontains=request.user.username) |
+               Q(secondaryContact__icontains=request.user.username))
+    orders = Orders.objects.all()
+    orderlist = (orders.filter(queries)
+                 .order_by('-dateLastUpdate'))
+    order_list_length = orders.filter(queries).count()
+
+    context = {
+        'orderlist': orderlist,
+        'order_list_length': order_list_length,
+    }
+
+    return render(request, 'curo/orderlist.html', context)
+

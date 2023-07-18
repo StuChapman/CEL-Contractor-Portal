@@ -14,7 +14,7 @@
         {% endif %}
 
         {% if user.is_authenticated %}
-            <p class="paralarge">Below are all the Contractor Portals you have been access to:
+            <p class="paralarge">Below are all the Contractor Portals you have access to:
                 <br>
                 {% for group in user.groups.all %}
                     {% with my_url=group.name|cut:" "|lower %}

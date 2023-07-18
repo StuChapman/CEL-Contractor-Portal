@@ -1,0 +1,103 @@
+{% extends "basemodule001.html" %}
+{% load static %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <!--Text Section-->
+        <section id="textsection">
+            {% if user.is_authenticated %}
+                <div class ="row mt-3 mb-3 searchform">
+                    <div class="col-lg-4 mb-2">
+                        <form action="{% url 'searchOrders' %}" method="GET" id="search_form" >
+                            <input class="search-input text-blue text-xs" type="text" name="search_string" id="search_string" placeholder=" search ..." maxlength="50">
+                            <button class="mt-0 text-center" type="submit" onclick="return validateSearch();">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-lg-4">
+                        <form action="{% url 'orderOrders' %}" method="GET" id="order_field_form" >
+                            <select class="search-input text-blue text-xs" type="text" name="order_field" id="order_field" placeholder=" order by ..." maxlength="50">
+                                <option value="blank">order by ...</option>
+                                <option value="orderNumber">Order Number</option>
+                                <option value="orderDescription">Description</option>
+                                <option value="name">Name</option>
+                                <option value="address">Address</option>
+                                <option value="contractor">Contractor</option>
+                                <option value="appointmentDate">Appointment Date</option>
+                                <option value="primaryContact">Primary Contact</option>
+                                <option value="secondaryContact">Secondary Contact</option>
+                                <option value="notes">Notes</option>
+                                <option value="dateLastUpdate">Last Updated</option>
+                                <option value="dateCreated">Date Created</option>
+                            </select>
+                            <button class="mt-0 text-center" type="submit" onclick="return orderAz();">
+                                <i class="fa-solid fa-arrow-down-a-z"></i>
+                                </a>
+                            </button>
+                            <button class="mt-0 text-center" type="submit" onclick="return orderZa();">
+                                <i class="fa-solid fa-arrow-down-z-a"></i>
+                                </a>
+                            </button>
+                            <input class="hidden m-0 p-0" type="text" name="searchstring" id="searchstring" value="{{ searchstring }}">
+                            <input class="hidden m-0 p-0" type="text" name="searchorder" id="searchorder">
+                        </form>
+                    </div>
+                    <div class="col-lg-4">
+                        <p class="">{{ order_list_length }} order(s)</p>
+                    </div>
+                </div>
+                {% for order in orderlist %}
+                    <div class="orderlist ml-auto mr-auto">
+                        <div class ="row">
+                            <p class="col-lg-6 pb-0">Order Number: <a class="orange-highlight" href ="{% url 'selectOrder' order.orderNumber %}">{{ order.orderNumber }}</a></p>
+                            <div class="col-lg-6">
+                                <div class="mt-1 mb-1">Name: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.name }}</span></div>
+                            </div>
+                        </div>
+                        <div class ="row">
+                            <div class="col-lg-6">
+                                <div class="mt-1 mb-1">Order Description: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.orderDescription }}</span></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mt-1 mb-1">Address: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.address }}</span></div>
+                            </div>
+                        </div>
+                        <div class ="row">
+                            <div class="col-lg-6">
+                                <div class="mt-1 mb-1">Contractor: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.contractor }}</span></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mt-1 mb-1">Appointment Date: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.appointmentDate }}</span></div>
+                            </div>
+                        </div>
+                        <div class ="row">
+                            <div class="col-lg-6">
+                                <div class="mt-1 mb-1">Primary Contact: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.primaryContact }}</span></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mt-1 mb-1">Secondary Contact: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.secondaryContact }}</span></div>
+                            </div>
+                        </div>
+                        <div class ="row">
+                            <div class="col-12">
+                                <div class="mt-1 mb-1">Notes: </div>
+                                <textarea class="mb-0" disabled="disabled">{{ order.notes|escape }}</textarea>
+                            </div>
+                        </div>
+                        <div class ="row">
+                            <div class="col-lg-6">
+                                <div class="mt-1 mb-1 orderlistspan">Date LastUpdate: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.dateLastUpdate }}</span></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mt-1 mb-1 orderlistspan">Date Created: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.dateCreated }}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                {% endfor %}
+            {% endif %}
+        </section>
+    {% endif %}
+{% endblock %}
