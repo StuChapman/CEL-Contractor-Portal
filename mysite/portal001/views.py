@@ -328,6 +328,7 @@ def dashboard(request):
     """ A view to return the intro page """
 
     orders = Orders.objects.all()
+    notifications = Notifications.objects.all()
 
     queries = (Q(primaryContact__username__icontains=request.user.username) |
                Q(secondaryContact__icontains=request.user.username))
@@ -339,7 +340,141 @@ def dashboard(request):
     context = {
         'orderlist': orderlist,
         'order_list_length': order_list_length,
+        'notifications': notifications,
     }
 
-    return render(request, 'curo/orderlist.html', context)
+    return render(request, 'curo/dashboard.html', context)
 
+
+def searchDashboard(request):
+    """ A view to return a list of orders that meet the search criteria """
+
+    orderlist = Orders.objects.all().order_by('-orderNumber')
+    order_list_length = orderlist.count()
+    searchstring = ""
+
+    if request.GET:
+        if 'search_string' in request.GET:
+            searchstring = request.GET['search_string']
+            if len(searchstring) != 0:
+                if not re.match("^[0-9 a-z A-Z?:@',|.-]+$", ''.join(searchstring)):
+                    messages.success(request,
+                                     mark_safe('There was a problem with  \
+                                                search'))
+            queries = ((Q(primaryContact__username__icontains=request.user.username) |
+                       Q(secondaryContact__icontains=request.user.username)) &
+                       (Q(orderNumber__icontains=searchstring) |
+                       Q(orderDescription__icontains=searchstring) |
+                       Q(name__icontains=searchstring) |
+                       Q(address__icontains=searchstring) |
+                       Q(contractor__contractor__icontains=searchstring) |
+                       Q(notes__icontains=searchstring)))
+            orders = Orders.objects.all()
+            orderlist = (orders.filter(queries)
+                         .order_by('-dateLastUpdate'))
+            order_list_length = orders.filter(queries).count()
+    else:
+        messages.success(request, 'Oops! Something went wrong.')
+
+    context = {
+        'orderlist': orderlist,
+        'order_list_length': order_list_length,
+        'searchstring': searchstring,
+    }
+
+    return render(request, 'curo/dashboard.html', context)
+
+
+def orderDashboard(request):
+    """ A view to order the orders by a selected field """
+
+    orderlist = Orders.objects.all()
+    order_list_length = orderlist.count()
+    searchstring = ""
+
+    if request.GET:
+        if 'searchstring' in request.GET:
+            searchstring = request.GET['searchstring']
+            queries = ((Q(primaryContact__username__icontains=request.user.username) |
+                       Q(secondaryContact__icontains=request.user.username)) &
+                       (Q(orderNumber__icontains=searchstring) |
+                       Q(orderDescription__icontains=searchstring) |
+                       Q(name__icontains=searchstring) |
+                       Q(address__icontains=searchstring) |
+                       Q(contractor__contractor__icontains=searchstring) |
+                       Q(notes__icontains=searchstring)))
+            orders = Orders.objects.all()
+            orderlist = (orders.filter(queries)
+                         .order_by('-dateLastUpdate'))
+            order_list_length = orders.filter(queries).count()
+        
+        if 'searchorder' in request.GET:
+            searchorder = request.GET['searchorder']
+
+        if 'order_field' in request.GET:
+            orderfield = request.GET['order_field']
+            if orderfield == 'orderNumber':
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('orderNumber')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-orderNumber')
+            if orderfield == 'orderDescription':
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('orderDescription')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-orderDescription')
+            if orderfield == 'name':
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('name')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-name')
+            if orderfield == 'address':
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('address')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-address')
+            if orderfield == 'contractor':
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('contractor')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-contractor')
+            if orderfield == 'appointmentDate':
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('appointmentDate')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-appointmentDate')
+            if orderfield == 'primaryContact':
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('primaryContact')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-primaryContact')
+            if orderfield == 'secondaryContact':
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('secondaryContact')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-secondaryContact')
+            if orderfield == 'notes':
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('notes')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-notes')
+            if orderfield == 'dateLastUpdate':
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('dateLastUpdate')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-dateLastUpdate')
+            if orderfield == 'dateCreated':
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('dateCreated')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-dateCreated')
+    else:
+        messages.success(request, 'Oops! Something went wrong.')
+
+    context = {
+        'orderlist': orderlist,
+        'order_list_length': order_list_length,
+        'searchstring': searchstring,
+    }
+
+    return render(request, 'curo/dashboard.html', context)
