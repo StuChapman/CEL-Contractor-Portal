@@ -9,9 +9,13 @@
             {% endif %}
         {% endfor %}
         <a class="mr-3 ml-3" href="{% url 'curoContractors' %}"> Contractors <i class="fa-solid fa-screwdriver-wrench"></i></a>
-        {% if contractorlist %}
-            <a class="mr-3 ml-3" href="{% url 'newContractor' %}"> New Contractor <i class="fa-solid fa-wrench">+</i></a>
-        {% endif %}
+        {% for group in user.groups.all %}
+            {% if group.name == 'Edit' %}
+                {% if contractorlist %}
+                    <a class="mr-3 ml-3" href="{% url 'newContractor' %}"> New Contractor <i class="fa-solid fa-wrench">+</i></a>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
     </p>
     <p class="d-lg-none paramedium ml-auto mr-auto">
         <a class="mr-3 ml-3" href="{% url 'account_logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
@@ -22,9 +26,13 @@
             {% endif %}
         {% endfor %}
         <a class="mr-3 ml-3" href="{% url 'curoContractors' %}"><i class="fa-solid fa-screwdriver-wrench"></i></a>
-        {% if contractorlist %}
-            <a class="mr-3 ml-3" href="{% url 'newContractor' %}"><i class="fa-solid fa-wrench"></i>+</a>
-        {% endif %}
+        {% for group in user.groups.all %}
+            {% if group.name == 'Edit' %}
+                {% if contractorlist %}
+                    <a class="mr-3 ml-3" href="{% url 'newContractor' %}"><i class="fa-solid fa-wrench"></i>+</a>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
     </p>
     {% else %}
     <p class="paramedium">Welcome: Please sign in to continue ...
