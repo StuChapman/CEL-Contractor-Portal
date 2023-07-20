@@ -41,17 +41,17 @@
                             {{ form.address }}
                             <div class="row">
                                 <div class="col pl-0">
-                                    {{ form.phoneNumber.label_tag }}
+                                    {{ form.contact.label_tag }}
                                 </div>
                                 <div class="col-auto pr-0">
                                     {% for group in user.groups.all %}
                                         {% if group.name == 'Edit' %}
-                                            <button id="editphoneNumber" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('phoneNumber');">edit</button>
+                                            <button id="editcontact" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('contact');">edit</button>
                                         {% endif %}
                                     {% endfor %}
                                 </div>
                             </div>
-                            {{ form.phoneNumber }}
+                            {{ form.contact }}
                             <div class="row">
                                 <div class="col pl-0">
                                     {{ form.primaryContact.label_tag }}

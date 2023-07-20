@@ -22,9 +22,9 @@ function editOrder(orderfield) {
             $('input[name="address"]').prop('disabled', false);
             originalText = $('input[name="address"]').val();
             break;
-        case 'phoneNumber':
-            $('input[name="phoneNumber"]').prop('disabled', false);
-            originalText = $('input[name="phoneNumber"]').val();
+        case 'contact':
+            $('input[name="contact"]').prop('disabled', false);
+            originalText = $('input[name="contact"]').val();
             break;
         case 'primaryContact':
             $('select[name="primaryContact"]').prop('disabled', false);
@@ -85,8 +85,8 @@ function saveOrder() {
                 return false;
             }
             break;
-        case 'phoneNumber':
-            newText = $('input[name="phoneNumber"]').val();
+        case 'contact':
+            newText = $('input[name="contact"]').val();
             if (!(/^[0-9]+$/.test(newText)) || newText.length  < 1) {
                 alert('Please enter a Phone Number, in numerals only');
                 $('input[name="address"]').focus();
@@ -147,7 +147,7 @@ function saveOrder() {
     $('input[name="orderDescription"]').prop('disabled', false);
     $('input[name="name"]').prop('disabled', false);
     $('input[name="address"]').prop('disabled', false);
-    $('input[name="phoneNumber"]').prop('disabled', false);
+    $('input[name="contact"]').prop('disabled', false);
     $('select[name="contractor"]').prop('disabled', false);
     $('input[name="appointmentDate"]').prop('disabled', false);
     $('select[name="appointmentComplete"]').prop('disabled', false);
@@ -192,7 +192,7 @@ function saveNewOrder() {
     $('input[name="orderDescription"]').prop('disabled', false);
     $('input[name="name"]').prop('disabled', false);
     $('input[name="address"]').prop('disabled', false);
-    $('input[name="phoneNumber"]').prop('disabled', false);
+    $('input[name="contact"]').prop('disabled', false);
     $('select[name="contractor"]').prop('disabled', false);
     $('input[name="appointmentDate"]').prop('disabled', false);
     $('select[name="appointmentComplete"]').prop('disabled', false);
@@ -412,12 +412,12 @@ $(document).ready(function () {
         }      
     });
 
-    $("#id_phoneNumber").change(function (event) {
-        newText = $('input[name="phoneNumber"]').val();
+    $("#id_contact").change(function (event) {
+        newText = $('input[name="contact"]').val();
         if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(newText)) || newText.length  < 1) {
             alert('Please enter a Phone Number, in numerals only');
-            $('input[name="phoneNumber"]').val('');
-            $('input[name="phoneNumber"]').focus();
+            $('input[name="contact"]').val('');
+            $('input[name="contact"]').focus();
         }      
     });
 
@@ -437,6 +437,14 @@ $(document).ready(function () {
             if ($('select[name="appointmentComplete"]').val() == 'Yes') {
                 if ($('input[name="appointmentDate"]').val() > today) {
                     alert('Appointment Date is in the future, so can`t be set as complete');
+                    $('select[name="appointmentComplete"]').val('No');
+                    $('input[name="appointmentComplete"]').focus();
+                }
+            }
+            if ($('select[name="appointmentComplete"]').val() == 'Yes') {
+                appt = $('input[name="appointmentDate"]').val();
+                if (appt.length < 1) {
+                    alert('Appointment Date is blank, so can`t be set as complete');
                     $('select[name="appointmentComplete"]').val('No');
                     $('input[name="appointmentComplete"]').focus();
                 }

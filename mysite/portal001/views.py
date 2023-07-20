@@ -85,6 +85,11 @@ def updateOrder(request):
             messages.success(request, mark_safe('There was a problem with \
                     address.'))
             abort_save = 1
+        validate_contact = form.data['contact']
+        if not re.match("^[0-9]+$", ''.join(validate_contact)):
+            messages.success(request, mark_safe('There was a problem with \
+                    Contact.'))
+            abort_save = 1
         validate_notes = form.data['notes']
         if validate_notes != "":
             if not re.match("^[0-9 a-z A-Z?:@',|.-]+$", ''.join(validate_notes)):

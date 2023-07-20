@@ -9,6 +9,7 @@
                 <p class="mt-3">Enter a new Order</p>
                 <form action="{% url 'saveOrder' %}"  method="POST" class="neworder ml-auto mr-auto">
                     {% csrf_token %}
+                                <option value="contact">Contact</option>
                     <div class="row">
                         <div class="col-lg-6">
                             {{ form.orderNumber.label_tag }}
@@ -17,8 +18,8 @@
                             {{ form.name }}
                             {{ form.address.label_tag }}
                             {{ form.address }}
-                            {{ form.phoneNumber.label_tag }}
-                            {{ form.phoneNumber }}
+                            {{ form.contact.label_tag }}
+                            {{ form.contact }}
                             {{ form.primaryContact.label_tag }}
                             {{ form.primaryContact }}
                         </div>

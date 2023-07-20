@@ -20,8 +20,7 @@ class Orders(models.Model):
     orderDescription = models.CharField(max_length=254, null=False)
     name = models.CharField(max_length=254, null=False)
     address = models.CharField(max_length=254, null=False)
-    phoneNumber = models.DecimalField(max_digits=15, decimal_places=0,
-                                      null=False, default=0)
+    contact = models.CharField(max_length=254, null=False, default=0)
     contractor = models.ForeignKey('Contractors',
                                    on_delete=models.CASCADE,
                                    to_field='contractor',

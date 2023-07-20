@@ -7,7 +7,7 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Orders
         fields = ('orderNumber', 'orderDescription', 'name',
-                  'address', 'phoneNumber', 'contractor',
+                  'address', 'contact', 'contractor',
                   'appointmentDate', 'appointmentComplete',
                   'primaryContact', 'secondaryContact',
                   'notes', 'dateLastUpdate', 'dateCreated',)
@@ -23,7 +23,7 @@ class OrderForm(forms.ModelForm):
             'orderDescription': 'Order Description',
             'name': 'Name',
             'address': 'Address',
-            'phoneNumber': 'Phone Number',
+            'contact': 'Contact',
             'contractor': 'Contractor',
             'appointmentDate': 'Appointment Date',
             'appointmentComplete': 'Appointment Complete',
