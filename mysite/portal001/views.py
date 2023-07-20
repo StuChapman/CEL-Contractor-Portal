@@ -410,7 +410,7 @@ def orderDashboard(request):
             orderlist = (orders.filter(queries)
                          .order_by('-dateLastUpdate'))
             order_list_length = orders.filter(queries).count()
-        
+
         if 'searchorder' in request.GET:
             searchorder = request.GET['searchorder']
 
