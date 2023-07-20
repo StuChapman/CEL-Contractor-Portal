@@ -13,7 +13,7 @@
                             {% if notification.readUnread == 0 %}
                                 <div class ="row">
                                     <p class="col-lg-12 pb-0"><a class="orange-highlight" 
-                                        href ="{% url 'selectNotification' order.orderNumber %}">Order Number: {{ notification.orderNumber }} Notes: {{ order.notes }}</a>
+                                        href ="{% url 'selectNotification' order.orderNumber %}">Order Number: {{ notification.orderNumber }} Notes: {{ order.notes|truncatechars:90 }}</a>
                                     </p>
                                 </div>
                                 <br>
