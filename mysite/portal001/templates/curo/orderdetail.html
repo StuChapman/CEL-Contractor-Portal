@@ -15,19 +15,6 @@
                             {{ form.orderNumber }}
                             <div class="row">
                                 <div class="col pl-0">
-                                    {{ form.orderDescription.label_tag }}
-                                </div>
-                                <div class="col-auto pr-0">
-                                    {% for group in user.groups.all %}
-                                        {% if group.name == 'Edit' %}
-                                            <button id="editorderDescription" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('orderDescription');">edit</button>
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                            {{ form.orderDescription }}
-                            <div class="row">
-                                <div class="col pl-0">
                                     {{ form.name.label_tag }}
                                 </div>
                                 <div class="col-auto pr-0">
@@ -52,8 +39,47 @@
                                 </div>
                             </div>
                             {{ form.address }}
+                            <div class="row">
+                                <div class="col pl-0">
+                                    {{ form.phoneNumber.label_tag }}
+                                </div>
+                                <div class="col-auto pr-0">
+                                    {% for group in user.groups.all %}
+                                        {% if group.name == 'Edit' %}
+                                            <button id="editphoneNumber" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('phoneNumber');">edit</button>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {{ form.phoneNumber }}
+                            <div class="row">
+                                <div class="col pl-0">
+                                    {{ form.primaryContact.label_tag }}
+                                </div>
+                                <div class="col-auto pr-0">
+                                    {% for group in user.groups.all %}
+                                        {% if group.name == 'Edit' %}
+                                            <button id="editprimaryContact" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('primaryContact');">edit</button>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {{ form.primaryContact }}
                         </div>
                         <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col pl-0">
+                                    {{ form.orderDescription.label_tag }}
+                                </div>
+                                <div class="col-auto pr-0">
+                                    {% for group in user.groups.all %}
+                                        {% if group.name == 'Edit' %}
+                                            <button id="editorderDescription" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('orderDescription');">edit</button>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {{ form.orderDescription }}
                             <div class="row">
                                 <div class="col pl-0">
                                     {{ form.contractor.label_tag }}
@@ -90,17 +116,17 @@
                             {{ form.appointmentDate }}
                             <div class="row">
                                 <div class="col pl-0">
-                                    {{ form.primaryContact.label_tag }}
+                                    {{ form.appointmentComplete.label_tag }}
                                 </div>
                                 <div class="col-auto pr-0">
                                     {% for group in user.groups.all %}
                                         {% if group.name == 'Edit' %}
-                                            <button id="editprimaryContact" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('primaryContact');">edit</button>
+                                            <button id="editappointmentComplete" type="button" class="editorderbtn m-0 p-0" onclick="return editOrder('appointmentComplete');">edit</button>
                                         {% endif %}
                                     {% endfor %}
                                 </div>
                             </div>
-                            {{ form.primaryContact }}
+                            {{ form.appointmentComplete }}
                             <div class="row">
                                 <div class="col pl-0">
                                     {{ form.secondaryContact.label_tag }}
@@ -169,6 +195,7 @@
 <script>
     $("input").prop('disabled', true);
     $('select[name="contractor"]').prop('disabled', true);
+    $('select[name="appointmentComplete"]').prop('disabled', true);
     $('select[name="primaryContact"]').prop('disabled', true);
     $('select[name="secondaryContact"]').prop('disabled', true);
 </script>

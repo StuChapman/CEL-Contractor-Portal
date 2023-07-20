@@ -14,10 +14,6 @@ function editOrder(orderfield) {
     $('input[name="csrfmiddlewaretoken"]').prop('disabled', false);
 
     switch(orderfield) {
-        case 'orderDescription':
-            $('input[name="orderDescription"]').prop('disabled', false);
-            originalText = $('input[name="orderDescription"]').val();
-            break;
         case 'name':
             $('input[name="name"]').prop('disabled', false);
             originalText = $('input[name="name"]').val();
@@ -25,6 +21,18 @@ function editOrder(orderfield) {
         case 'address':
             $('input[name="address"]').prop('disabled', false);
             originalText = $('input[name="address"]').val();
+            break;
+        case 'phoneNumber':
+            $('input[name="phoneNumber"]').prop('disabled', false);
+            originalText = $('input[name="phoneNumber"]').val();
+            break;
+        case 'primaryContact':
+            $('select[name="primaryContact"]').prop('disabled', false);
+            originalText = $('select[name="primaryContact"]').find('option:selected').text()
+            break;
+        case 'orderDescription':
+            $('input[name="orderDescription"]').prop('disabled', false);
+            originalText = $('input[name="orderDescription"]').val();
             break;
         case 'contractor':
             $('select[name="contractor"]').prop('disabled', false);
@@ -34,9 +42,9 @@ function editOrder(orderfield) {
             $('input[name="appointmentDate"]').prop('disabled', false);
             originalText = $('input[name="appointmentDate"]').val();
             break;
-        case 'primaryContact':
-            $('select[name="primaryContact"]').prop('disabled', false);
-            originalText = $('select[name="primaryContact"]').find('option:selected').text()
+        case 'appointmentComplete':
+            $('select[name="appointmentComplete"]').prop('disabled', false);
+            originalText = $('select[name="appointmentComplete"]').find('option:selected').text()
             break;
         case 'secondaryContact':
             $('select[name="secondaryContact"]').prop('disabled', false);
@@ -61,14 +69,6 @@ function editOrder(orderfield) {
 function saveOrder() {
 
     switch(updatefield) {
-        case 'orderDescription':
-            newText = $('input[name="orderDescription"]').val();
-            if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 10) {
-                alert('Please enter an OrderDescription of at least 10 characters, in text only.');
-                $('input[name="orderDescription"]').focus();
-                return false;
-            }
-            break;
         case 'name':
             newText = $('input[name="name"]').val();
             if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 1) {
@@ -85,6 +85,25 @@ function saveOrder() {
                 return false;
             }
             break;
+        case 'phoneNumber':
+            newText = $('input[name="phoneNumber"]').val();
+            if (!(/^[0-9]+$/.test(newText)) || newText.length  < 1) {
+                alert('Please enter a Phone Number, in numerals only');
+                $('input[name="address"]').focus();
+                return false;
+            }
+            break;
+        case 'primaryContact':
+            newText = $('select[name="primaryContact"]').find('option:selected').text()
+            break;
+        case 'orderDescription':
+            newText = $('input[name="orderDescription"]').val();
+            if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 10) {
+                alert('Please enter an OrderDescription of at least 10 characters, in text only.');
+                $('input[name="orderDescription"]').focus();
+                return false;
+            }
+            break;
         case 'contractor':
             newText = $('select[name="contractor"]').val();
             break;
@@ -96,8 +115,17 @@ function saveOrder() {
                 return false;
             }
             break;
-        case 'primaryContact':
-            newText = $('select[name="primaryContact"]').find('option:selected').text()
+        case 'appointmentComplete':
+            newText = $('select[name="appointmentComplete"]').val();
+            const d = new Date();
+            const today = d.toLocaleString( 'sv' );
+                if ($('select[name="appointmentComplete"]').val() == 'Yes') {
+                    if ($('input[name="appointmentDate"]').val() > today) {
+                        alert('Appointment Date is in the future, so can`t be set as complete');
+                        $('input[name="appointmentComplete"]').focus();
+                        return false;
+                    }
+                }
             break;
         case 'secondaryContact':
             newText = $('select[name="secondaryContact"]').val();
@@ -119,8 +147,10 @@ function saveOrder() {
     $('input[name="orderDescription"]').prop('disabled', false);
     $('input[name="name"]').prop('disabled', false);
     $('input[name="address"]').prop('disabled', false);
+    $('input[name="phoneNumber"]').prop('disabled', false);
     $('select[name="contractor"]').prop('disabled', false);
     $('input[name="appointmentDate"]').prop('disabled', false);
+    $('select[name="appointmentComplete"]').prop('disabled', false);
     $('select[name="primaryContact"]').prop('disabled', false);
     $('select[name="secondaryContact"]').prop('disabled', false);
     $('input[name="notes"]').prop('disabled', false);
@@ -162,8 +192,10 @@ function saveNewOrder() {
     $('input[name="orderDescription"]').prop('disabled', false);
     $('input[name="name"]').prop('disabled', false);
     $('input[name="address"]').prop('disabled', false);
+    $('input[name="phoneNumber"]').prop('disabled', false);
     $('select[name="contractor"]').prop('disabled', false);
     $('input[name="appointmentDate"]').prop('disabled', false);
+    $('select[name="appointmentComplete"]').prop('disabled', false);
     $('select[name="primaryContact"]').prop('disabled', false);
     $('select[name="secondaryContact"]').prop('disabled', false);
     $('input[name="notes"]').prop('disabled', false);
@@ -357,6 +389,7 @@ $(document).ready(function () {
         newText = $('input[name="orderDescription"]').val();
         if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 10) {
             alert('Please enter an OrderDescription of at least 10 characters, in text only.');
+            $('input[name="orderDescription"]').val('');
             $('input[name="orderDescription"]').focus();
         }        
     });
@@ -365,6 +398,7 @@ $(document).ready(function () {
         newText = $('input[name="name"]').val();
         if (!(/^[a-z A-Z?:',.-]+$/.test(newText)) || newText.length < 1) {
             alert('Please enter a Name, in text only');
+            $('input[name="name"]').val('');
             $('input[name="name"]').focus();
         }      
     });
@@ -373,7 +407,17 @@ $(document).ready(function () {
         newText = $('input[name="address"]').val();
         if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(newText)) || newText.length  < 1) {
             alert('Please enter an Address, in text and numerals only');
+            $('input[name="address"]').val('');
             $('input[name="address"]').focus();
+        }      
+    });
+
+    $("#id_phoneNumber").change(function (event) {
+        newText = $('input[name="phoneNumber"]').val();
+        if (!(/^[0-9 a-z A-Z?:',.-]+$/.test(newText)) || newText.length  < 1) {
+            alert('Please enter a Phone Number, in numerals only');
+            $('input[name="phoneNumber"]').val('');
+            $('input[name="phoneNumber"]').focus();
         }      
     });
 
@@ -381,14 +425,29 @@ $(document).ready(function () {
         newText = $('input[name="appointmentDate"]').val();
         if (!(/^[0-9 A-Z?:-]+$/.test(newText)) || newText.length  < 1) {
             alert('Appointment Date should be in the format: YYYY-MM-DD HH:MM:SS');
-            $('input[name="address"]').focus();
+            $('input[name="appointmentDate"]').val('');
+            $('input[name="appointmentDate"]').focus();
         }      
+    });
+
+    $("#id_appointmentComplete").change(function (event) {
+        newText = $('input[name="id_appointmentComplete"]').val();
+        const d = new Date();
+        const today = d.toLocaleString( 'sv' );
+            if ($('select[name="appointmentComplete"]').val() == 'Yes') {
+                if ($('input[name="appointmentDate"]').val() > today) {
+                    alert('Appointment Date is in the future, so can`t be set as complete');
+                    $('select[name="appointmentComplete"]').val('No');
+                    $('input[name="appointmentComplete"]').focus();
+                }
+            }   
     });
 
     $("#id_services").change(function (event) {
         newText = $('input[name="services"]').val();
         if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(newText)) || newText.length < 10) {
             alert('Please enter Services, of at least 10 characters, in text and numerals only');
+            $('input[name="services"]').val('');
             $('input[name="services"]').focus();
         }      
     });
@@ -397,6 +456,7 @@ $(document).ready(function () {
         newText = $('input[name="notes"]').val();
         if (!(/^[0-9 a-z A-Z?:'@,.-]+$/.test(newText)) || newText.length < 10) {
             alert('Please enter Notes, of at least 10 characters, in text and numerals only');
+            $('input[name="notes"]').val('');
             $('input[name="notes"]').focus();
         }      
     });

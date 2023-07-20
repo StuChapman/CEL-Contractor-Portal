@@ -13,14 +13,18 @@
                         <div class="col-lg-6">
                             {{ form.orderNumber.label_tag }}
                             {{ form.orderNumber }}
-                            {{ form.orderDescription.label_tag }}
-                            {{ form.orderDescription }}
                             {{ form.name.label_tag }}
                             {{ form.name }}
                             {{ form.address.label_tag }}
                             {{ form.address }}
+                            {{ form.phoneNumber.label_tag }}
+                            {{ form.phoneNumber }}
+                            {{ form.primaryContact.label_tag }}
+                            {{ form.primaryContact }}
                         </div>
                         <div class="col-lg-6">
+                            {{ form.orderDescription.label_tag }}
+                            {{ form.orderDescription }}
                             {{ form.contractor.label_tag }}
                             {{ form.contractor }}
                             <div class="row">
@@ -32,8 +36,8 @@
                                 </div>
                             </div>
                             {{ form.appointmentDate }}
-                            {{ form.primaryContact.label_tag }}
-                            {{ form.primaryContact }}
+                            {{ form.appointmentComplete.label_tag }}
+                            {{ form.appointmentComplete }}
                             {{ form.secondaryContact.label_tag }}
                             <select name="secondaryContact" required id="id_secondaryContact">
                                 <option value="" selected>---------</option>
