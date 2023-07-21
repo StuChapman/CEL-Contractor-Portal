@@ -10,7 +10,8 @@ class OrderForm(forms.ModelForm):
                   'address', 'contact', 'contractor',
                   'appointmentDate', 'appointmentComplete',
                   'primaryContact', 'secondaryContact',
-                  'notes', 'dateLastUpdate', 'dateCreated',)
+                  'notes', 'dateLastUpdate', 'dateCreated',
+                  'dateClosed',)
 
     def __init__(self, *args, **kwargs):
         """
@@ -32,4 +33,5 @@ class OrderForm(forms.ModelForm):
             'notes': 'Notes',
             'dateLastUpdate': 'Last Updated',
             'dateCreated': 'Date Created',
+            'dateClosed': 'Date Closed',
         }

@@ -35,6 +35,7 @@ class Orders(models.Model):
     notes = models.CharField(max_length=9999, null=True, blank=True)
     dateLastUpdate = models.DateTimeField(default=timezone.now)
     dateCreated = models.DateTimeField(default=timezone.now)
+    dateClosed = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return str(int(self.orderNumber))

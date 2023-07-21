@@ -57,6 +57,13 @@ function editOrder(orderfield) {
             $('input[name="addnotes"]').attr("placeholder", "Add notes here...");
             originalText = $('input[name="notes"]').val();
             break;
+        case 'dateClosed':
+            $('input[name="dateClosed"]').prop('disabled', false);
+            originalText = $('input[name="dateClosed"]').val();
+            const d = new Date();
+            const today = d.toLocaleString( 'sv' );
+            $('input[name="dateClosed"]').val(today);
+            break;
         default:
             break;
     }
@@ -67,6 +74,9 @@ function editOrder(orderfield) {
 
 // Function: save edited order //
 function saveOrder() {
+
+    const d = new Date();
+    const today = d.toLocaleString( 'sv' );
 
     switch(updatefield) {
         case 'name':
@@ -117,8 +127,6 @@ function saveOrder() {
             break;
         case 'appointmentComplete':
             newText = $('select[name="appointmentComplete"]').val();
-            const d = new Date();
-            const today = d.toLocaleString( 'sv' );
                 if ($('select[name="appointmentComplete"]').val() == 'Yes') {
                     if ($('input[name="appointmentDate"]').val() > today) {
                         alert('Appointment Date is in the future, so can`t be set as complete');
@@ -136,6 +144,21 @@ function saveOrder() {
                 alert('Please enter Notes, of at least 10 characters, in text and numerals only');
                 $('input[name="addnotes"]').focus();
                 return false;
+            }
+            break;
+        case 'dateClosed':
+            newText = $('input[name="dateClosed"]').val();
+            if ( newText.length > 0) {
+                if ($('input[name="appointmentDate"]').val() > today) {
+                    alert('Appointment Date is in the future, so order can`t be closed!');
+                    $('input[name="dateClosed"]').val('');
+                    return false;
+                }
+                if ($('select[name="appointmentComplete"]').val() != 'Yes') {
+                    alert('Appointment hasn`t been completed, so order can`t be closed!');
+                    $('input[name="dateClosed"]').val('');
+                    return false;
+                }
             }
             break;
         default:
@@ -156,9 +179,8 @@ function saveOrder() {
     $('input[name="notes"]').prop('disabled', false);
     $('input[name="dateLastUpdate"]').prop('disabled', false);
     $('input[name="dateCreated"]').prop('disabled', false);
+    $('input[name="dateClosed"]').prop('disabled', false);
 
-    const d = new Date();
-    const today = d.toLocaleString( 'sv' );
     $('input[name="dateLastUpdate"]').val(today);
 
     if (updatefield == 'notes') {
@@ -201,6 +223,7 @@ function saveNewOrder() {
     $('input[name="notes"]').prop('disabled', false);
     $('input[name="dateLastUpdate"]').prop('disabled', false);
     $('input[name="dateCreated"]').prop('disabled', false);
+    $('input[name="dateClosed"]').prop('disabled', false);
 
     $("#order-submit").addClass("unhidden");
 }
@@ -226,6 +249,7 @@ function addNote() {
     $('input[name="notes"]').prop('disabled', false);
     $('input[name="dateLastUpdate"]').prop('disabled', false);
     $('input[name="dateCreated"]').prop('disabled', false);
+    $('input[name="dateClosed"]').prop('disabled', false);
 
     const d = new Date();
     const today = d.toLocaleString( 'sv' );

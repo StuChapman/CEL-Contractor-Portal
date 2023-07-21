@@ -454,7 +454,10 @@ nav {
     width: 100%;
 }
 
-.orderform #id_orderNumber, .orderform #id_dateLastUpdate, .orderform #id_dateCreated {
+.orderform #id_orderNumber, 
+.orderform #id_dateLastUpdate, 
+.orderform #id_dateCreated, 
+.orderform #id_dateClosed {
     border-color: #ffffff;
     background-color: #ffffff;
     border-style:solid;
@@ -1147,7 +1150,10 @@ nav {
     font-size: calc(3vh + (15 - 5) * ((100vw - 300px) / 1620));
 }
 
-    .orderform #id_orderNumber, .orderform #id_dateLastUpdate, .orderform #id_dateCreated {
+    .orderform #id_orderNumber, 
+    .orderform #id_dateLastUpdate, 
+    .orderform #id_dateCreated, 
+    .orderform #id_dateClosed {
         color: #47520E;
         font-weight: bold;
     }
@@ -1162,7 +1168,10 @@ nav {
         font-size: calc(4vh + (20 - 5) * ((100vw - 300px) / 1620));
     }
 
-    .orderform #id_orderNumber, .orderform #id_dateLastUpdate, .orderform #id_dateCreated {
+    .orderform #id_orderNumber, 
+    .orderform #id_dateLastUpdate, 
+    .orderform #id_dateCreated, 
+    .orderform #id_dateClosed {
         color: #C0DC3B;
     }
 }
