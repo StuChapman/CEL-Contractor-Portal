@@ -90,6 +90,18 @@ def updateOrder(request):
             messages.success(request, mark_safe('There was a problem with \
                     Contact.'))
             abort_save = 1
+        validate_appointmentDate = form.data['appointmentDate']
+        if len(validate_appointmentDate) > 0:
+            if not re.match("^[0-9 :-]+$", ''.join(validate_appointmentDate)):
+                messages.success(request, mark_safe('There was a problem with \
+                        Appointment Date.'))
+                abort_save = 1
+        validate_dateClosed = form.data['dateClosed']
+        if len(validate_dateClosed) > 0:
+            if not re.match("^[0-9 :-]+$", ''.join(validate_dateClosed)):
+                messages.success(request, mark_safe('There was a problem with \
+                        Date Closed.'))
+                abort_save = 1
         validate_notes = form.data['notes']
         if validate_notes != "":
             if not re.match("^[0-9 a-z A-Z?:@',|.-]+$", ''.join(validate_notes)):

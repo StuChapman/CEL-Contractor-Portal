@@ -119,11 +119,21 @@ function saveOrder() {
             break;
         case 'appointmentDate':
             newText = $('input[name="appointmentDate"]').val();
-            if (!(/^[0-9 A-Z?:-]+$/.test(newText)) || newText.length  < 1) {
+            if (!(/^[0-9 A-Z?:-]+$/.test(newText)) && newText.length  > 0) {
                 alert('Appointment Date should be in the format: YYYY-MM-DD HH:MM:SS');
-                $('input[name="address"]').focus();
+                $('input[name="appointmentDate"]').focus();
                 return false;
             }
+            if (newText.length  < 1 && $('select[name="appointmentComplete"]').val() == 'Yes') {
+                alert('Appointment is showing Closed, but there is no appointment.');
+                $('select[name="appointmentComplete"]').val('No');
+                $('input[name="appointmentDate"]').focus();
+            }     
+            if ($('input[name="appointmentDate"]').val() > today && $('select[name="appointmentComplete"]').val() == 'Yes') {
+                alert('Appointment Date is in the future, so can`t be set as complete');
+                $('select[name="appointmentComplete"]').val('No');
+                $('input[name="appointmentDate"]').focus();
+            }     
             break;
         case 'appointmentComplete':
             newText = $('select[name="appointmentComplete"]').val();
@@ -447,9 +457,13 @@ $(document).ready(function () {
 
     $("#id_appointmentDate").change(function (event) {
         newText = $('input[name="appointmentDate"]').val();
-        if (!(/^[0-9 A-Z?:-]+$/.test(newText)) || newText.length  < 1) {
+        if (!(/^[0-9 A-Z?:-]+$/.test(newText)) && newText.length  > 0) {
             alert('Appointment Date should be in the format: YYYY-MM-DD HH:MM:SS');
             $('input[name="appointmentDate"]').val('');
+            $('input[name="appointmentDate"]').focus();
+        }
+        if (newText.length  < 1 && $('select[name="appointmentComplete"]').val() == 'Yes') {
+            alert('Appointment is showing Closed, but there is no appointment.');
             $('input[name="appointmentDate"]').focus();
         }      
     });
