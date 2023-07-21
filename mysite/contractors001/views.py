@@ -15,10 +15,12 @@ def curoContractors(request):
 
     contractorlist = Contractors.objects.all().order_by('contractor')
     contractor_list_length = contractorlist.count()
+    page = 'contractorlist'
 
     context = {
         'contractorlist': contractorlist,
         'contractor_list_length': contractor_list_length,
+        'page': page,
     }
 
     return render(request, 'curo/contractorlist.html', context)
@@ -111,16 +113,20 @@ def selectContractor(request, contractor):
     """ Update the order form """
 
     contractors = Contractors.objects.all()
+    contractorlist = 1
     this_contractor = Contractors.objects.get(contractor=contractor)
     contractor_list_length = contractors.filter(contractor=contractor).count()
     form = ContractorForm(instance=this_contractor)
     contractors = Contractors.objects.all()
+    page = 'contractordetail'
 
     context = {
+        'contractorlist': contractorlist,
         'contractor': contractor,
         'form': form,
         'contractor_list_length': contractor_list_length,
         'contractors': contractors,
+        'page': page,
     }
 
     return render(request, 'curo/contractordetail.html', context)
@@ -192,10 +198,14 @@ def newContractor(request):
 
     contractors = Contractors.objects.all()
     form = ContractorForm()
+    contractorlist = 1
+    page = 'contractornew'
 
     context = {
         'form': form,
         'contractors': contractors,
+        'contractorlist': contractorlist,
+        'page': page,
     }
 
     return render(request, 'curo/contractornew.html', context)
@@ -212,15 +222,17 @@ def saveNewContractor(request):
         validate_contractor = form.data['contractor']
         if not re.match("^[a-zA-Z ]+$", ''.join(validate_contractor)):
             messages.success(request, mark_safe('There was a problem with \
-                    Contractor.'))
+                                                 Contractor.'))
             abort_save = 1
         validate_secondaryContact = form.data['secondaryContact']
-        if not re.match("^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$", ''.join(validate_secondaryContact)):
+        if not re.match("^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$",
+                        ''.join(validate_secondaryContact)):
             messages.success(request, mark_safe('There was a problem with \
                     secondaryContact.'))
             abort_save = 1
         validate_services = form.data['services']
-        if not re.match("^[0-9 a-z A-Z?:@',|.-]+$", ''.join(validate_services)):
+        if not re.match("^[0-9 a-z A-Z?:@',|.-]+$",
+                        ''.join(validate_services)):
             messages.success(request, mark_safe('There was a problem with \
                     Services.'))
             abort_save = 1

@@ -15,10 +15,12 @@ def curo(request):
 
     orderlist = Orders.objects.all().order_by('-orderNumber')
     order_list_length = orderlist.count()
+    page = 'orderlist'
 
     context = {
         'orderlist': orderlist,
         'order_list_length': order_list_length,
+        'page': page,
     }
 
     return render(request, 'curo/orderlist.html', context)
@@ -32,12 +34,14 @@ def selectOrder(request, orderno):
     order_list_length = orders.filter(orderNumber=orderno).count()
     form = OrderForm(instance=this_order)
     contractors = Contractors.objects.all()
+    page = 'orderdetail'
 
     context = {
         'orderno': orderno,
         'form': form,
         'order_list_length': order_list_length,
         'contractors': contractors,
+        'page': page,
     }
 
     return render(request, 'curo/orderdetail.html', context)
@@ -139,10 +143,12 @@ def createOrder(request):
 
     contractors = Contractors.objects.all()
     form = OrderForm()
+    page = 'ordernew'
 
     context = {
         'form': form,
         'contractors': contractors,
+        'page': page,
     }
 
     return render(request, 'curo/ordernew.html', context)
@@ -353,11 +359,13 @@ def dashboard(request):
     orderlist = (orders.filter(queries)
                  .order_by('-dateLastUpdate'))
     order_list_length = orders.filter(queries).count()
+    page = 'dashboard'
 
     context = {
         'orderlist': orderlist,
         'order_list_length': order_list_length,
         'notifications': notifications,
+        'page': page,
     }
 
     return render(request, 'curo/dashboard.html', context)

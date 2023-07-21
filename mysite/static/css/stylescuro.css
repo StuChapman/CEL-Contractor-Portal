@@ -250,10 +250,14 @@ nav {
 
 #topper, #topper a {
     background-color: #EFEFEF;
-    color: #101828;
+    color: #C0DC3B;
     height: 4vh;
     text-align: center;
     font-family: 'Cairo', sans-serif;
+}
+
+#topper .page, #topper a .page {
+    color: #000000 !important;
 }
 
 #totalScore {
