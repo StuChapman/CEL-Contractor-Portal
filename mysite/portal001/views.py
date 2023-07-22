@@ -353,8 +353,38 @@ def dashboard(request, guage):
     orders = Orders.objects.all()
     notifications = Notifications.objects.all()
 
-    queries = (Q(primaryContact__username__icontains=request.user.username) |
-               Q(secondaryContact__icontains=request.user.username))
+    if guage == 'open':
+        queries = ((Q(primaryContact__username__icontains=request.user.username) |
+                   Q(secondaryContact__icontains=request.user.username)) &
+                   Q(appointmentDate__isnull=True))
+    elif guage == 'appt':
+        queries = ((Q(primaryContact__username__icontains=request.user.username) |
+                   Q(secondaryContact__icontains=request.user.username)) &
+                   Q(appointmentDate__date__gte=timezone.now()))
+    elif guage == 'past':
+        queries = ((Q(primaryContact__username__icontains=request.user.username) |
+                   Q(secondaryContact__icontains=request.user.username)) &
+                   Q(appointmentDate__date__lte=timezone.now()) &
+                   Q(appointmentComplete__icontains='No'))
+    elif guage == 'comp':
+        queries = ((Q(primaryContact__username__icontains=request.user.username) |
+                   Q(secondaryContact__icontains=request.user.username)) &
+                   Q(appointmentDate__date__lte=timezone.now()) &
+                   Q(appointmentComplete__icontains='Yes'))
+    elif guage == 'repo':
+        queries = ((Q(primaryContact__username__icontains=request.user.username) |
+                   Q(secondaryContact__icontains=request.user.username)) &
+                   Q(appointmentDate__date__lte=timezone.now()) &
+                   Q(appointmentComplete__icontains='Yes'))
+    elif guage == 'clsd':
+        queries = ((Q(primaryContact__username__icontains=request.user.username) |
+                   Q(secondaryContact__icontains=request.user.username)) &
+                   Q(appointmentDate__date__lte=timezone.now()) &
+                   Q(appointmentComplete__icontains='Yes') &
+                   Q(dateClosed__isnull=False))
+    else:
+        queries = (Q(primaryContact__username__icontains=request.user.username) |
+                   Q(secondaryContact__icontains=request.user.username))
     orders = Orders.objects.all()
     orderlist = (orders.filter(queries)
                  .order_by('-dateLastUpdate'))
