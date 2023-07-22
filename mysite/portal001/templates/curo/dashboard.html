@@ -6,6 +6,74 @@
         <!--Text Section-->
         <section id="textsection">
             {% if user.is_authenticated %}
+                <div class="row">
+                    <div class="col-lg-2 col-4 dashguage">
+                        {% if guage == 'open' %}
+                            <a class="selected" href="{% url 'dashboard' 'open' %}">
+                                <i class="fa-regular fa-folder-open"></i>
+                            </a>
+                        {% else %}
+                            <a class="" href="{% url 'dashboard' 'open' %}">
+                                <i class="fa-regular fa-folder-open"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-2 col-4 dashguage">
+                        {% if guage == 'appt' %}
+                            <a class="selected" href="{% url 'dashboard' 'appt' %}">
+                                <i class="fa-regular fa-calendar-check"></i>
+                            </a>
+                        {% else %}
+                            <a class="" href="{% url 'dashboard' 'appt' %}">
+                                <i class="fa-regular fa-calendar-check"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-2 col-4 dashguage">
+                        {% if guage == 'past' %}
+                            <a class="selected" href="{% url 'dashboard' 'past' %}">
+                                <i class="fa-regular fa-clock"></i>
+                            </a>
+                        {% else %}
+                            <a class="" href="{% url 'dashboard' 'past' %}">
+                                <i class="fa-regular fa-clock"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-2 col-4 dashguage">
+                        {% if guage == 'comp' %}
+                            <a class="selected" href="{% url 'dashboard' 'comp' %}">
+                                <i class="fa-regular fa-handshake"></i>
+                            </a>
+                        {% else %}
+                            <a class="" href="{% url 'dashboard' 'comp' %}">
+                                <i class="fa-regular fa-handshake"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-2 col-4 dashguage">
+                        {% if guage == 'repo' %}
+                            <a class="selected" href="{% url 'dashboard' 'repo' %}">
+                                <i class="fa-regular fa-file"></i>
+                            </a>
+                        {% else %}
+                            <a class="" href="{% url 'dashboard' 'repo' %}">
+                                <i class="fa-regular fa-file"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-2 col-4 dashguage">
+                        {% if guage == 'clsd' %}
+                            <a class="selected" href="{% url 'dashboard' 'clsd' %}">
+                                <i class="fa-solid fa-folder-closed"></i>
+                            </a>
+                        {% else %}
+                            <a class="" href="{% url 'dashboard' 'clsd' %}">
+                                <i class="fa-solid fa-folder-closed"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
                 <p class="mt-3">Notifications</p>
                 {% for order in orderlist %}
                     {% for notification in notifications %}

@@ -9,7 +9,7 @@ urlpatterns = [
     path('saveOrder', views.saveOrder, name='saveOrder'),
     path('searchOrders', views.searchOrders, name='searchOrders'),
     path('orderOrders', views.orderOrders, name='orderOrders'),
-    path('dashboard', views.dashboard, name='dashboard'),
+    path('dashboard/<guage>', views.dashboard, name='dashboard'),
     path('searchDashboard', views.searchDashboard, name='searchDashboard'),
     path('orderDashboard', views.orderDashboard, name='orderDashboard'),
     path('selectNotification/<orderno>', views.selectNotification,

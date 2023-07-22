@@ -3,9 +3,9 @@
     <p class="d-none d-lg-block paramedium ml-auto mr-auto">Welcome: <span id="user-name">{{ user.username }}</span> ...
         <a class="mr-3 ml-3" href="{% url 'account_logout' %}"> Sign Out <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         {% if page == 'dashboard' %}
-            <a class="mr-3 ml-3 page" href="{% url 'dashboard' %}"> My Dashboard <i class="fa-solid fa-gauge"></i></a>
+            <a class="mr-3 ml-3 page" href="{% url 'dashboard' 'all' %}"> My Dashboard <i class="fa-solid fa-gauge"></i></a>
         {% else %}
-            <a class="mr-3 ml-3" href="{% url 'dashboard' %}"> My Dashboard <i class="fa-solid fa-gauge"></i></a>
+            <a class="mr-3 ml-3" href="{% url 'dashboard' 'all' %}"> My Dashboard <i class="fa-solid fa-gauge"></i></a>
         {% endif %}
         {% if page == 'orderlist' %}
             <a class="mr-3 ml-3 page" href="{% url 'curo' %}"> Order List<i class="fa-solid fa-list"></i></a>
@@ -41,9 +41,9 @@
     <p class="d-lg-none paramedium ml-auto mr-auto">
         <a class="mr-3 ml-3" href="{% url 'account_logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         {% if page == 'dashboard' %}
-            <a class="mr-3 ml-3 page" href="{% url 'dashboard' %}"><i class="fa-solid fa-gauge"></i></a>
+            <a class="mr-3 ml-3 page" href="{% url 'dashboard' 'all' %}"><i class="fa-solid fa-gauge"></i></a>
         {% else %}
-            <a class="mr-3 ml-3" href="{% url 'dashboard' %}"><i class="fa-solid fa-gauge"></i></a>
+            <a class="mr-3 ml-3" href="{% url 'dashboard' 'all' %}"><i class="fa-solid fa-gauge"></i></a>
         {% endif %}
         {% if page == 'orderlist' %}
             <a class="mr-3 ml-3 page" href="{% url 'curo' %}"><i class="fa-solid fa-list"></i></a>

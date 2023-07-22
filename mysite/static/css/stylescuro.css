@@ -208,6 +208,19 @@ nav {
 
 /* ------------------- Text Section Styling */
 
+.dashguage {
+    margin-top: 1rem;
+}
+
+.dashguage a {
+    color: lightgray;
+    font-size: calc(5vh + (30 - 5) * ((100vw - 300px) / 1620));
+}
+
+.dashguage .selected {
+    color: #635F5F;
+}
+
 #textsection .login {
     width: 25rem;
 }
@@ -257,7 +270,7 @@ nav {
 }
 
 #topper .page, #topper a .page {
-    color: #000000 !important;
+    color: #635F5F !important;
 }
 
 #totalScore {

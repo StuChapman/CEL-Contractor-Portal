@@ -347,8 +347,8 @@ def orderOrders(request):
     return render(request, 'curo/orderlist.html', context)
 
 
-def dashboard(request):
-    """ A view to return the intro page """
+def dashboard(request, guage):
+    """ A view to return the dashboard """
 
     orders = Orders.objects.all()
     notifications = Notifications.objects.all()
@@ -366,6 +366,7 @@ def dashboard(request):
         'order_list_length': order_list_length,
         'notifications': notifications,
         'page': page,
+        'guage': guage,
     }
 
     return render(request, 'curo/dashboard.html', context)
