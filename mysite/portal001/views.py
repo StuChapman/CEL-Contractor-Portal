@@ -274,7 +274,7 @@ def orderOrders(request):
             orders = Orders.objects.all()
             orderlist = (orders.filter(queries))
             order_list_length = orderlist.count()
-        
+
         if 'searchorder' in request.GET:
             searchorder = request.GET['searchorder']
 
@@ -360,26 +360,27 @@ def dashboard(request, guage):
     elif guage == 'appt':
         queries = ((Q(primaryContact__username__icontains=request.user.username) |
                    Q(secondaryContact__icontains=request.user.username)) &
-                   Q(appointmentDate__date__gte=timezone.now()))
+                   Q(appointmentDate__isnull=False) &
+                   Q(appointmentComplete__icontains='No'))
     elif guage == 'past':
         queries = ((Q(primaryContact__username__icontains=request.user.username) |
                    Q(secondaryContact__icontains=request.user.username)) &
-                   Q(appointmentDate__date__lte=timezone.now()) &
+                   Q(appointmentDate__isnull=False) &
                    Q(appointmentComplete__icontains='No'))
     elif guage == 'comp':
         queries = ((Q(primaryContact__username__icontains=request.user.username) |
                    Q(secondaryContact__icontains=request.user.username)) &
-                   Q(appointmentDate__date__lte=timezone.now()) &
+                   Q(appointmentDate__isnull=False) &
                    Q(appointmentComplete__icontains='Yes'))
     elif guage == 'repo':
         queries = ((Q(primaryContact__username__icontains=request.user.username) |
                    Q(secondaryContact__icontains=request.user.username)) &
-                   Q(appointmentDate__date__lte=timezone.now()) &
+                   Q(appointmentDate__isnull=False) &
                    Q(appointmentComplete__icontains='Yes'))
     elif guage == 'clsd':
         queries = ((Q(primaryContact__username__icontains=request.user.username) |
                    Q(secondaryContact__icontains=request.user.username)) &
-                   Q(appointmentDate__date__lte=timezone.now()) &
+                   Q(appointmentDate__isnull=False) &
                    Q(appointmentComplete__icontains='Yes') &
                    Q(dateClosed__isnull=False))
     else:
@@ -390,6 +391,7 @@ def dashboard(request, guage):
                  .order_by('-dateLastUpdate'))
     order_list_length = orders.filter(queries).count()
     page = 'dashboard'
+    comparedate = timezone.now()
 
     context = {
         'orderlist': orderlist,
@@ -397,6 +399,7 @@ def dashboard(request, guage):
         'notifications': notifications,
         'page': page,
         'guage': guage,
+        'comparedate': comparedate,
     }
 
     return render(request, 'curo/dashboard.html', context)
@@ -410,6 +413,7 @@ def searchDashboard(request):
     searchstring = ""
     notifications = Notifications.objects.all()
     page = 'dashboard'
+    guage = 'all'
 
     if request.GET:
         if 'search_string' in request.GET:
@@ -440,6 +444,7 @@ def searchDashboard(request):
         'searchstring': searchstring,
         'notifications': notifications,
         'page': page,
+        'guage': guage,
     }
 
     return render(request, 'curo/dashboard.html', context)
@@ -453,6 +458,7 @@ def orderDashboard(request):
     searchstring = ""
     notifications = Notifications.objects.all()
     page = 'dashboard'
+    guage = 'all'
 
     if request.GET:
         if 'searchstring' in request.GET:
@@ -539,6 +545,7 @@ def orderDashboard(request):
         'searchstring': searchstring,
         'notifications': notifications,
         'page': page,
+        'guage': guage,
     }
 
     return render(request, 'curo/dashboard.html', context)

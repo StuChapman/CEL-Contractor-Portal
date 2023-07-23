@@ -143,48 +143,160 @@
                         </form>
                     </div>
                     <div class="col-lg-4">
-                        <p class="">{{ order_list_length }} order(s)</p>
+                        {% if guage == 'all' or guage == 'open' %}
+                            {% for order in orderlist %}
+                                {% if forloop.last %}
+                                    <p class="">{{ forloop.counter }} order(s)</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% if guage == 'appt' %}
+                            {% for order in orderlist %}
+                                {% if order.appointmentDate > comparedate %}
+                                    {% if forloop.last %}
+                                        <p class="">{{ forloop.counter }} order(s)</p>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% if guage == 'past' or guage == 'comp' or guage == 'repo' or guage == 'clsd' %}
+                            {% for order in orderlist %}
+                                {% if comparedate > order.appointmentDate %}
+                                    {% if forloop.last %}
+                                        <p class="">{{ forloop.counter }} order(s)</p>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
-                {% for order in orderlist %}
-                    <div class="orderlist ml-auto mr-auto">
-                        <div class ="row">
-                            <div class="col-lg-6">
-                                <div class="mt-1 mb-1">Order Number: <a class="orange-highlight" href ="{% url 'selectOrder' order.orderNumber %}">{{ order.orderNumber }}</a></div>
-                                <div class="mt-1 mb-1">Name: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.name }}</span></div>
-                                <div class="mt-1 mb-1">Address: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.address }}</span></div>
-                                <div class="mt-1 mb-1">Contact: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.contact }}</span></div>
-                                <div class="mt-1 mb-1">Primary Contact: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.primaryContact }}</span></div>
+                {% if guage == 'all' or guage == 'open' %}
+                    {% for order in orderlist %}
+                        <div class="orderlist ml-auto mr-auto">
+                            <div class ="row">
+                                <div class="col-lg-6">
+                                    <div class="mt-1 mb-1">Order Number: <a class="orange-highlight" href ="{% url 'selectOrder' order.orderNumber %}">{{ order.orderNumber }}</a></div>
+                                    <div class="mt-1 mb-1">Name: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.name }}</span></div>
+                                    <div class="mt-1 mb-1">Address: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.address }}</span></div>
+                                    <div class="mt-1 mb-1">Contact: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.contact }}</span></div>
+                                    <div class="mt-1 mb-1">Primary Contact: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.primaryContact }}</span></div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mt-1 mb-1">Order Description: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.orderDescription }}</span></div>
+                                    <div class="mt-1 mb-1">Contractor: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.contractor }}</span></div>
+                                    <div class="mt-1 mb-1">Appointment Date: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.appointmentDate }}</span></div>
+                                    <div class="mt-1 mb-1">Appointment Complete: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.appointmentComplete }}</span></div>
+                                    <div class="mt-1 mb-1">Secondary Contact: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.secondaryContact }}</span></div>
+                                </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="mt-1 mb-1">Order Description: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.orderDescription }}</span></div>
-                                <div class="mt-1 mb-1">Contractor: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.contractor }}</span></div>
-                                <div class="mt-1 mb-1">Appointment Date: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.appointmentDate }}</span></div>
-                                <div class="mt-1 mb-1">Appointment Complete: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.appointmentComplete }}</span></div>
-                                <div class="mt-1 mb-1">Secondary Contact: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.secondaryContact }}</span></div>
+                            <div class ="row">
+                                <div class="col-12">
+                                    <div class="mt-1 mb-1">Notes: </div>
+                                    <textarea class="mb-0" disabled="disabled">{{ order.notes|escape }}</textarea>
+                                </div>
+                            </div>
+                            <div class ="row">
+                                <div class="col-lg-4">
+                                    <div class="mt-1 mb-1 orderlistspan">Date LastUpdate: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.dateLastUpdate }}</span></div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mt-1 mb-1 orderlistspan">Date Created: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.dateCreated }}</span></div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mt-1 mb-1 orderlistspan">Date Closed: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.dateClosed }}</span></div>
+                                </div>
                             </div>
                         </div>
-                        <div class ="row">
-                            <div class="col-12">
-                                <div class="mt-1 mb-1">Notes: </div>
-                                <textarea class="mb-0" disabled="disabled">{{ order.notes|escape }}</textarea>
+                        <br>
+                        <hr>
+                    {% endfor %}
+                {% endif %}
+                {% if guage == 'appt' %}
+                    {% for order in orderlist %}
+                        {% if order.appointmentDate > comparedate %}
+                            <div class="orderlist ml-auto mr-auto">
+                                <div class ="row">
+                                    <div class="col-lg-6">
+                                        <div class="mt-1 mb-1">Order Number: <a class="orange-highlight" href ="{% url 'selectOrder' order.orderNumber %}">{{ order.orderNumber }}</a></div>
+                                        <div class="mt-1 mb-1">Name: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.name }}</span></div>
+                                        <div class="mt-1 mb-1">Address: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.address }}</span></div>
+                                        <div class="mt-1 mb-1">Contact: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.contact }}</span></div>
+                                        <div class="mt-1 mb-1">Primary Contact: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.primaryContact }}</span></div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mt-1 mb-1">Order Description: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.orderDescription }}</span></div>
+                                        <div class="mt-1 mb-1">Contractor: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.contractor }}</span></div>
+                                        <div class="mt-1 mb-1">Appointment Date: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.appointmentDate }}</span></div>
+                                        <div class="mt-1 mb-1">Appointment Complete: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.appointmentComplete }}</span></div>
+                                        <div class="mt-1 mb-1">Secondary Contact: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.secondaryContact }}</span></div>
+                                    </div>
+                                </div>
+                                <div class ="row">
+                                    <div class="col-12">
+                                        <div class="mt-1 mb-1">Notes: </div>
+                                        <textarea class="mb-0" disabled="disabled">{{ order.notes|escape }}</textarea>
+                                    </div>
+                                </div>
+                                <div class ="row">
+                                    <div class="col-lg-4">
+                                        <div class="mt-1 mb-1 orderlistspan">Date LastUpdate: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.dateLastUpdate }}</span></div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mt-1 mb-1 orderlistspan">Date Created: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.dateCreated }}</span></div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mt-1 mb-1 orderlistspan">Date Closed: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.dateClosed }}</span></div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class ="row">
-                            <div class="col-lg-4">
-                                <div class="mt-1 mb-1 orderlistspan">Date LastUpdate: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.dateLastUpdate }}</span></div>
+                            <br>
+                            <hr>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if guage == 'past' or guage == 'comp' or guage == 'repo' or guage == 'clsd' %}
+                    {% for order in orderlist %}
+                        {% if comparedate > order.appointmentDate %}
+                            <div class="orderlist ml-auto mr-auto">
+                                <div class ="row">
+                                    <div class="col-lg-6">
+                                        <div class="mt-1 mb-1">Order Number: <a class="orange-highlight" href ="{% url 'selectOrder' order.orderNumber %}">{{ order.orderNumber }}</a></div>
+                                        <div class="mt-1 mb-1">Name: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.name }}</span></div>
+                                        <div class="mt-1 mb-1">Address: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.address }}</span></div>
+                                        <div class="mt-1 mb-1">Contact: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.contact }}</span></div>
+                                        <div class="mt-1 mb-1">Primary Contact: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.primaryContact }}</span></div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mt-1 mb-1">Order Description: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.orderDescription }}</span></div>
+                                        <div class="mt-1 mb-1">Contractor: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.contractor }}</span></div>
+                                        <div class="mt-1 mb-1">Appointment Date: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.appointmentDate }}</span></div>
+                                        <div class="mt-1 mb-1">Appointment Complete: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.appointmentComplete }}</span></div>
+                                        <div class="mt-1 mb-1">Secondary Contact: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.secondaryContact }}</span></div>
+                                    </div>
+                                </div>
+                                <div class ="row">
+                                    <div class="col-12">
+                                        <div class="mt-1 mb-1">Notes: </div>
+                                        <textarea class="mb-0" disabled="disabled">{{ order.notes|escape }}</textarea>
+                                    </div>
+                                </div>
+                                <div class ="row">
+                                    <div class="col-lg-4">
+                                        <div class="mt-1 mb-1 orderlistspan">Date LastUpdate: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.dateLastUpdate }}</span></div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mt-1 mb-1 orderlistspan">Date Created: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.dateCreated }}</span></div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mt-1 mb-1 orderlistspan">Date Closed: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.dateClosed }}</span></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div class="mt-1 mb-1 orderlistspan">Date Created: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.dateCreated }}</span></div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="mt-1 mb-1 orderlistspan">Date Closed: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.dateClosed }}</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <hr>
-                {% endfor %}
+                            <br>
+                            <hr>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
             {% endif %}
         </section>
     {% endif %}
