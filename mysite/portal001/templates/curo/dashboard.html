@@ -129,6 +129,7 @@
                                 <option value="notes">Notes</option>
                                 <option value="dateLastUpdate">Last Updated</option>
                                 <option value="dateCreated">Date Created</option>
+                                <option value="dateClosed">Date Closed</option>
                             </select>
                             <button class="mt-0 text-center" type="submit" onclick="return orderAz();">
                                 <i class="fa-solid fa-arrow-down-a-z"></i>
@@ -143,31 +144,6 @@
                         </form>
                     </div>
                     <div class="col-lg-4">
-                        {% if guage == 'all' or guage == 'open' %}
-                            {% for order in orderlist %}
-                                {% if forloop.last %}
-                                    <p class="">{{ forloop.counter }} order(s)</p>
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}
-                        {% if guage == 'appt' %}
-                            {% for order in orderlist %}
-                                {% if order.appointmentDate > comparedate %}
-                                    {% if forloop.last %}
-                                        <p class="">{{ forloop.counter }} order(s)</p>
-                                    {% endif %}
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}
-                        {% if guage == 'past' or guage == 'comp' or guage == 'repo' or guage == 'clsd' %}
-                            {% for order in orderlist %}
-                                {% if comparedate > order.appointmentDate %}
-                                    {% if forloop.last %}
-                                        <p class="">{{ forloop.counter }} order(s)</p>
-                                    {% endif %}
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}
                     </div>
                 </div>
                 {% if guage == 'all' or guage == 'open' %}

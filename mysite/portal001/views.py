@@ -536,6 +536,11 @@ def orderDashboard(request):
                     orderlist = orderlist.order_by('dateCreated')
                 if searchorder == 'za':
                     orderlist = orderlist.order_by('-dateCreated')
+            if orderfield == 'dateClosed':
+                if searchorder == 'az':
+                    orderlist = orderlist.order_by('dateClosed')
+                if searchorder == 'za':
+                    orderlist = orderlist.order_by('-dateClosed')
     else:
         messages.success(request, 'Oops! Something went wrong.')
 
