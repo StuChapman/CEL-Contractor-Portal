@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'home',
     'portal001',
     'contractors001',
+    'uploads',
 ]
 
 MIDDLEWARE = [
