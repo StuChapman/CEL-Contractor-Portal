@@ -451,7 +451,8 @@ def searchDashboard(request, guage):
                     Q(notes__icontains=searchstring))
                     )
     elif guage == 'past':
-        queries = ((Q(primaryContact__username__icontains=request.user.username) |
+        queries = (
+                   (Q(primaryContact__username__icontains=request.user.username) |
                     Q(secondaryContact__icontains=request.user.username)) &
                    (Q(appointmentDate__isnull=False) &
                     Q(appointmentComplete__icontains='No')) &
@@ -460,9 +461,11 @@ def searchDashboard(request, guage):
                     Q(name__icontains=searchstring) |
                     Q(address__icontains=searchstring) |
                     Q(contractor__contractor__icontains=searchstring) |
-                    Q(notes__icontains=searchstring)))
+                    Q(notes__icontains=searchstring))
+                   )
     elif guage == 'comp':
-        queries = ((Q(primaryContact__username__icontains=request.user.username) |
+        queries = (
+                   (Q(primaryContact__username__icontains=request.user.username) |
                     Q(secondaryContact__icontains=request.user.username)) &
                    (Q(appointmentDate__isnull=False) &
                     Q(appointmentComplete__icontains='Yes')) &
@@ -471,9 +474,11 @@ def searchDashboard(request, guage):
                     Q(name__icontains=searchstring) |
                     Q(address__icontains=searchstring) |
                     Q(contractor__contractor__icontains=searchstring) |
-                    Q(notes__icontains=searchstring)))
+                    Q(notes__icontains=searchstring))
+                   )
     elif guage == 'repo':
-        queries = ((Q(primaryContact__username__icontains=request.user.username) |
+        queries = (
+                   (Q(primaryContact__username__icontains=request.user.username) |
                     Q(secondaryContact__icontains=request.user.username)) &
                    (Q(appointmentDate__isnull=False) &
                     Q(appointmentComplete__icontains='Yes')) &
@@ -482,9 +487,11 @@ def searchDashboard(request, guage):
                     Q(name__icontains=searchstring) |
                     Q(address__icontains=searchstring) |
                     Q(contractor__contractor__icontains=searchstring) |
-                    Q(notes__icontains=searchstring)))
+                    Q(notes__icontains=searchstring))
+                   )
     elif guage == 'clsd':
-        queries = ((Q(primaryContact__username__icontains=request.user.username) |
+        queries = (
+                   (Q(primaryContact__username__icontains=request.user.username) |
                     Q(secondaryContact__icontains=request.user.username)) &
                    (Q(appointmentDate__isnull=False) &
                     Q(appointmentComplete__icontains='Yes') &
@@ -494,16 +501,19 @@ def searchDashboard(request, guage):
                     Q(name__icontains=searchstring) |
                     Q(address__icontains=searchstring) |
                     Q(contractor__contractor__icontains=searchstring) |
-                    Q(notes__icontains=searchstring)))
+                    Q(notes__icontains=searchstring))
+                   )
     else:
-        queries = ((Q(primaryContact__username__icontains=request.user.username) |
+        queries = (
+                   (Q(primaryContact__username__icontains=request.user.username) |
                     Q(secondaryContact__icontains=request.user.username)) &
                    (Q(orderNumber__icontains=searchstring) |
                     Q(orderDescription__icontains=searchstring) |
                     Q(name__icontains=searchstring) |
                     Q(address__icontains=searchstring) |
                     Q(contractor__contractor__icontains=searchstring) |
-                    Q(notes__icontains=searchstring)))
+                    Q(notes__icontains=searchstring))
+                   )
     orders = Orders.objects.all()
     orderlist = (orders.filter(queries)
                  .order_by('-dateLastUpdate'))
@@ -523,7 +533,7 @@ def searchDashboard(request, guage):
     return render(request, 'curo/dashboard.html', context)
 
 
-def orderDashboard(request):
+def orderDashboard(request, guage):
     """ A view to order the orders by a selected field """
 
     orderlist = Orders.objects.all()
@@ -531,19 +541,100 @@ def orderDashboard(request):
     searchstring = ""
     notifications = Notifications.objects.all()
     page = 'dashboard'
-    guage = 'all'
+    comparedate = timezone.now()
 
     if request.GET:
         if 'searchstring' in request.GET:
             searchstring = request.GET['searchstring']
-            queries = ((Q(primaryContact__username__icontains=request.user.username) |
-                       Q(secondaryContact__icontains=request.user.username)) &
-                       (Q(orderNumber__icontains=searchstring) |
-                       Q(orderDescription__icontains=searchstring) |
-                       Q(name__icontains=searchstring) |
-                       Q(address__icontains=searchstring) |
-                       Q(contractor__contractor__icontains=searchstring) |
-                       Q(notes__icontains=searchstring)))
+            if guage == 'open':
+                queries = (
+                           (Q(primaryContact__username__icontains=request.user.username) |
+                            Q(secondaryContact__icontains=request.user.username)) &
+                           (Q(appointmentDate__isnull=True)) &
+                           (Q(orderNumber__icontains=searchstring) |
+                            Q(orderDescription__icontains=searchstring) |
+                            Q(name__icontains=searchstring) |
+                            Q(address__icontains=searchstring) |
+                            Q(contractor__contractor__icontains=searchstring) |
+                            Q(notes__icontains=searchstring))
+                           )
+            elif guage == 'appt':
+                queries = (
+                           (Q(primaryContact__username__icontains=request.user.username) |
+                            Q(secondaryContact__icontains=request.user.username)) &
+                           (Q(appointmentDate__isnull=False) &
+                            Q(appointmentComplete__icontains='No')) &
+                           (Q(orderNumber__icontains=searchstring) |
+                            Q(orderDescription__icontains=searchstring) |
+                            Q(name__icontains=searchstring) |
+                            Q(address__icontains=searchstring) |
+                            Q(contractor__contractor__icontains=searchstring) |
+                            Q(notes__icontains=searchstring))
+                           )
+            elif guage == 'past':
+                queries = (
+                           (Q(primaryContact__username__icontains=request.user.username) |
+                            Q(secondaryContact__icontains=request.user.username)) &
+                           (Q(appointmentDate__isnull=False) &
+                            Q(appointmentComplete__icontains='No')) &
+                           (Q(orderNumber__icontains=searchstring) |
+                            Q(orderDescription__icontains=searchstring) |
+                            Q(name__icontains=searchstring) |
+                            Q(address__icontains=searchstring) |
+                            Q(contractor__contractor__icontains=searchstring) |
+                            Q(notes__icontains=searchstring))
+                           )
+            elif guage == 'comp':
+                queries = (
+                           (Q(primaryContact__username__icontains=request.user.username) |
+                            Q(secondaryContact__icontains=request.user.username)) &
+                           (Q(appointmentDate__isnull=False) &
+                            Q(appointmentComplete__icontains='Yes')) &
+                           (Q(orderNumber__icontains=searchstring) |
+                            Q(orderDescription__icontains=searchstring) |
+                            Q(name__icontains=searchstring) |
+                            Q(address__icontains=searchstring) |
+                            Q(contractor__contractor__icontains=searchstring) |
+                            Q(notes__icontains=searchstring))
+                           )
+            elif guage == 'repo':
+                queries = (
+                           (Q(primaryContact__username__icontains=request.user.username) |
+                            Q(secondaryContact__icontains=request.user.username)) &
+                           (Q(appointmentDate__isnull=False) &
+                            Q(appointmentComplete__icontains='Yes')) &
+                           (Q(orderNumber__icontains=searchstring) |
+                            Q(orderDescription__icontains=searchstring) |
+                            Q(name__icontains=searchstring) |
+                            Q(address__icontains=searchstring) |
+                            Q(contractor__contractor__icontains=searchstring) |
+                            Q(notes__icontains=searchstring))
+                           )
+            elif guage == 'clsd':
+                queries = (
+                           (Q(primaryContact__username__icontains=request.user.username) |
+                            Q(secondaryContact__icontains=request.user.username)) &
+                           (Q(appointmentDate__isnull=False) &
+                            Q(appointmentComplete__icontains='Yes') &
+                            Q(dateClosed__isnull=False)) &
+                           (Q(orderNumber__icontains=searchstring) |
+                            Q(orderDescription__icontains=searchstring) |
+                            Q(name__icontains=searchstring) |
+                            Q(address__icontains=searchstring) |
+                            Q(contractor__contractor__icontains=searchstring) |
+                            Q(notes__icontains=searchstring))
+                           )
+            else:
+                queries = (
+                           (Q(primaryContact__username__icontains=request.user.username) |
+                            Q(secondaryContact__icontains=request.user.username)) &
+                           (Q(orderNumber__icontains=searchstring) |
+                            Q(orderDescription__icontains=searchstring) |
+                            Q(name__icontains=searchstring) |
+                            Q(address__icontains=searchstring) |
+                            Q(contractor__contractor__icontains=searchstring) |
+                            Q(notes__icontains=searchstring))
+                           )
             orders = Orders.objects.all()
             orderlist = (orders.filter(queries)
                          .order_by('-dateLastUpdate'))
@@ -624,6 +715,7 @@ def orderDashboard(request):
         'notifications': notifications,
         'page': page,
         'guage': guage,
+        'comparedate': comparedate,
     }
 
     return render(request, 'curo/dashboard.html', context)
