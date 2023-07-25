@@ -36,6 +36,6 @@ def upload_file(request):
 
 
 def handle_uploaded_file(f):
-    with open("uploadedfiles/name.txt", "wb+") as destination:
+    with open("mysite/uploadedfiles/name.txt", "wb+") as destination:
         for chunk in f.chunks():
             destination.write(chunk)
