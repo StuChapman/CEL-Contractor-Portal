@@ -4,6 +4,8 @@ from django.contrib import messages
 from . import views
 from django.http import HttpResponseRedirect
 from .forms import UploadFileForm
+from .models import UploadFile
+import uuid
 
 
 def uploadFile(request, orderno):
@@ -23,19 +25,12 @@ def upload_file(request):
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            handle_uploaded_file(request.FILES["file"])
-            messages.success(request, 'File saved.')
+            instance = UploadFile(file_field=request.FILES["file"])
+            instance.save()
+            messages.success(request, 'Maybe it saved...?')
+        else:
+            messages.success(request, 'No, it didn`t!')
     else:
-        messages.success(request, 'Oops! Something went wrong.')
-    
-    context = {
-        'form': form,
-    }
-
-    return render(request, 'uploads/upload.html', context)
-
-
-def handle_uploaded_file(f):
-    with open("mysite/uploadedfiles/name.txt", "wb+") as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
+        messages.success(request, 'It`s not POST!')
+        form = UploadFileForm()
+    return render(request, "uploads/upload.html", {"form": form})

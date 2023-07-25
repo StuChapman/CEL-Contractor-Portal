@@ -138,6 +138,28 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
+# AWS media files
+
+# Cache control
+AWS_S3_OBJECT_PARAMETERS = {
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'CacheControl': 'max-age=94608000',
+}
+
+# Bucket Config
+AWS_STORAGE_BUCKET_NAME = 'portal-uploaded-files'
+AWS_S3_REGION_NAME = 'eu-west-2'
+AWS_ACCESS_KEY_ID = 'AKIAVFM3VQU2YZAF2I5U'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_S3_CUSTOM_DOMAIN = f'https://portal-uploaded-files.s3.eu-west-2.amazonaws.com'
+
+# Media files
+DEFAULT_FILE_STORAGE = 'portal-uploaded-files.custom_storages.MediaStorage'
+MEDIAFILES_LOCATION = 'media'
+
+# Override media URLs in production
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

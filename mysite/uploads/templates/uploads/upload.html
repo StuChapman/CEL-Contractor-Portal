@@ -6,14 +6,14 @@
     <section id="textsection">
         {% if user.is_authenticated %}
             <h1>Upload File</span></h1>
-            <form action="{% url 'upload_file' %}"  method="POST" class="orderform ml-auto mr-auto">
+            <form action="{% url 'upload_file' %}"  method="post" enctype="multipart/form-data" class="orderform ml-auto mr-auto">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-lg-6">
                         {{ form.orderNumber.label_tag }}
                         <input type="text" name="orderNumber" disabled="disabled" maxlength="50" required id="id_orderNumber" value="{{ orderno }}">
-                        {{ form.file.label_tag }}
-                        {{ form.file }}
+                        {{ form.uploadFile.label_tag }}
+                        {{ form.uploadFile }}
                     <div class="col-lg-3">
                         {% for group in user.groups.all %}
                             {% if group.name == 'Edit' %}
