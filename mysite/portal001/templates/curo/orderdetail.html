@@ -196,14 +196,20 @@
                                 {% endif %}
                             {% endfor %}
                         </div>
+                        {% for group in user.groups.all %}
+                            {% if group.name == 'Edit' %}
+                                <div class="col-lg-12">
+                                    <button type="button" class="btn">
+                                        <a href ="{% url 'uploadFile' orderno %}">Upload .pdf File</a>
+                                    </button>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
                         <div class="col-lg-12">
                             <span class="hidden">{{ form.notes }}</span>
                         </div>
                     </div>
                 </form>
-                <button type="button" class="btn">
-                    <a href ="{% url 'uploadFile' orderno %}">Upload File</a>
-                </button>
             {% endif %}
         </section>
     {% endif %}

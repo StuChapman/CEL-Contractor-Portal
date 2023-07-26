@@ -220,7 +220,7 @@ def saveNewContractor(request):
         form = ContractorForm(request.POST)
         """ validate the form data """
         validate_contractor = form.data['contractor']
-        if not re.match("^[a-zA-Z ]+$", ''.join(validate_contractor)):
+        if not re.match("^[0-9 a-z A-Z?:@',|.-]+$", ''.join(validate_contractor)):
             messages.success(request, mark_safe('There was a problem with \
                                                  Contractor.'))
             abort_save = 1

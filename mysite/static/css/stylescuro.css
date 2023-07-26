@@ -125,7 +125,7 @@ nav {
     padding: 1vh;
     background-color: #C0DC3B;
     font-family: 'Cairo', sans-serif;
-    font-size: 3vh;
+    font-size: calc(2.5vh + (27.5 - 2.5) * ((100vw - 300px) / 1620));
     height: 10vh;
 }
 
@@ -507,7 +507,7 @@ nav {
     cursor: pointer;    
 }
 
-#order-submit, .datesavebtn {
+#order-submit, .datesavebtn, #upload-image {
     height: 70%;
     background-color: #C0DC3B;
     color: white;
@@ -515,7 +515,7 @@ nav {
     border-color: #635F5F;
 }
 
-.new-order-submit #order-submit, .datesavebtn {
+.new-order-submit #order-submit, .datesavebtn, #upload-image {
     min-height: 2rem;
     min-width: 8rem;
 }
@@ -852,6 +852,10 @@ nav {
         }
     }
     
+    #textsection .widthfifty {
+        width: 75vw;
+    }
+
     .orderform label, .orderform input, .orderform textarea,
     .neworder label, .neworder input, .neworder textarea, 
     .neworder select, .orderform select {
@@ -871,7 +875,7 @@ nav {
         font-size: calc(2vh + (20 - 2.5) * ((100vw - 300px) / 1620));
     }
 
-    #order-submit, .datesavebtn {
+    #order-submit, .datesavebtn, #upload-image {
         width: 30vw;
     }
 
@@ -1007,7 +1011,7 @@ nav {
         }
     }
 
-    @media screen and (min-width: 1113px) {
+    @media screen and (min-width: 1023px) {
         .orderlist div, 
         #textsection .orderlist p, 
         .searchform, 
@@ -1030,8 +1034,16 @@ nav {
         }
     }
 
+    #textsection .widthfifty {
+        width: 50vw;
+    }
+    
     #order-submit, .datesavebtn {
         width: 10vw;
+    }
+
+    #upload-image {
+        width: 15vw;
     }
 
     #arrowimage {

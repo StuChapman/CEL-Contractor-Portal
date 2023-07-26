@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.urls import path
 from django.contrib import messages
 from . import views
+from portal001.models import Orders, Contractors, Notifications
+from portal001.forms import OrderForm
 from django.http import HttpResponseRedirect
 from .forms import UploadFileForm
 from .models import UploadFile
@@ -34,4 +36,21 @@ def upload_file(request):
     else:
         messages.success(request, 'Oops! Something went wrong.')
         form = UploadFileForm()
-    return render(request, "uploads/upload.html", {"form": form})
+
+    orderno = form.data['orderNumber']
+    orders = Orders.objects.all()
+    this_order = Orders.objects.get(orderNumber=orderno)
+    order_list_length = orders.filter(orderNumber=orderno).count()
+    form = OrderForm(instance=this_order)
+    contractors = Contractors.objects.all()
+    page = 'orderdetail'
+
+    context = {
+        'orderno': orderno,
+        'form': form,
+        'order_list_length': order_list_length,
+        'contractors': contractors,
+        'page': page,
+    }
+
+    return render(request, 'curo/orderdetail.html', context)

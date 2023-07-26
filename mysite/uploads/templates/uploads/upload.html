@@ -5,19 +5,19 @@
     <!--Text Section-->
     <section id="textsection">
         {% if user.is_authenticated %}
-            <h1>Upload File</span></h1>
+            <h1>Upload .pdf File</span></h1>
             <form action="{% url 'upload_file' %}"  method="post" enctype="multipart/form-data" class="orderform ml-auto mr-auto">
                 {% csrf_token %}
-                <div class="row">
-                    <div class="col-lg-6">
+                <div class="widthfifty ml-auto mr-auto">
+                    <div class="widthfifty">
                         {{ form.orderNumber.label_tag }}
                         <input type="number" name="orderNumber" maxlength="50" required id="id_orderNumber" value="{{ orderno }}">
                         {{ form.uploadFile.label_tag }}
                         {{ form.uploadFile }}
-                    <div class="col-lg-3">
+                    <div class="pl-0 pt-3 mt-3 mr-auto">
                         {% for group in user.groups.all %}
                             {% if group.name == 'Edit' %}
-                                <input type="submit" name="submit" id="order-submit" class="" value="Upload pdf"  onclick="return saveFile();">
+                                <input type="submit" name="submit" id="upload-image" class="" value="Upload pdf"  onclick="return saveFile();">
                             {% endif %}
                         {% endfor %}
                     </div>
@@ -25,11 +25,6 @@
             </form>
         {% endif %}
     </section>
-    {% for upload in uploadlist %}
-        {{ upload.orderNumber }}
-        {{ upload.uploadFile.name }}
-        <img class="img-fluid image-80" src="{{ MEDIA_URL | cut:'media/' }}{{ upload.uploadFile.name }}" alt="image">
-    {% endfor %}
 {% endblock %}
 
 
