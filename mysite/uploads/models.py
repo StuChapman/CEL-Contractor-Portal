@@ -13,4 +13,4 @@ class UploadFile(models.Model):
     uploadFile = models.FileField(null=True, blank=True)
 
     def __str__(self):
-        return self.orderNumber
+        return str(int(self.orderNumber))

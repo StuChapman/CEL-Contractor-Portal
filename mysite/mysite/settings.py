@@ -12,21 +12,27 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+import dotenv # <- New
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Add .env variables anywhere before SECRET_KEY
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
+
+# UPDATE secret key
+SECRET_KEY = os.environ['SECRET_KEY'] # Instead of your actual secret key
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$3oh2m$!-wb)cko02gr(5p83_(7jmlz3g@cs$pshk^md3^y6cn'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-THIS_SITE = 'https://8000-stuchapman-celcontracto-2kmfhh6nfue.ws-eu102.gitpod.io'
+THIS_SITE = 'https://8000-stuchapman-celcontracto-hi7tvtil1zx.ws-eu102.gitpod.io'
 
 CSRF_TRUSTED_ORIGINS = [THIS_SITE, THIS_SITE]
 
@@ -52,6 +58,7 @@ INSTALLED_APPS = [
     'portal001',
     'contractors001',
     'uploads',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -149,19 +156,19 @@ AWS_S3_OBJECT_PARAMETERS = {
 # Bucket Config
 AWS_STORAGE_BUCKET_NAME = 'portal-uploaded-files'
 AWS_S3_REGION_NAME = 'eu-west-2'
-AWS_ACCESS_KEY_ID = 'AKIAVFM3VQU2YZAF2I5U'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_S3_CUSTOM_DOMAIN = f'https://portal-uploaded-files.s3.eu-west-2.amazonaws.com'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Media files
-DEFAULT_FILE_STORAGE = 'portal-uploaded-files.custom_storages.MediaStorage'
 MEDIAFILES_LOCATION = 'media'
 
 # Override media URLs in production
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

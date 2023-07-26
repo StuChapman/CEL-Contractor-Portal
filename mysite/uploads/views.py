@@ -12,10 +12,12 @@ def uploadFile(request, orderno):
     """ A view to return the upload page """
 
     form = UploadFileForm()
+    uploadlist = UploadFile.objects.all().order_by('-orderNumber')
 
     context = {
         'form': form,
         'orderno': orderno,
+        'uploadlist': uploadlist,
     }
 
     return render(request, 'uploads/upload.html', context)

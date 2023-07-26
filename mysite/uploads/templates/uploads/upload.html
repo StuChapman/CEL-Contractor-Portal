@@ -23,6 +23,11 @@
                     </div>
                 </div>
             </form>
+            {% for upload in uploadlist %}
+                {{ upload.orderNumber }}
+                {{ upload.uploadFile }}
+                <img class="img-fluid image-80" src="{{ MEDIA_URL }}{{ upload.uploadFile }}" alt="image">
+            {% endfor %}
         {% endif %}
     </section>
 {% endblock %}
