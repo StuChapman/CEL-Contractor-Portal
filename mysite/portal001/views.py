@@ -3,6 +3,7 @@ from django.urls import path
 from django.contrib import messages
 from . import views
 from .models import Orders, Contractors, Notifications
+from uploads.models import UploadFile
 from .forms import OrderForm
 from django.db.models import Q
 from django.utils import timezone
@@ -15,12 +16,14 @@ def curo(request):
 
     orderlist = Orders.objects.all().order_by('-orderNumber')
     order_list_length = orderlist.count()
+    uploadlist = UploadFile.objects.all().order_by('-dateUploaded')
     page = 'orderlist'
 
     context = {
         'orderlist': orderlist,
         'order_list_length': order_list_length,
         'page': page,
+        'uploadlist': uploadlist,
     }
 
     return render(request, 'curo/orderlist.html', context)

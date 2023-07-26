@@ -45,6 +45,10 @@ label {
      color: #C0DC3B;
  }
 
+.green-highlight {
+    color: #56AC98;
+}
+
 .extramargin {
     margin-top: 7.5vh;
 }
@@ -92,7 +96,7 @@ a:hover,
     cursor: pointer;
 }
 
-.orange-highlight:hover {
+.orange-highlight:hover, .green-highlight:hover {
     color: #635F5F;
 }
 
