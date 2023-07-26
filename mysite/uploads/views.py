@@ -43,6 +43,7 @@ def upload_file(request):
     order_list_length = orders.filter(orderNumber=orderno).count()
     form = OrderForm(instance=this_order)
     contractors = Contractors.objects.all()
+    uploadlist = UploadFile.objects.all().order_by('-orderNumber')
     page = 'orderdetail'
 
     context = {
@@ -51,6 +52,7 @@ def upload_file(request):
         'order_list_length': order_list_length,
         'contractors': contractors,
         'page': page,
+        'uploadlist': uploadlist,
     }
 
     return render(request, 'curo/orderdetail.html', context)
