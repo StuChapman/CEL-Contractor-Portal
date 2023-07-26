@@ -161,7 +161,20 @@
                         <div class="orderlist ml-auto mr-auto">
                             <div class ="row">
                                 <div class="col-lg-6">
-                                    <div class="mt-1 mb-1">Order Number: <a class="orange-highlight" href ="{% url 'selectOrder' order.orderNumber %}">{{ order.orderNumber }}</a></div>
+                                    <div class="row">
+                                        <div class="col pl-0">
+                                            <div class="mt-1 mb-1">Order Number: <a class="orange-highlight" href ="{% url 'selectOrder' order.orderNumber %}">{{ order.orderNumber }}</a></div>
+                                        </div>
+                                        <div class="col-auto pr-0">
+                                            {% for file in uploadlist %}
+                                                {% if file.orderNumber == order.orderNumber %}
+                                                    <a class="green-highlight" target="_blank" href ="{{ MEDIA_URL | cut:'media/' }}{{ file.uploadFile.name }}">
+                                                        <i class="fa-solid fa-paperclip"></i>
+                                                    </a>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
                                     <div class="mt-1 mb-1">Name: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.name }}</span></div>
                                     <div class="mt-1 mb-1">Address: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.address }}</span></div>
                                     <div class="mt-1 mb-1">Contact: <a class="orderlistspan pl-2 pr-2 mb-4" href="tel:{{ order.contact }}">{{ order.contact }}</a></div>
@@ -203,7 +216,20 @@
                             <div class="orderlist ml-auto mr-auto">
                                 <div class ="row">
                                     <div class="col-lg-6">
-                                        <div class="mt-1 mb-1">Order Number: <a class="orange-highlight" href ="{% url 'selectOrder' order.orderNumber %}">{{ order.orderNumber }}</a></div>
+                                        <div class="row">
+                                            <div class="col pl-0">
+                                                <div class="mt-1 mb-1">Order Number: <a class="orange-highlight" href ="{% url 'selectOrder' order.orderNumber %}">{{ order.orderNumber }}</a></div>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                {% for file in uploadlist %}
+                                                    {% if file.orderNumber == order.orderNumber %}
+                                                        <a class="green-highlight" target="_blank" href ="{{ MEDIA_URL | cut:'media/' }}{{ file.uploadFile.name }}">
+                                                            <i class="fa-solid fa-paperclip"></i>
+                                                        </a>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
                                         <div class="mt-1 mb-1">Name: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.name }}</span></div>
                                         <div class="mt-1 mb-1">Address: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.address }}</span></div>
                                         <div class="mt-1 mb-1">Contact: <a class="orderlistspan pl-2 pr-2 mb-4" href="tel:{{ order.contact }}">{{ order.contact }}</a></div>
@@ -246,7 +272,20 @@
                             <div class="orderlist ml-auto mr-auto">
                                 <div class ="row">
                                     <div class="col-lg-6">
-                                        <div class="mt-1 mb-1">Order Number: <a class="orange-highlight" href ="{% url 'selectOrder' order.orderNumber %}">{{ order.orderNumber }}</a></div>
+                                        <div class="row">
+                                            <div class="col pl-0">
+                                                <div class="mt-1 mb-1">Order Number: <a class="orange-highlight" href ="{% url 'selectOrder' order.orderNumber %}">{{ order.orderNumber }}</a></div>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                {% for file in uploadlist %}
+                                                    {% if file.orderNumber == order.orderNumber %}
+                                                        <a class="green-highlight" target="_blank" href ="{{ MEDIA_URL | cut:'media/' }}{{ file.uploadFile.name }}">
+                                                            <i class="fa-solid fa-paperclip"></i>
+                                                        </a>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
                                         <div class="mt-1 mb-1">Name: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.name }}</span></div>
                                         <div class="mt-1 mb-1">Address: <span class="orderlistspan pl-2 pr-2 mb-4">{{ order.address }}</span></div>
                                         <div class="mt-1 mb-1">Contact: <a class="orderlistspan pl-2 pr-2 mb-4" href="tel:{{ order.contact }}">{{ order.contact }}</a></div>

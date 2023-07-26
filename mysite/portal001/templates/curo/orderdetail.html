@@ -12,7 +12,20 @@
                     <div class="row">
                         <div class="col-lg-6">
                             {{ form.orderNumber.label_tag }}
-                            {{ form.orderNumber }}
+                            <div class="row">
+                                <div class="col pl-0">
+                                    {{ form.orderNumber }}
+                                </div>
+                                <div class="col-auto pr-0">
+                                    {% for file in uploadlist %}
+                                        {% if file.orderNumber == form.orderNumber.value %}
+                                            <a class="green-highlight" target="_blank" href ="{{ MEDIA_URL | cut:'media/' }}{{ file.uploadFile.name }}">
+                                                <i class="fa-solid fa-paperclip"></i>
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col pl-0">
                                     {{ form.name.label_tag }}

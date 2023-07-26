@@ -37,6 +37,7 @@ def selectOrder(request, orderno):
     order_list_length = orders.filter(orderNumber=orderno).count()
     form = OrderForm(instance=this_order)
     contractors = Contractors.objects.all()
+    uploadlist = UploadFile.objects.all().order_by('-dateUploaded')
     page = 'orderdetail'
 
     context = {
@@ -45,6 +46,7 @@ def selectOrder(request, orderno):
         'order_list_length': order_list_length,
         'contractors': contractors,
         'page': page,
+        'uploadlist': uploadlist,
     }
 
     return render(request, 'curo/orderdetail.html', context)
@@ -54,6 +56,7 @@ def updateOrder(request):
     """ Update the order form """
 
     contractors = Contractors.objects.all()
+    uploadlist = UploadFile.objects.all().order_by('-dateUploaded')
     abort_save = 0
 
     if request.GET:
@@ -70,6 +73,7 @@ def updateOrder(request):
         context = {
             'orderlist': orderlist,
             'order_list_length': order_list_length,
+            'uploadlist': uploadlist,
         }
 
         return render(request, 'curo/orderlist.html', context)
@@ -127,6 +131,7 @@ def updateOrder(request):
         context = {
             'orderlist': orderlist,
             'order_list_length': order_list_length,
+            'uploadlist': uploadlist,
         }
 
         return render(request, 'curo/orderlist.html', context)
@@ -136,6 +141,7 @@ def updateOrder(request):
         'form': form,
         'order_list_length': '1',
         'contractors': contractors,
+        'uploadlist': uploadlist,
     }
 
     return render(request, 'curo/orderdetail.html', context)
@@ -222,6 +228,7 @@ def searchOrders(request):
 
     orderlist = Orders.objects.all().order_by('-orderNumber')
     order_list_length = orderlist.count()
+    uploadlist = UploadFile.objects.all().order_by('-dateUploaded')
     searchstring = ""
 
     if request.GET:
@@ -251,6 +258,7 @@ def searchOrders(request):
         'orderlist': orderlist,
         'order_list_length': order_list_length,
         'searchstring': searchstring,
+        'uploadlist': uploadlist,
     }
 
     return render(request, 'curo/orderlist.html', context)
@@ -261,6 +269,7 @@ def orderOrders(request):
 
     orderlist = Orders.objects.all()
     order_list_length = orderlist.count()
+    uploadlist = UploadFile.objects.all().order_by('-dateUploaded')
     searchstring = ""
 
     if request.GET:
@@ -345,6 +354,7 @@ def orderOrders(request):
         'orderlist': orderlist,
         'order_list_length': order_list_length,
         'searchstring': searchstring,
+        'uploadlist': uploadlist,
     }
 
     return render(request, 'curo/orderlist.html', context)
@@ -355,6 +365,7 @@ def dashboard(request, guage):
 
     orders = Orders.objects.all()
     notifications = Notifications.objects.all()
+    uploadlist = UploadFile.objects.all().order_by('-dateUploaded')
 
     if guage == 'open':
         queries = ((Q(primaryContact__username__icontains=request.user.username) |
@@ -403,6 +414,7 @@ def dashboard(request, guage):
         'page': page,
         'guage': guage,
         'comparedate': comparedate,
+        'uploadlist': uploadlist,
     }
 
     return render(request, 'curo/dashboard.html', context)
@@ -415,6 +427,7 @@ def searchDashboard(request, guage):
     order_list_length = orderlist.count()
     searchstring = ""
     notifications = Notifications.objects.all()
+    uploadlist = UploadFile.objects.all().order_by('-dateUploaded')
     page = 'dashboard'
 
     if request.GET:
@@ -531,6 +544,7 @@ def searchDashboard(request, guage):
         'page': page,
         'guage': guage,
         'comparedate': comparedate,
+        'uploadlist': uploadlist,
     }
 
     return render(request, 'curo/dashboard.html', context)
@@ -543,6 +557,7 @@ def orderDashboard(request, guage):
     order_list_length = orderlist.count()
     searchstring = ""
     notifications = Notifications.objects.all()
+    uploadlist = UploadFile.objects.all().order_by('-dateUploaded')
     page = 'dashboard'
     comparedate = timezone.now()
 
@@ -719,6 +734,7 @@ def orderDashboard(request, guage):
         'page': page,
         'guage': guage,
         'comparedate': comparedate,
+        'uploadlist': uploadlist,
     }
 
     return render(request, 'curo/dashboard.html', context)
@@ -732,6 +748,7 @@ def selectNotification(request, orderno):
     order_list_length = orders.filter(orderNumber=orderno).count()
     form = OrderForm(instance=this_order)
     contractors = Contractors.objects.all()
+    uploadlist = UploadFile.objects.all().order_by('-dateUploaded')
 
     thisnotification = Notifications(orderNumber=orderno,
                                      readUnread=1)
@@ -742,6 +759,7 @@ def selectNotification(request, orderno):
         'form': form,
         'order_list_length': order_list_length,
         'contractors': contractors,
+        'uploadlist': uploadlist,
     }
 
     return render(request, 'curo/orderdetail.html', context)
