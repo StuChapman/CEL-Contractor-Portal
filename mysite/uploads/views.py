@@ -27,12 +27,11 @@ def upload_file(request):
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            instance = UploadFile(file_field=request.FILES["file"])
-            instance.save()
-            messages.success(request, 'Maybe it saved...?')
+            form.save()
+            messages.success(request, 'File has been saved.')
         else:
-            messages.success(request, 'No, it didn`t!')
+            messages.success(request, 'File didn`t save!')
     else:
-        messages.success(request, 'It`s not POST!')
+        messages.success(request, 'Oops! Something went wrong.')
         form = UploadFileForm()
     return render(request, "uploads/upload.html", {"form": form})

@@ -664,3 +664,11 @@ function saveNewOrder() {
 
     $("#order-submit").addClass("unhidden");
 }
+
+
+// Function: upload file //
+function saveFile() {
+
+    $('select[name="orderNumber"]').prop('disabled', false);
+
+}

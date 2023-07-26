@@ -11,23 +11,30 @@
                 <div class="row">
                     <div class="col-lg-6">
                         {{ form.orderNumber.label_tag }}
-                        <input type="text" name="orderNumber" disabled="disabled" maxlength="50" required id="id_orderNumber" value="{{ orderno }}">
+                        <input type="number" name="orderNumber" maxlength="50" required id="id_orderNumber" value="{{ orderno }}">
                         {{ form.uploadFile.label_tag }}
                         {{ form.uploadFile }}
                     <div class="col-lg-3">
                         {% for group in user.groups.all %}
                             {% if group.name == 'Edit' %}
-                                <input type="submit" name="submit" id="order-submit" class="" value="Upload pdf"  onclick="">
+                                <input type="submit" name="submit" id="order-submit" class="" value="Upload pdf"  onclick="return saveFile();">
                             {% endif %}
                         {% endfor %}
                     </div>
                 </div>
             </form>
-            {% for upload in uploadlist %}
-                {{ upload.orderNumber }}
-                {{ upload.uploadFile }}
-                <img class="img-fluid image-80" src="{{ MEDIA_URL }}{{ upload.uploadFile }}" alt="image">
-            {% endfor %}
         {% endif %}
     </section>
+    {% for upload in uploadlist %}
+        {{ upload.orderNumber }}
+        {{ upload.uploadFile.name }}
+        <img class="img-fluid image-80" src="{{ MEDIA_URL | cut:'media/' }}{{ upload.uploadFile.name }}" alt="image">
+    {% endfor %}
+{% endblock %}
+
+
+{% block postloadjs %}
+<script>
+    $('select[name="orderNumber"]').prop('disabled', true);
+</script>
 {% endblock %}
