@@ -366,6 +366,7 @@ def dashboard(request, guage):
     orders = Orders.objects.all()
     notifications = Notifications.objects.all()
     uploadlist = UploadFile.objects.all().order_by('-dateUploaded')
+    distinctUploads = UploadFile.objects.values('orderNumber').distinct()
 
     if guage == 'open':
         queries = ((Q(primaryContact__username__icontains=request.user.username) |
@@ -389,8 +390,7 @@ def dashboard(request, guage):
     elif guage == 'repo':
         queries = ((Q(primaryContact__username__icontains=request.user.username) |
                    Q(secondaryContact__icontains=request.user.username)) &
-                   Q(appointmentDate__isnull=False) &
-                   Q(appointmentComplete__icontains='Yes'))
+                   Q(appointmentDate__isnull=False))
     elif guage == 'clsd':
         queries = ((Q(primaryContact__username__icontains=request.user.username) |
                    Q(secondaryContact__icontains=request.user.username)) &
@@ -415,6 +415,7 @@ def dashboard(request, guage):
         'guage': guage,
         'comparedate': comparedate,
         'uploadlist': uploadlist,
+        'distinctUploads': distinctUploads,
     }
 
     return render(request, 'curo/dashboard.html', context)
@@ -428,6 +429,7 @@ def searchDashboard(request, guage):
     searchstring = ""
     notifications = Notifications.objects.all()
     uploadlist = UploadFile.objects.all().order_by('-dateUploaded')
+    distinctUploads = UploadFile.objects.values('orderNumber').distinct()
     page = 'dashboard'
 
     if request.GET:
@@ -496,8 +498,7 @@ def searchDashboard(request, guage):
         queries = (
                    (Q(primaryContact__username__icontains=request.user.username) |
                     Q(secondaryContact__icontains=request.user.username)) &
-                   (Q(appointmentDate__isnull=False) &
-                    Q(appointmentComplete__icontains='Yes')) &
+                   (Q(appointmentDate__isnull=False)) &
                    (Q(orderNumber__icontains=searchstring) |
                     Q(orderDescription__icontains=searchstring) |
                     Q(name__icontains=searchstring) |
@@ -545,6 +546,7 @@ def searchDashboard(request, guage):
         'guage': guage,
         'comparedate': comparedate,
         'uploadlist': uploadlist,
+        'distinctUploads': distinctUploads,
     }
 
     return render(request, 'curo/dashboard.html', context)
@@ -558,6 +560,7 @@ def orderDashboard(request, guage):
     searchstring = ""
     notifications = Notifications.objects.all()
     uploadlist = UploadFile.objects.all().order_by('-dateUploaded')
+    distinctUploads = UploadFile.objects.values('orderNumber').distinct()
     page = 'dashboard'
     comparedate = timezone.now()
 
@@ -619,8 +622,7 @@ def orderDashboard(request, guage):
                 queries = (
                            (Q(primaryContact__username__icontains=request.user.username) |
                             Q(secondaryContact__icontains=request.user.username)) &
-                           (Q(appointmentDate__isnull=False) &
-                            Q(appointmentComplete__icontains='Yes')) &
+                           (Q(appointmentDate__isnull=False)) &
                            (Q(orderNumber__icontains=searchstring) |
                             Q(orderDescription__icontains=searchstring) |
                             Q(name__icontains=searchstring) |
@@ -735,6 +737,7 @@ def orderDashboard(request, guage):
         'guage': guage,
         'comparedate': comparedate,
         'uploadlist': uploadlist,
+        'distinctUploads': distinctUploads,
     }
 
     return render(request, 'curo/dashboard.html', context)

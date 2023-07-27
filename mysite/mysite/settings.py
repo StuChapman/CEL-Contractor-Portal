@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
-import dotenv # <- New
+import dotenv  # <- New
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -24,7 +24,7 @@ if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
 # UPDATE secret key
-SECRET_KEY = os.environ['SECRET_KEY'] # Instead of your actual secret key
+SECRET_KEY = os.environ['SECRET_KEY']  # Instead of your actual secret key
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -32,7 +32,7 @@ SECRET_KEY = os.environ['SECRET_KEY'] # Instead of your actual secret key
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-THIS_SITE = 'https://8000-stuchapman-celcontracto-hi7tvtil1zx.ws-eu102.gitpod.io'
+THIS_SITE = os.environ['THIS_SITE']
 
 CSRF_TRUSTED_ORIGINS = [THIS_SITE, THIS_SITE]
 

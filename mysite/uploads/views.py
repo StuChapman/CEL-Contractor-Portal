@@ -26,10 +26,15 @@ def uploadFile(request, orderno):
 
 
 def upload_file(request):
+
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
+        orderno = form.data['orderNumber']
+        thisnotification = Notifications(orderNumber=orderno,
+                                         readUnread=0)
         if form.is_valid():
             form.save()
+            thisnotification.save()
             messages.success(request, 'File has been saved.')
         else:
             messages.success(request, 'File didn`t save!')
