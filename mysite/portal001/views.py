@@ -386,11 +386,14 @@ def dashboard(request, guage):
         queries = ((Q(primaryContact__username__icontains=request.user.username) |
                    Q(secondaryContact__icontains=request.user.username)) &
                    Q(appointmentDate__isnull=False) &
-                   Q(appointmentComplete__icontains='Yes'))
+                   Q(appointmentComplete__icontains='Yes') &
+                   Q(dateClosed__isnull=True))
     elif guage == 'repo':
         queries = ((Q(primaryContact__username__icontains=request.user.username) |
                    Q(secondaryContact__icontains=request.user.username)) &
-                   Q(appointmentDate__isnull=False))
+                   Q(appointmentDate__isnull=False) &
+                   Q(appointmentComplete__icontains='Yes') &
+                   Q(dateClosed__isnull=True))
     elif guage == 'clsd':
         queries = ((Q(primaryContact__username__icontains=request.user.username) |
                    Q(secondaryContact__icontains=request.user.username)) &
@@ -486,7 +489,8 @@ def searchDashboard(request, guage):
                    (Q(primaryContact__username__icontains=request.user.username) |
                     Q(secondaryContact__icontains=request.user.username)) &
                    (Q(appointmentDate__isnull=False) &
-                    Q(appointmentComplete__icontains='Yes')) &
+                    Q(appointmentComplete__icontains='Yes') &
+                    Q(dateClosed__isnull=True)) &
                    (Q(orderNumber__icontains=searchstring) |
                     Q(orderDescription__icontains=searchstring) |
                     Q(name__icontains=searchstring) |
@@ -498,7 +502,9 @@ def searchDashboard(request, guage):
         queries = (
                    (Q(primaryContact__username__icontains=request.user.username) |
                     Q(secondaryContact__icontains=request.user.username)) &
-                   (Q(appointmentDate__isnull=False)) &
+                   (Q(appointmentDate__isnull=False) &
+                    Q(appointmentComplete__icontains='Yes') &
+                    Q(dateClosed__isnull=True)) &
                    (Q(orderNumber__icontains=searchstring) |
                     Q(orderDescription__icontains=searchstring) |
                     Q(name__icontains=searchstring) |
@@ -610,7 +616,8 @@ def orderDashboard(request, guage):
                            (Q(primaryContact__username__icontains=request.user.username) |
                             Q(secondaryContact__icontains=request.user.username)) &
                            (Q(appointmentDate__isnull=False) &
-                            Q(appointmentComplete__icontains='Yes')) &
+                            Q(appointmentComplete__icontains='Yes') &
+                            Q(dateClosed__isnull=True)) &
                            (Q(orderNumber__icontains=searchstring) |
                             Q(orderDescription__icontains=searchstring) |
                             Q(name__icontains=searchstring) |
@@ -622,7 +629,9 @@ def orderDashboard(request, guage):
                 queries = (
                            (Q(primaryContact__username__icontains=request.user.username) |
                             Q(secondaryContact__icontains=request.user.username)) &
-                           (Q(appointmentDate__isnull=False)) &
+                           (Q(appointmentDate__isnull=False) &
+                            Q(appointmentComplete__icontains='Yes') &
+                            Q(dateClosed__isnull=True)) &
                            (Q(orderNumber__icontains=searchstring) |
                             Q(orderDescription__icontains=searchstring) |
                             Q(name__icontains=searchstring) |
