@@ -243,7 +243,7 @@ def saveNewContractor(request):
         contractor_exists = (contractors.filter
                         (contractor=this_contractor))
         if contractor_exists:
-            messages.success(request, 'That Contractor Number already exists!')
+            messages.success(request, 'That Contractor already exists!')
         else:
             if abort_save != 1:
                 if form.is_valid():
